@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace Server
 {
-    class Customer
+    [DataContract]
+    public class Customer
     {
+        [DataMember]
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Phone { get; set; }
