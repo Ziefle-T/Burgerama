@@ -31,7 +31,7 @@ namespace Server1.Services
             throw new NotImplementedException();
         }
 
-        public bool Update(User user)
+        public (bool success, bool isAdmin) Login(string userName, string password)
         {
             throw new NotImplementedException();
         }

@@ -25,6 +25,6 @@ namespace Server1.Services
         bool Delete(User user);
 
         [OperationContract]
-        bool Login(User user);
+        (bool success, bool isAdmin) Login(string userName, string password);
     }
 }

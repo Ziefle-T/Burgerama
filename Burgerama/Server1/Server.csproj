@@ -71,10 +71,17 @@
     <Compile Include="Framework\NHibernateHelper.cs" />
     <Compile Include="Framework\Repository.cs" />
     <Compile Include="Mappings\AreaMap.cs" />
+    <Compile Include="Mappings\ArticlesMap.cs" />
+    <Compile Include="Mappings\CustomersMap.cs" />
+    <Compile Include="Mappings\DriversMap.cs" />
+    <Compile Include="Mappings\OrderLinesMap.cs" />
+    <Compile Include="Mappings\OrdersMap.cs" />
+    <Compile Include="Mappings\UsersMap.cs" />
     <Compile Include="Models\Area.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Driver.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderLines.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />

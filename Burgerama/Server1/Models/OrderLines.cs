@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Server1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -10,13 +11,15 @@ namespace Server.Models
     [DataContract]
     public class OrderLines
     {
+        public int Id { get; set; }
+
         [DataMember]
         public int Amount { get; set; }
         [DataMember]
         public int Position { get; set; }
         [DataMember]
-        public int OrderId { get; set; }
+        public Order Order { get; set; }
         [DataMember]
-        public int ArticleId { get; set; }
+        public Article Article { get; set; }
     }
 }

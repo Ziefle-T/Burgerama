@@ -12,9 +12,13 @@ namespace Server.Models
     [DataContract]
     public class Area
     {
+        public int Id { get; set; }
+
         [DataMember]
         public string Name { get; set; }
         [DataMember]
         public int Plz { get; set; }
+
+        public List<Driver> Drivers { get; set; }
     }
 }

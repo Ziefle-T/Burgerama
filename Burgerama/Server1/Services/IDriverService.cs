@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using Server.Models;
 
 namespace Server1.Services
 {
@@ -12,6 +13,15 @@ namespace Server1.Services
     public interface IDriverService
     {
         [OperationContract]
-        void DoWork();
+        List<Driver> GetAll();
+
+        [OperationContract]
+        bool Add(Driver driver);
+
+        [OperationContract]
+        bool Update(Driver driver);
+
+        [OperationContract]
+        bool Delete(Driver driver);
     }
 }

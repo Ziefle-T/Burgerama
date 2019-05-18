@@ -4,23 +4,28 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using Server.Models;
 
-namespace Server.Models
+namespace Server1.Models
 {
     [DataContract]
-    public class User
+    class Order
     {
         public int Id { get; set; }
 
         [DataMember]
-        public string Username { get; set; }
+        public string OrderNumber { get; set; }
+
         [DataMember]
-        public string Firstname { get; set; }
+        public DateTime OrderDate { get; set; }
+
         [DataMember]
-        public string Lastname { get; set; }
+        public string Description { get; set; }
+
         [DataMember]
-        public string Password { get; set; }
+        public Driver Driver { get; set; }
+
         [DataMember]
-        public bool IsAdmin { get; set; }
+        public Customer Customer { get; set; }
     }
 }
