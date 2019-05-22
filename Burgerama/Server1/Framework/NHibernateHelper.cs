@@ -10,7 +10,7 @@ using NHibernate;
 
 namespace Server.Framework
 {
-    class NHibernateHelper : INHibernateHelper
+    public class NHibernateHelper : INHibernateHelper
     {
         private ISessionFactory mSessionFactory;
         private string mDatabaseFile;

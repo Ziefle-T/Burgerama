@@ -35,5 +35,10 @@ namespace Server1.Services
         {
             throw new NotImplementedException();
         }
+
+        public bool Update(User user)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

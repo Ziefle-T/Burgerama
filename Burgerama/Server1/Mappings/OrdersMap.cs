@@ -19,7 +19,6 @@ namespace Server1.Mappings
             Map(x => x.OrderNumber).Length(50).Not.Nullable();
             Map(x => x.OrderDate).Not.Nullable();
             Map(x => x.Description).Length(100).Nullable();
-            Map(x => x.OrderNumber).Length(50).Not.Nullable();
             References(x => x.Driver).Column("EmployeeId").Not.Nullable();
             References(x => x.Customer).Column("CustomerId").Not.Nullable();
         }

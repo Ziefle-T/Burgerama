@@ -24,7 +24,6 @@ namespace Server1.Mappings
                 .Table("EmployeeToAreaRelations")
                 .ParentKeyColumn("EmployeeId")
                 .ChildKeyColumn("AreaId")
-                .LazyLoad()
                 .Cascade.SaveUpdate();
         }
     }

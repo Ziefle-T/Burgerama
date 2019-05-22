@@ -9,7 +9,7 @@ using Server.Models;
 namespace Server1.Models
 {
     [DataContract]
-    class Order
+    public class Order
     {
         public int Id { get; set; }
 

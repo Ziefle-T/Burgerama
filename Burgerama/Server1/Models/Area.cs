@@ -19,6 +19,6 @@ namespace Server.Models
         [DataMember]
         public int Plz { get; set; }
 
-        public List<Driver> Drivers { get; set; }
+        public IList<Driver> Drivers { get; set; }
     }
 }

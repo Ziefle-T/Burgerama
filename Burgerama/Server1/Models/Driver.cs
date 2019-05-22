@@ -19,6 +19,6 @@ namespace Server.Models
         [DataMember]
         public int EmployeeNumber { get; set; }
 
-        public List<Area> Areas { get; set; }
+        public IList<Area> Areas { get; set; }
     }
 }

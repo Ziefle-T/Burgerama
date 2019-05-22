@@ -20,9 +20,10 @@ namespace Server.Mappings
 
             HasManyToMany(x => x.Drivers)
                 .Table("EmployeeToAreaRelations")
-                .ParentKeyColumn("EmployeeId")
-                .ChildKeyColumn("AreaId")
+                .ParentKeyColumn("AreaId")
+                .ChildKeyColumn("EmployeeId")
                 .Inverse();
+
         }
     }
 }
