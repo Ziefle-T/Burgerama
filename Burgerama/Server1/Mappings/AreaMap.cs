@@ -23,7 +23,6 @@ namespace Server.Mappings
                 .ParentKeyColumn("AreaId")
                 .ChildKeyColumn("EmployeeId")
                 .Inverse();
-
         }
     }
 }

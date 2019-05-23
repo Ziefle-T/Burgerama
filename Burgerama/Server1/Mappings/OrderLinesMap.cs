@@ -19,8 +19,12 @@ namespace Server1.Mappings
             Map(x => x.Amount).Not.Nullable();
             Map(x => x.Position).Not.Nullable();
 
-            References(x => x.Order).Column("OrderId").Not.Nullable();
-            References(x => x.Article).Column("ArticleId").Not.Nullable();
+            References(x => x.Order).Column("OrderId")
+                .Not.Nullable()
+                .Cascade.SaveUpdate();
+            References(x => x.Article).Column("ArticleId")
+                .Not.Nullable()
+                .Cascade.SaveUpdate();
         }
     }
 }

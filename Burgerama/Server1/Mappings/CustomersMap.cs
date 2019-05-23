@@ -23,6 +23,7 @@ namespace Server1.Mappings
             Map(x => x.StreetNumber).Length(5).Not.Nullable();
             Map(x => x.Plz).Column("PostalCode").Not.Nullable();
             Map(x => x.City).Length(50).Not.Nullable();
+            Map(x => x.Type).Column("Type").Not.Nullable();
         }
     }
 }

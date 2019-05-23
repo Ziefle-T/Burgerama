@@ -67,6 +67,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Framework\RepositoryAreaTest.cs" />
+    <Compile Include="Framework\RepositoryArticleTest.cs" />
+    <Compile Include="Framework\RepositoryCustomerTest.cs" />
+    <Compile Include="Framework\RepositoryDriverTest.cs" />
+    <Compile Include="Framework\RepositoryOrderLinesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
