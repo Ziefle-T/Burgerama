@@ -12,6 +12,8 @@ namespace Server1
     {
         static void Main(string[] args)
         {
+
+
             ServiceHost userServiceHost = new ServiceHost(typeof(UserService));
             ServiceHost driverServiceHost = new ServiceHost(typeof(DriverService));
 

@@ -71,6 +71,8 @@
     <Compile Include="Framework\RepositoryCustomerTest.cs" />
     <Compile Include="Framework\RepositoryDriverTest.cs" />
     <Compile Include="Framework\RepositoryOrderLinesTest.cs" />
+    <Compile Include="Framework\RepositoryOrderTest.cs" />
+    <Compile Include="Framework\RepositoryUserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
