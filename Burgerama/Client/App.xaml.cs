@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Autofac;
+using Client.Controllers;
 using Client.Server.Services;
 
 namespace Client
@@ -21,6 +22,11 @@ namespace Client
         {
             SetupDIContainer();
 
+            LoginController loginController = Container.Resolve<LoginController>();
+            if (loginController.Login())
+            {
+
+            }
         }
 
         private void SetupDIContainer()
@@ -34,6 +40,9 @@ namespace Client
             containerBuilder.RegisterType<OrderLinesServiceClient>().As<IOrderLinesService>();
             containerBuilder.RegisterType<OrderServiceClient>().As<IOrderService>();
             containerBuilder.RegisterType<UserServiceClient>().As<IUserService>();
+
+            //Register Controllers
+            containerBuilder.RegisterType<LoginController>();
 
             Container = containerBuilder.Build();
         }
