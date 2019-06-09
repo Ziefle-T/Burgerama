@@ -7,36 +7,36 @@ using System.Text;
 using Server.Framework;
 using Server.Models;
 
-namespace Server1.Services
+namespace Server.Services
 {
-    // HINWEIS: Mit dem Befehl "Umbenennen" im Menü "Umgestalten" können Sie den Klassennamen "DriverService" sowohl im Code als auch in der Konfigurationsdatei ändern.
-    public class DriverService : IDriverService
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
+    public class DriverService : UpdatableService<Driver>, IDriverService
     {
-        private IRepository<Driver> mDriverRepository;
+        public DriverService(IRepository<Driver> repository) : base(repository) {}
 
-        public DriverService(IRepository<Driver> driverRepository)
+        public bool UpdateFirstName(int driverId, string firstName)
         {
-            mDriverRepository = driverRepository;
+            return Update(driverId, x => x.FirstName = firstName);
         }
 
-        public bool Add(Driver driver)
+        public bool UpdateLastName(int driverId, string lastName)
         {
-            throw new NotImplementedException();
+            return Update(driverId, x => x.LastName = lastName);
         }
 
-        public bool Delete(Driver driver)
+        public bool UpdateEmployeeNumber(int driverId, int employeeNumber)
         {
-            throw new NotImplementedException();
+            return Update(driverId, x => x.EmployeeNumber = employeeNumber);
         }
 
-        public List<Driver> GetAll()
+        public bool UpdateAreas(int driverId, List<Area> areas)
         {
-            throw new NotImplementedException();
+            return Update(driverId, x => x.Areas = areas);
         }
 
-        public bool Update(Driver driver)
+        protected override bool EqualsId(Driver obj, int id)
         {
-            throw new NotImplementedException();
+            return obj.Id == id;
         }
     }
 }

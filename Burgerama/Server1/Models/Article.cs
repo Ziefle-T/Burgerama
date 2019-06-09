@@ -18,6 +18,6 @@ namespace Server.Models
         [DataMember]
         public string Description { get; set; }
         [DataMember]
-        public Decimal Price { get; set; }
+        public decimal Price { get; set; }
     }
 }

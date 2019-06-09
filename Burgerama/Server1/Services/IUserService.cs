@@ -6,23 +6,35 @@ using System.ServiceModel;
 using System.Text;
 using Server.Models;
 
-namespace Server1.Services
+namespace Server.Services
 {
     // HINWEIS: Mit dem Befehl "Umbenennen" im Menü "Umgestalten" können Sie den Schnittstellennamen "IUserService" sowohl im Code als auch in der Konfigurationsdatei ändern.
     [ServiceContract]
     public interface IUserService
     {
         [OperationContract]
-        List<Customer> GetAll();
+        List<User> GetAll();
 
         [OperationContract]
         bool Add(User user);
 
         [OperationContract]
-        bool Update(User user);
+        bool UpdateUsername(int userId, string username);
 
         [OperationContract]
-        bool Delete(User user);
+        bool UpdateFirstname(int userId, string firstname);
+
+        [OperationContract]
+        bool UpdateLastname(int userId, string lastname);
+
+        [OperationContract]
+        bool UpdatePassword(int userId, string password);
+
+        [OperationContract]
+        bool UpdateAdmin(int userId, bool isAdmin);
+
+        [OperationContract]
+        bool Delete(int userId);
 
         [OperationContract]
         (bool success, bool isAdmin) Login(string userName, string password);

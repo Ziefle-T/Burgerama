@@ -37,6 +37,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +57,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Server\Models\Area.cs" />
+    <Compile Include="Server\Models\Article.cs" />
+    <Compile Include="Server\Models\Customer.cs" />
+    <Compile Include="Server\Models\Driver.cs" />
+    <Compile Include="Server\Models\Order.cs" />
+    <Compile Include="Server\Models\OrderLines.cs" />
+    <Compile Include="Server\Models\User.cs" />
+    <Compile Include="Server\Services\AreaService.cs" />
+    <Compile Include="Server\Services\ArticleService.cs" />
+    <Compile Include="Server\Services\CustomerService.cs" />
+    <Compile Include="Server\Services\DriverService.cs" />
+    <Compile Include="Server\Services\OrderLinesService.cs" />
+    <Compile Include="Server\Services\OrderService.cs" />
+    <Compile Include="Server\Services\UserService.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -93,6 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

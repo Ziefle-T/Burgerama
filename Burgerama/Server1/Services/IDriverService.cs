@@ -6,7 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using Server.Models;
 
-namespace Server1.Services
+namespace Server.Services
 {
     // HINWEIS: Mit dem Befehl "Umbenennen" im Menü "Umgestalten" können Sie den Schnittstellennamen "IDriverService" sowohl im Code als auch in der Konfigurationsdatei ändern.
     [ServiceContract]
@@ -19,9 +19,18 @@ namespace Server1.Services
         bool Add(Driver driver);
 
         [OperationContract]
-        bool Update(Driver driver);
+        bool UpdateFirstName(int driverId, string firstName);
 
         [OperationContract]
-        bool Delete(Driver driver);
+        bool UpdateLastName(int driverId, string lastName);
+
+        [OperationContract]
+        bool UpdateEmployeeNumber(int driverId, int employeeNumber);
+
+        [OperationContract]
+        bool UpdateAreas(int driverId, List<Area> areas);
+
+        [OperationContract]
+        bool Delete(int driverId);
     }
 }

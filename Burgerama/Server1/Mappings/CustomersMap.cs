@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FluentNHibernate.Mapping;
 using Server.Models;
 
-namespace Server1.Mappings
+namespace Server.Mappings
 {
     class CustomersMap : ClassMap<Customer>
     {

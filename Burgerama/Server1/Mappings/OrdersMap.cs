@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentNHibernate.Mapping;
-using Server1.Models;
+using Server.Models;
 
-namespace Server1.Mappings
+namespace Server.Mappings
 {
     class OrdersMap : ClassMap<Order>
     {

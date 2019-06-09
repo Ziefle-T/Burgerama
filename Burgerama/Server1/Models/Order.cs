@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Server.Models;
 
-namespace Server1.Models
+namespace Server.Models
 {
     [DataContract]
     public class Order

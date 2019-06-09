@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Server.Framework;
 using Server.Models;
-using Server1.Models;
 
 namespace ServerTest.Framework
 {
