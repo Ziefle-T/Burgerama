@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Autofac;
+using Client.Server.Services;
 
 namespace Client
 {
@@ -13,10 +15,27 @@ namespace Client
     /// </summary>
     public partial class App : Application
     {
+        public static IContainer Container { get; private set; }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            
+            SetupDIContainer();
+
+        }
+
+        private void SetupDIContainer()
+        {
+            ContainerBuilder containerBuilder = new ContainerBuilder();
+            //Register WCF-Service-Clients
+            containerBuilder.RegisterType<AreaServiceClient>().As<IAreaService>();
+            containerBuilder.RegisterType<ArticleServiceClient>().As<IArticleService>();
+            containerBuilder.RegisterType<CustomerServiceClient>().As<ICustomerService>();
+            containerBuilder.RegisterType<DriverServiceClient>().As<IDriverService>();
+            containerBuilder.RegisterType<OrderLinesServiceClient>().As<IOrderLinesService>();
+            containerBuilder.RegisterType<OrderServiceClient>().As<IOrderService>();
+            containerBuilder.RegisterType<UserServiceClient>().As<IUserService>();
+
+            Container = containerBuilder.Build();
         }
     }
 }
