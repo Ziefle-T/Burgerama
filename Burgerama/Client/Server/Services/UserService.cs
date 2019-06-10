@@ -65,10 +65,10 @@ namespace Client.Server.Services
         System.Threading.Tasks.Task<bool> DeleteAsync(int userId);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IUserService/Login", ReplyAction = "http://tempuri.org/IUserService/LoginResponse")]
-        System.ValueTuple<bool, bool> Login(string userName, string password);
+        (bool success, bool isAdmin) Login(string userName, string password);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IUserService/Login", ReplyAction = "http://tempuri.org/IUserService/LoginResponse")]
-        System.Threading.Tasks.Task<System.ValueTuple<bool, bool>> LoginAsync(string userName, string password);
+        System.Threading.Tasks.Task<(bool success, bool isAdmin)> LoginAsync(string userName, string password);
     }
 
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

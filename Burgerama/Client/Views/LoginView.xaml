@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
         xmlns:sys="clr-namespace:System;assembly=System"
         xmlns:local="clr-namespace:Client.Views"
         mc:Ignorable="d"
@@ -20,7 +21,6 @@
         <Style TargetType="PasswordBox">
             <Style.Setters>
                 <Setter Property="Background" Value="Transparent"></Setter>
-                <EventSetter Event="PasswordChanged" Handler="{Binding PasswordChangedCommand}"></EventSetter>
             </Style.Setters>
             <Style.Triggers>
                 <Trigger Property="IsKeyboardFocused" Value="True">
@@ -45,14 +45,12 @@
         <Image Grid.Column="0" Grid.Row="0" Margin="0,5,0,5" Source="/Client;component/Ressources/templogo.jpg" ></Image>
 
         <Label Grid.Column="0" Grid.Row="1" Margin="80,0,80,0" VerticalContentAlignment="Center" Foreground="#FF1463B2" BorderBrush="#FF1463B2" BorderThickness="0,0,0,2" Content="Benutzername" Visibility="{Binding ShowUsernameLabel}"/>
-        <TextBox Grid.Column="0" Grid.Row="1" Margin="80,0,80,0" VerticalContentAlignment="Center" Foreground="#FF1463B2" BorderBrush="#FF1463B2" BorderThickness="0,0,0,2" Text="{Binding UserName}">
-            
-        </TextBox>
+        <TextBox Grid.Column="0" Grid.Row="1" Margin="80,0,80,0" VerticalContentAlignment="Center" Foreground="#FF1463B2" BorderBrush="#FF1463B2" BorderThickness="0,0,0,2" Text="{Binding UserName}" />
 
-        <Label Grid.Column="0" Grid.Row="2" Margin="80,0,80,0" VerticalContentAlignment="Center" Foreground="#FF1463B2" BorderBrush="#FF1463B2" BorderThickness="0,0,0,2" Content="Password" Visibility="{Binding ShowPasswordLabel}"/>
-        <PasswordBox Grid.Column="0" Grid.Row="2" Margin="80,0,80,0" VerticalContentAlignment="Center" Foreground="#FF1463B2" BorderThickness="0,0,0,2" BorderBrush="#FF1463B2" />
+        <Label Grid.Column="0" Grid.Row="2" Margin="80,0,80,0" VerticalContentAlignment="Center" Foreground="#FF1463B2" BorderBrush="#FF1463B2" BorderThickness="0,0,0,2" Content="Password" Name="passwordLabel" Visibility="{Binding ShowPasswordLabel}"/>
+        <PasswordBox Grid.Column="0" Grid.Row="2" Margin="80,0,80,0" VerticalContentAlignment="Center" Foreground="#FF1463B2" BorderThickness="0,0,0,2" BorderBrush="#FF1463B2" Name="passwordBox" PasswordChanged="PasswordBoxChanged" />
 
-        <Button Grid.Column="0" Grid.Row="3" Margin="75,40" Background="#FF1463B2" BorderBrush="#FF1463B2" Foreground="White" FontWeight="Bold" FontSize="16" Command="{Binding LoginCommand}">Anmelden</Button>
+        <Button Grid.Column="0" Grid.Row="3" Margin="75,40" Background="#FF1463B2" BorderBrush="#FF1463B2" Foreground="White" FontWeight="Bold" FontSize="16" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=passwordBox}">Anmelden</Button>
     </Grid>
 </Window>
 

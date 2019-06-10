@@ -20,7 +20,7 @@ namespace Client.ViewModels
                 mUserName = value;
                 mShowUserNameLabel = value == "";
                 OnPropertyChanged();
-                OnPropertyChanged("ShowUsernameLabel");
+                OnPropertyChanged(nameof(ShowUsernameLabel));
             }
         }
 
@@ -33,7 +33,7 @@ namespace Client.ViewModels
                 mPassword = value;
                 mShowPasswordLabel = value == "";
                 OnPropertyChanged();
-                OnPropertyChanged("ShowPasswordLabel");
+                OnPropertyChanged(nameof(ShowPasswordLabel));
             }
         }
 
@@ -60,6 +60,5 @@ namespace Client.ViewModels
         }
 
         public ICommand LoginCommand { get; set; }
-        public ICommand PasswordChangedCommand { get; set; }
     }
 }

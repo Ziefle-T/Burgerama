@@ -23,5 +23,10 @@ namespace Client.Views
         {
             InitializeComponent();
         }
+
+        private void PasswordBoxChanged(object sender, RoutedEventArgs e)
+        {
+            passwordLabel.Visibility = passwordBox.Password == "" ? Visibility.Visible : Visibility.Hidden;
+        }
     }
 }
