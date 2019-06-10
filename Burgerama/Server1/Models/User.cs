@@ -10,6 +10,7 @@ namespace Server.Models
     [DataContract]
     public class User
     {
+        [DataMember]
         public int Id { get; set; }
 
         [DataMember]

@@ -16,6 +16,8 @@ namespace Client.Server.Models
 
         private string FirstnameField;
 
+        private int IdField;
+
         private bool IsAdminField;
 
         private string LastnameField;
@@ -46,6 +48,19 @@ namespace Client.Server.Models
             set
             {
                 this.FirstnameField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
             }
         }
 

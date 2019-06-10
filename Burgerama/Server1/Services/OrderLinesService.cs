@@ -34,7 +34,7 @@ namespace Server.Services
             return Update(orderLinesId, x => x.Position = position);
         }
 
-        protected override bool EqualsId(OrderLines obj, int id)
+        public override bool EqualsId(OrderLines obj, int id)
         {
             return obj.Id == id;
         }

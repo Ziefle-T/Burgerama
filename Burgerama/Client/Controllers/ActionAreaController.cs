@@ -13,7 +13,7 @@ namespace Client.Controllers
     {
         protected T mViewModel;
 
-        public T Initialize()
+        public virtual T Initialize()
         {
             mViewModel = App.Container.Resolve<T>();
 

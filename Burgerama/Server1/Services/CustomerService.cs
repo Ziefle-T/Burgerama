@@ -25,6 +25,15 @@ namespace Server.Services
             return Update(customerId, x => x.City = city);
         }
 
+        public bool UpdateCustomer(Customer customer)
+        {
+            if (customer == null)
+            {
+                return false;
+            }
+            return UpdateElement(customer.Id, customer);
+        }
+
         public bool UpdateFirstName(int customerId, string firstName)
         {
             return Update(customerId, x => x.FirstName = firstName);
@@ -55,7 +64,7 @@ namespace Server.Services
             return Update(customerId, x => x.StreetNumber = streetNumber);
         }
 
-        protected override bool EqualsId(Customer obj, int id)
+        public override bool EqualsId(Customer obj, int id)
         {
             return obj.Id == id;
         }

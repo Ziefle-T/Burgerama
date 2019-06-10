@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using NHibernate.Linq;
@@ -57,11 +59,34 @@ namespace Server.Services
             }
         }
 
+        protected virtual bool UpdateElement(int id, T obj)
+        {
+            try
+            {
+                T oldObj = mRepository.GetAllWhere(x => EqualsId(x, id)).FirstOrDefault();
+
+                if (oldObj == null)
+                {
+                    return false;
+                }
+                
+                mRepository.Save(obj);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
+
         protected virtual bool Update(int id, Action<T> act)
         {
             try
             {
-                T obj = mRepository.GetAllWhere(x => EqualsId(x, id)).FirstOrDefault();
+                Expression<Func<T, UpdatableService<T>, bool>> expr = (x,y) => y.EqualsId(x, id);
+                var f = expr.Compile();
+                T obj = mRepository.GetAllWhere(y => f.Invoke(y, this)).FirstOrDefault();
 
                 if (obj == null)
                 {
@@ -79,6 +104,6 @@ namespace Server.Services
             }
         }
 
-        protected abstract bool EqualsId(T obj, int id);
+        public abstract bool EqualsId(T obj, int id);
     }
 }

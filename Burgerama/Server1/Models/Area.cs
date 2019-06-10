@@ -13,13 +13,14 @@ namespace Server.Models
     [DataContract]
     public class Area
     {
+        [DataMember]
         public int Id { get; set; }
 
         [DataMember]
         public string Name { get; set; }
         [DataMember]
         public int Plz { get; set; }
-
+        [DataMember]
         public IList<Driver> Drivers { get; set; }
 
         public void Delete(IRepository<Driver> driverRepository, IRepository<Area> areaRepository)

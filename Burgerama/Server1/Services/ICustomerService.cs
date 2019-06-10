@@ -22,6 +22,9 @@ namespace Server.Services
         bool Delete(int customerId);
 
         [OperationContract]
+        bool UpdateCustomer(Customer customer);
+
+        [OperationContract]
         bool UpdateFirstName(int customerId, string firstName);
 
         [OperationContract]

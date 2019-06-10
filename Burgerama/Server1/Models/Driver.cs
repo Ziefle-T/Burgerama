@@ -11,6 +11,7 @@ namespace Server.Models
     [DataContract]
     public class Driver
     {
+        [DataMember]
         public int Id { get; set; }
         [DataMember]
         public string FirstName { get; set; }
@@ -18,7 +19,7 @@ namespace Server.Models
         public string LastName { get; set; }
         [DataMember]
         public int EmployeeNumber { get; set; }
-
+        [DataMember]
         public IList<Area> Areas { get; set; }
     }
 }

@@ -40,7 +40,7 @@ namespace Server.Services
             return Update(areaId, x => x.Plz = plz);
         }
 
-        protected override bool EqualsId(Area obj, int id)
+        public override bool EqualsId(Area obj, int id)
         {
             return obj.Id == id;
         }

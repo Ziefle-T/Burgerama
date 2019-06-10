@@ -17,22 +17,28 @@ namespace Client.Server.Services
     {
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ICustomerService/GetAll", ReplyAction = "http://tempuri.org/ICustomerService/GetAllResponse")]
-        Customer[] GetAll();
+        Server.Models.Customer[] GetAll();
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ICustomerService/GetAll", ReplyAction = "http://tempuri.org/ICustomerService/GetAllResponse")]
-        System.Threading.Tasks.Task<Customer[]> GetAllAsync();
+        System.Threading.Tasks.Task<Server.Models.Customer[]> GetAllAsync();
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ICustomerService/Add", ReplyAction = "http://tempuri.org/ICustomerService/AddResponse")]
-        bool Add(Customer customer);
+        bool Add(Server.Models.Customer customer);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ICustomerService/Add", ReplyAction = "http://tempuri.org/ICustomerService/AddResponse")]
-        System.Threading.Tasks.Task<bool> AddAsync(Customer customer);
+        System.Threading.Tasks.Task<bool> AddAsync(Server.Models.Customer customer);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ICustomerService/Delete", ReplyAction = "http://tempuri.org/ICustomerService/DeleteResponse")]
         bool Delete(int customerId);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ICustomerService/Delete", ReplyAction = "http://tempuri.org/ICustomerService/DeleteResponse")]
         System.Threading.Tasks.Task<bool> DeleteAsync(int customerId);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ICustomerService/UpdateCustomer", ReplyAction = "http://tempuri.org/ICustomerService/UpdateCustomerResponse")]
+        bool UpdateCustomer(Server.Models.Customer customer);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ICustomerService/UpdateCustomer", ReplyAction = "http://tempuri.org/ICustomerService/UpdateCustomerResponse")]
+        System.Threading.Tasks.Task<bool> UpdateCustomerAsync(Server.Models.Customer customer);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ICustomerService/UpdateFirstName", ReplyAction = "http://tempuri.org/ICustomerService/UpdateFirstNameResponse")]
         bool UpdateFirstName(int customerId, string firstName);
@@ -75,140 +81,5 @@ namespace Client.Server.Services
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ICustomerService/UpdateCity", ReplyAction = "http://tempuri.org/ICustomerService/UpdateCityResponse")]
         System.Threading.Tasks.Task<bool> UpdateCityAsync(int customerId, string city);
-    }
-
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ICustomerServiceChannel : ICustomerService, System.ServiceModel.IClientChannel
-    {
-    }
-
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class CustomerServiceClient : System.ServiceModel.ClientBase<ICustomerService>, ICustomerService
-    {
-
-        public CustomerServiceClient()
-        {
-        }
-
-        public CustomerServiceClient(string endpointConfigurationName) :
-                base(endpointConfigurationName)
-        {
-        }
-
-        public CustomerServiceClient(string endpointConfigurationName, string remoteAddress) :
-                base(endpointConfigurationName, remoteAddress)
-        {
-        }
-
-        public CustomerServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
-                base(endpointConfigurationName, remoteAddress)
-        {
-        }
-
-        public CustomerServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
-                base(binding, remoteAddress)
-        {
-        }
-
-        public Customer[] GetAll()
-        {
-            return base.Channel.GetAll();
-        }
-
-        public System.Threading.Tasks.Task<Customer[]> GetAllAsync()
-        {
-            return base.Channel.GetAllAsync();
-        }
-
-        public bool Add(Customer customer)
-        {
-            return base.Channel.Add(customer);
-        }
-
-        public System.Threading.Tasks.Task<bool> AddAsync(Customer customer)
-        {
-            return base.Channel.AddAsync(customer);
-        }
-
-        public bool Delete(int customerId)
-        {
-            return base.Channel.Delete(customerId);
-        }
-
-        public System.Threading.Tasks.Task<bool> DeleteAsync(int customerId)
-        {
-            return base.Channel.DeleteAsync(customerId);
-        }
-
-        public bool UpdateFirstName(int customerId, string firstName)
-        {
-            return base.Channel.UpdateFirstName(customerId, firstName);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdateFirstNameAsync(int customerId, string firstName)
-        {
-            return base.Channel.UpdateFirstNameAsync(customerId, firstName);
-        }
-
-        public bool UpdateLastName(int customerId, string lastName)
-        {
-            return base.Channel.UpdateLastName(customerId, lastName);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdateLastNameAsync(int customerId, string lastName)
-        {
-            return base.Channel.UpdateLastNameAsync(customerId, lastName);
-        }
-
-        public bool UpdatePhone(int customerId, string phone)
-        {
-            return base.Channel.UpdatePhone(customerId, phone);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdatePhoneAsync(int customerId, string phone)
-        {
-            return base.Channel.UpdatePhoneAsync(customerId, phone);
-        }
-
-        public bool UpdateStreet(int customerId, string street)
-        {
-            return base.Channel.UpdateStreet(customerId, street);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdateStreetAsync(int customerId, string street)
-        {
-            return base.Channel.UpdateStreetAsync(customerId, street);
-        }
-
-        public bool UpdateStreetNumber(int customerId, string streetNumber)
-        {
-            return base.Channel.UpdateStreetNumber(customerId, streetNumber);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdateStreetNumberAsync(int customerId, string streetNumber)
-        {
-            return base.Channel.UpdateStreetNumberAsync(customerId, streetNumber);
-        }
-
-        public bool UpdatePlz(int customerId, int plz)
-        {
-            return base.Channel.UpdatePlz(customerId, plz);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdatePlzAsync(int customerId, int plz)
-        {
-            return base.Channel.UpdatePlzAsync(customerId, plz);
-        }
-
-        public bool UpdateCity(int customerId, string city)
-        {
-            return base.Channel.UpdateCity(customerId, city);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdateCityAsync(int customerId, string city)
-        {
-            return base.Channel.UpdateCityAsync(customerId, city);
-        }
     }
 }

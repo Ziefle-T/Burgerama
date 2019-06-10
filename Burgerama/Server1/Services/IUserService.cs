@@ -28,7 +28,7 @@ namespace Server.Services
         bool UpdateLastname(int userId, string lastname);
 
         [OperationContract]
-        bool UpdatePassword(int userId, string password);
+        bool UpdatePassword(int userId, string oldPassword, string password);
 
         [OperationContract]
         bool UpdateAdmin(int userId, bool isAdmin);
@@ -37,6 +37,6 @@ namespace Server.Services
         bool Delete(int userId);
 
         [OperationContract]
-        (bool success, bool isAdmin) Login(string userName, string password);
+        (bool success, User user) Login(string userName, string password);
     }
 }

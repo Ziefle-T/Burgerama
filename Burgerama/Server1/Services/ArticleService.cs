@@ -34,7 +34,7 @@ namespace Server.Services
             return Update(articleId, x => x.Price = price);
         }
 
-        protected override bool EqualsId(Article obj, int id)
+        public override bool EqualsId(Article obj, int id)
         {
             return obj.Id == id;
         }

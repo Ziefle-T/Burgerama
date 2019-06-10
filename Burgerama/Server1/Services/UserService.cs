@@ -29,7 +29,7 @@ namespace Server.Services
             return users;
         }
 
-        public (bool success, bool isAdmin) Login(string userName, string password)
+        public (bool success, User user) Login(string userName, string password)
         {
             try
             {
@@ -37,16 +37,19 @@ namespace Server.Services
 
                 if (user == null)
                 {
-                    return (false, false);
+                    return (false, null);
                 }
 
                 bool success = BCrypt.Net.BCrypt.Verify(password, user.Password);
-                return (success, user.IsAdmin);
+
+                user.Password = null;
+
+                return (success, user);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return (false, false);
+                return (false, null);
             }
         }
 
@@ -65,9 +68,33 @@ namespace Server.Services
             return Update(userId, x => x.Lastname = lastname);
         }
 
-        public bool UpdatePassword(int userId, string password)
+        public bool UpdatePassword(int userId, string oldPassword, string password)
         {
-            return Update(userId, x => x.Password = BCrypt.Net.BCrypt.HashPassword(password));
+            try
+            {
+                User user = mRepository.GetAllWhere(x => x.Id == userId).FirstOrDefault();
+                
+                if (user == null)
+                {
+                    return false;
+                }
+                
+                bool oldPwVerified = BCrypt.Net.BCrypt.Verify(oldPassword, user.Password);
+                if (!oldPwVerified)
+                {
+                    return false;
+                }
+
+                user.Password = BCrypt.Net.BCrypt.HashPassword(password
+                );
+                mRepository.Save(user);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
         }
 
         public bool UpdateUsername(int userId, string username)
@@ -75,7 +102,7 @@ namespace Server.Services
             return Update(userId, x => x.Username = username);
         }
 
-        protected override bool EqualsId(User obj, int id)
+        public override bool EqualsId(User obj, int id)
         {
             return obj.Id == id;
         }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using Client.Framework;
+using Client.Server.Models;
 using Client.Server.Services;
 using Client.ViewModels;
 using Client.Views;
@@ -17,7 +18,7 @@ namespace Client.Controllers
         private LoginView mView;
         private IUserService mUserService;
 
-        private bool mIsAdmin = false;
+        private User mUser;
 
         public LoginController(IUserService userService)
         {
@@ -36,7 +37,7 @@ namespace Client.Controllers
                 var loginResult = mUserService.Login(mViewModel.UserName, passwordBox.Password);
                 if (loginResult.success)
                 {
-                    mIsAdmin = loginResult.isAdmin;
+                    mUser = loginResult.user;
                     
                     mView.DialogResult = true;
                     mView.Close();
@@ -46,7 +47,7 @@ namespace Client.Controllers
             }
         }
 
-        public (bool success, bool isAdmin) Login()
+        public (bool success, User user) Login()
         {
             mViewModel = new LoginViewModel();
             mViewModel.LoginCommand = new RelayCommand(ExecuteLoginCommand);
@@ -55,7 +56,7 @@ namespace Client.Controllers
             mView.DataContext = mViewModel;
 
             bool? result = mView.ShowDialog();
-            return (result ?? false, mIsAdmin);
+            return (result ?? false, mUser);
         }
     }
 }

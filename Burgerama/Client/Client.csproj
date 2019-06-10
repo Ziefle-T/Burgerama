@@ -65,6 +65,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controllers\ActionAreaController.cs" />
+    <Compile Include="Controllers\ChangePasswordController.cs" />
     <Compile Include="Controllers\CustomerViewController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainWindowController.cs" />
@@ -81,16 +82,20 @@
     <Compile Include="Server\Models\User.cs" />
     <Compile Include="Server\Services\AreaService.cs" />
     <Compile Include="Server\Services\ArticleService.cs" />
-    <Compile Include="Server\Services\CustomerService.cs" />
+    <Compile Include="Server\Services\ICustomerService.cs" />
     <Compile Include="Server\Services\DriverService.cs" />
     <Compile Include="Server\Services\OrderLinesService.cs" />
     <Compile Include="Server\Services\OrderService.cs" />
-    <Compile Include="Server\Services\UserService.cs" />
+    <Compile Include="Server\Services\IUserService.cs" />
     <Compile Include="ViewModels\ActionAreaViewModel.cs" />
+    <Compile Include="ViewModels\ChangepasswordViewModel.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\StartViewModel.cs" />
+    <Compile Include="Views\ChangePasswordWindow.xaml.cs">
+      <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CustomerView.xaml.cs">
       <DependentUpon>CustomerView.xaml</DependentUpon>
     </Compile>
@@ -100,6 +105,7 @@
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PasswordChangeConverter.cs" />
     <Compile Include="Views\StartView.xaml.cs">
       <DependentUpon>StartView.xaml</DependentUpon>
     </Compile>
@@ -108,6 +114,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ChangePasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CustomerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -155,7 +165,9 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Ressources\delete.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Ressources\templogo.jpg" />
   </ItemGroup>

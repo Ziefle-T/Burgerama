@@ -18,6 +18,8 @@ namespace Client.Server.Models
 
         private string FirstNameField;
 
+        private int IdField;
+
         private string LastNameField;
 
         private string PhoneField;
@@ -63,6 +65,19 @@ namespace Client.Server.Models
             set
             {
                 this.FirstNameField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
             }
         }
 

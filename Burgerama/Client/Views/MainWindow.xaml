@@ -10,6 +10,31 @@
 
     <Window.Resources>
         <local:SubmoduleSelector x:Key="TemplateSelector" />
+
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="#FF4767AE" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter x:Name="MyContentPresenter" 
+                                              Content="{TemplateBinding Content}"
+                                              HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Foreground" Value="#FF8B8E9F"/>
+                    <Setter Property="Background" Value="#FF4767AE" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -26,11 +51,31 @@
 
         <Image Grid.Column="0" Grid.Row="0" Source="/Client;component/Ressources/templogo.jpg"/>
 
-        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Height="30">
-            <Button Margin="5" Width="40" Command="{Binding NewCommand}">Neu</Button>
-            <Button Margin="5" Width="80" Command="{Binding EditCommand}">Bearbeiten</Button>
-            <Button Margin="5" Width="80" Command="{Binding SaveCommand}">Speichern</Button>
-            <Button Margin="5" Width="80" Command="{Binding DeleteCommand}">Löschen</Button>
+        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Height="35" VerticalAlignment="Bottom">
+            <Button Margin="5" Width="55" Command="{Binding NewCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Client;component/Ressources/delete.png"></Image>
+                    <TextBlock VerticalAlignment="Center">Neu</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Margin="5" Width="85" Command="{Binding EditCommand}" Background="#FF4767AE">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Client;component/Ressources/delete.png"></Image>
+                    <TextBlock VerticalAlignment="Center">Bearbeiten</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Margin="5" Width="85" Command="{Binding SaveCommand}" Background="#FF4767AE">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Client;component/Ressources/delete.png"></Image>
+                    <TextBlock VerticalAlignment="Center">Speichern</TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Margin="5" Width="80" Command="{Binding DeleteCommand}" Background="#FF4767AE">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Client;component/Ressources/delete.png"/>
+                    <TextBlock VerticalAlignment="Center">Löschen</TextBlock>
+                </StackPanel>
+            </Button>
         </StackPanel>
 
         <ListBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Sites}" SelectedItem="{Binding SelectedSite}" >
@@ -42,7 +87,7 @@
         </ListBox>
 
         <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Visibility="{Binding ShowAdmin}">Administration</TextBlock>
-        <ListBox Grid.Column="0" Grid.Row="3" ItemsSource="{Binding AdminSites}" SelectedItem="{Binding SelectedAdminSite}" >
+        <ListBox Grid.Column="0" Grid.Row="3" ItemsSource="{Binding AdminSites}" SelectedItem="{Binding SelectedAdminSite}" Visibility="{Binding ShowAdmin}">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type sys:String}">
                     <TextBlock Text="{Binding}" IsEnabled="False" Height="20" VerticalAlignment="Center" />

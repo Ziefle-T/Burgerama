@@ -11,6 +11,7 @@ namespace Server.Models
     [DataContract]
     public class Order
     {
+        [DataMember]
         public int Id { get; set; }
 
         [DataMember]

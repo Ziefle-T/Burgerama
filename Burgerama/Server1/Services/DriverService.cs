@@ -34,7 +34,7 @@ namespace Server.Services
             return Update(driverId, x => x.Areas = areas);
         }
 
-        protected override bool EqualsId(Driver obj, int id)
+        public override bool EqualsId(Driver obj, int id)
         {
             return obj.Id == id;
         }

@@ -9,6 +9,7 @@ using System.Windows;
 using Autofac;
 using Autofac.Integration.Wcf;
 using Client.Controllers;
+using Client.Server.Models;
 using Client.Server.Services;
 using Client.ViewModels;
 
@@ -20,6 +21,8 @@ namespace Client
     public partial class App : Application
     {
         public static IContainer Container { get; private set; }
+
+        public static User LoggedInUser { get; private set; }
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -34,8 +37,10 @@ namespace Client
                 //var loginResult = loginController.Login();
                 //if (loginResult.success)
                 //{
+                //    LoggedInUser = loginResult.user;
+
                 //    var mainWindowController = lifetime.Resolve<MainWindowController>();
-                //    mainWindowController.Initialize(loginResult.isAdmin);
+                //    mainWindowController.Initialize(loginResult.user.IsAdmin);
                 //}
             }
 
@@ -54,6 +59,13 @@ namespace Client
             containerBuilder.Register(c => c.Resolve<ChannelFactory<IUserService>>().CreateChannel())
                 .As<IUserService>()
                 .UseWcfSafeRelease();
+            containerBuilder.Register(c => new ChannelFactory<ICustomerService>(
+                new BasicHttpBinding(),
+                new EndpointAddress("http://localhost:8733/Design_Time_Addresses/Server.Services/CustomerService/")
+            )).SingleInstance();
+            containerBuilder.Register(c => c.Resolve<ChannelFactory<ICustomerService>>().CreateChannel())
+                .As<ICustomerService>()
+                .UseWcfSafeRelease();
 
             //containerBuilder.RegisterType<ArticleServiceClient>().As<IArticleService>();
             //containerBuilder.RegisterType<CustomerServiceClient>().As<ICustomerService>();
@@ -66,6 +78,7 @@ namespace Client
             containerBuilder.RegisterType<LoginController>();
             containerBuilder.RegisterType<MainWindowController>();
             containerBuilder.RegisterType<StartViewController>();
+            containerBuilder.RegisterType<ChangePasswordController>();
             containerBuilder.RegisterType<CustomerViewController>();
 
             //Register View-Models

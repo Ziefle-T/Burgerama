@@ -50,7 +50,7 @@
         <Label Grid.Column="0" Grid.Row="2" Margin="80,0,80,0" VerticalContentAlignment="Center" Foreground="#FF1463B2" BorderBrush="#FF1463B2" BorderThickness="0,0,0,2" Content="Password" Name="passwordLabel" Visibility="{Binding ShowPasswordLabel}"/>
         <PasswordBox Grid.Column="0" Grid.Row="2" Margin="80,0,80,0" VerticalContentAlignment="Center" Foreground="#FF1463B2" BorderThickness="0,0,0,2" BorderBrush="#FF1463B2" Name="passwordBox" PasswordChanged="PasswordBoxChanged" />
 
-        <Button Grid.Column="0" Grid.Row="3" Margin="75,40" Background="#FF1463B2" BorderBrush="#FF1463B2" Foreground="White" FontWeight="Bold" FontSize="16" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=passwordBox}">Anmelden</Button>
+        <Button Grid.Column="0" Grid.Row="3" Margin="75,40" Background="#FF4767AE" BorderBrush="#FF1463B2" Foreground="White" FontWeight="Bold" FontSize="16" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=passwordBox}">Anmelden</Button>
     </Grid>
 </Window>
 

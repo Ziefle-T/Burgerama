@@ -10,6 +10,7 @@ namespace Server.Models
     [DataContract]
     public class Article
     {
+        [DataMember]
         public int Id { get; set; }
         [DataMember]
         public string ArticleNumber { get; set; }
