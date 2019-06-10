@@ -10,6 +10,7 @@ using Autofac;
 using Autofac.Integration.Wcf;
 using Client.Controllers;
 using Client.Server.Services;
+using Client.ViewModels;
 
 namespace Client
 {
@@ -26,18 +27,25 @@ namespace Client
 
             using (var lifetime = Container.BeginLifetimeScope())
             {
-                LoginController loginController = lifetime.Resolve<LoginController>();
-                var loginResult = loginController.Login();
-                if (loginResult.success)
-                {
-                    Console.WriteLine("logged in");
-                }
+                var mainWindowController = lifetime.Resolve<MainWindowController>();
+                mainWindowController.Initialize(true);
+
+                //LoginController loginController = lifetime.Resolve<LoginController>();
+                //var loginResult = loginController.Login();
+                //if (loginResult.success)
+                //{
+                //    var mainWindowController = lifetime.Resolve<MainWindowController>();
+                //    mainWindowController.Initialize(loginResult.isAdmin);
+                //}
             }
+
+            this.Shutdown();
         }
 
         private void SetupDIContainer()
         {
             ContainerBuilder containerBuilder = new ContainerBuilder();
+
             //Register WCF-Service-Clients
             containerBuilder.Register(c => new ChannelFactory<IUserService>(
                 new BasicHttpBinding(),
@@ -56,6 +64,13 @@ namespace Client
 
             //Register Controllers
             containerBuilder.RegisterType<LoginController>();
+            containerBuilder.RegisterType<MainWindowController>();
+            containerBuilder.RegisterType<StartViewController>();
+            containerBuilder.RegisterType<CustomerViewController>();
+
+            //Register View-Models
+            containerBuilder.RegisterType<StartViewModel>();
+            containerBuilder.RegisterType<CustomerViewModel>();
 
             Container = containerBuilder.Build();
         }
