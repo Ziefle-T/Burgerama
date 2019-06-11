@@ -59,6 +59,7 @@ namespace Client
             containerBuilder.Register(c => c.Resolve<ChannelFactory<IUserService>>().CreateChannel())
                 .As<IUserService>()
                 .UseWcfSafeRelease();
+
             containerBuilder.Register(c => new ChannelFactory<ICustomerService>(
                 new BasicHttpBinding(),
                 new EndpointAddress("http://localhost:8733/Design_Time_Addresses/Server.Services/CustomerService/")
@@ -67,23 +68,70 @@ namespace Client
                 .As<ICustomerService>()
                 .UseWcfSafeRelease();
 
-            //containerBuilder.RegisterType<ArticleServiceClient>().As<IArticleService>();
-            //containerBuilder.RegisterType<CustomerServiceClient>().As<ICustomerService>();
-            //containerBuilder.RegisterType<DriverServiceClient>().As<IDriverService>();
-            //containerBuilder.RegisterType<OrderLinesServiceClient>().As<IOrderLinesService>();
-            //containerBuilder.RegisterType<OrderServiceClient>().As<IOrderService>();
-            //containerBuilder.RegisterType<UserServiceClient>().As<IUserService>();
+            containerBuilder.Register(c => new ChannelFactory<IOrderService>(
+                new BasicHttpBinding(),
+                new EndpointAddress("http://localhost:8733/Design_Time_Addresses/Server.Services/OrderService/")
+            )).SingleInstance();
+            containerBuilder.Register(c => c.Resolve<ChannelFactory<IOrderService>>().CreateChannel())
+                .As<IOrderService>()
+                .UseWcfSafeRelease();
 
+            containerBuilder.Register(c => new ChannelFactory<IOrderLinesService>(
+                new BasicHttpBinding(),
+                new EndpointAddress("http://localhost:8733/Design_Time_Addresses/Server.Services/OrderLinesService/")
+            )).SingleInstance();
+            containerBuilder.Register(c => c.Resolve<ChannelFactory<IOrderLinesService>>().CreateChannel())
+                .As<IOrderLinesService>()
+                .UseWcfSafeRelease();
+
+            containerBuilder.Register(c => new ChannelFactory<IArticleService>(
+                new BasicHttpBinding(),
+                new EndpointAddress("http://localhost:8733/Design_Time_Addresses/Server.Services/ArticleService/")
+            )).SingleInstance();
+            containerBuilder.Register(c => c.Resolve<ChannelFactory<IArticleService>>().CreateChannel())
+                .As<IArticleService>()
+                .UseWcfSafeRelease();
+
+            containerBuilder.Register(c => new ChannelFactory<IDriverService>(
+                new BasicHttpBinding(),
+                new EndpointAddress("http://localhost:8733/Design_Time_Addresses/Server.Services/DriverService/")
+            )).SingleInstance();
+            containerBuilder.Register(c => c.Resolve<ChannelFactory<IDriverService>>().CreateChannel())
+                .As<IDriverService>()
+                .UseWcfSafeRelease();
+
+            containerBuilder.Register(c => new ChannelFactory<IAreaService>(
+                new BasicHttpBinding(),
+                new EndpointAddress("http://localhost:8733/Design_Time_Addresses/Server.Services/AreaService/")
+            )).SingleInstance();
+            containerBuilder.Register(c => c.Resolve<ChannelFactory<IAreaService>>().CreateChannel())
+                .As<IAreaService>()
+                .UseWcfSafeRelease();
+            
             //Register Controllers
             containerBuilder.RegisterType<LoginController>();
             containerBuilder.RegisterType<MainWindowController>();
             containerBuilder.RegisterType<StartViewController>();
             containerBuilder.RegisterType<ChangePasswordController>();
             containerBuilder.RegisterType<CustomerViewController>();
+            containerBuilder.RegisterType<OrderViewController>();
+            containerBuilder.RegisterType<BestsellerViewController>();
+            containerBuilder.RegisterType<RevenueListViewController>();
+            containerBuilder.RegisterType<ArticleViewController>();
+            containerBuilder.RegisterType<DriverViewController>();
+            containerBuilder.RegisterType<AreaViewController>();
+            containerBuilder.RegisterType<UserViewController>();
 
             //Register View-Models
             containerBuilder.RegisterType<StartViewModel>();
             containerBuilder.RegisterType<CustomerViewModel>();
+            containerBuilder.RegisterType<OrderViewModel>();
+            containerBuilder.RegisterType<BestsellerViewModel>();
+            containerBuilder.RegisterType<RevenueListViewModel>();
+            containerBuilder.RegisterType<ArticleViewModel>();
+            containerBuilder.RegisterType<DriverViewModel>();
+            containerBuilder.RegisterType<AreaViewModel>();
+            containerBuilder.RegisterType<UserViewModel>();
 
             Container = containerBuilder.Build();
         }

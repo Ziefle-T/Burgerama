@@ -25,6 +25,41 @@ namespace Client.Views
                 return contentControl.FindResource("Kunden") as DataTemplate;
             }
 
+            if (item is OrderViewModel)
+            {
+                return contentControl.FindResource("Aufträge") as DataTemplate;
+            }
+
+            if (item is BestsellerViewModel)
+            {
+                return contentControl.FindResource("Bestseller") as DataTemplate;
+            }
+
+            if (item is RevenueListViewModel)
+            {
+                return contentControl.FindResource("Umsatzrangliste") as DataTemplate;
+            }
+
+            if (item is ArticleViewModel)
+            {
+                return contentControl.FindResource("Artikel") as DataTemplate;
+            }
+
+            if (item is DriverViewModel)
+            {
+                return contentControl.FindResource("Fahrer") as DataTemplate;
+            }
+
+            if (item is AreaViewModel)
+            {
+                return contentControl.FindResource("Liefergebiete") as DataTemplate;
+            }
+
+            if (item is UserViewModel)
+            {
+                return contentControl.FindResource("Benutzer") as DataTemplate;
+            }
+
             return null;
         }
     }

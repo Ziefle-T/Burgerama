@@ -42,7 +42,7 @@ namespace Server.Services
         {
             try
             {
-                T obj = mRepository.GetAllWhere(x => EqualsId(x, id)).FirstOrDefault();
+                T obj = GetElementById(id);
 
                 if (obj == null)
                 {
@@ -63,7 +63,7 @@ namespace Server.Services
         {
             try
             {
-                T oldObj = mRepository.GetAllWhere(x => EqualsId(x, id)).FirstOrDefault();
+                T oldObj = GetElementById(id);
 
                 if (oldObj == null)
                 {
@@ -84,9 +84,7 @@ namespace Server.Services
         {
             try
             {
-                Expression<Func<T, UpdatableService<T>, bool>> expr = (x,y) => y.EqualsId(x, id);
-                var f = expr.Compile();
-                T obj = mRepository.GetAllWhere(y => f.Invoke(y, this)).FirstOrDefault();
+                T obj = GetElementById(id);
 
                 if (obj == null)
                 {
@@ -104,6 +102,6 @@ namespace Server.Services
             }
         }
 
-        public abstract bool EqualsId(T obj, int id);
+        public abstract T GetElementById(int id);
     }
 }

@@ -26,6 +26,27 @@ namespace Client.Controllers
                 case "Kunden":
                     ShowView<CustomerViewController, CustomerViewModel>();
                     break;
+                case "Aufträge":
+                    ShowView<OrderViewController, OrderViewModel>();
+                    break;
+                case "Bestseller":
+                    ShowView<BestsellerViewController, BestsellerViewModel>();
+                    break;
+                case "Umsatzrangliste":
+                    ShowView<RevenueListViewController, RevenueListViewModel>();
+                    break;
+                case "Artikel":
+                    ShowView<ArticleViewController, ArticleViewModel>();
+                    break;
+                case "Fahrer":
+                    ShowView<DriverViewController, DriverViewModel>();
+                    break;
+                case "Liefergebiete":
+                    ShowView<AreaViewController, AreaViewModel>();
+                    break;
+                case "Benutzer":
+                    ShowView<UserViewController, UserViewModel>();
+                    break;
             }
         }
 

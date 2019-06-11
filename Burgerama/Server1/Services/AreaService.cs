@@ -40,9 +40,9 @@ namespace Server.Services
             return Update(areaId, x => x.Plz = plz);
         }
 
-        public override bool EqualsId(Area obj, int id)
+        public override Area GetElementById(int id)
         {
-            return obj.Id == id;
+            return mRepository.GetAllWhere(x => x.Id == id).FirstOrDefault();
         }
     }
 }

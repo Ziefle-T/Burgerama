@@ -34,9 +34,9 @@ namespace Server.Services
             return Update(articleId, x => x.Price = price);
         }
 
-        public override bool EqualsId(Article obj, int id)
+        public override Article GetElementById(int id)
         {
-            return obj.Id == id;
+            return mRepository.GetAllWhere(x => x.Id == id).FirstOrDefault();
         }
     }
 }

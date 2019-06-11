@@ -102,9 +102,9 @@ namespace Server.Services
             return Update(userId, x => x.Username = username);
         }
 
-        public override bool EqualsId(User obj, int id)
+        public override User GetElementById(int id)
         {
-            return obj.Id == id;
+            return mRepository.GetAllWhere(x => x.Id == id).FirstOrDefault();
         }
     }
 }

@@ -103,6 +103,27 @@
                 <DataTemplate x:Key="Kunden">
                     <local:CustomerView />
                 </DataTemplate>
+                <DataTemplate x:Key="Aufträge">
+                    <local:OrderView />
+                </DataTemplate>
+                <DataTemplate x:Key="Bestseller">
+                    <local:BestsellerView />
+                </DataTemplate>
+                <DataTemplate x:Key="Umsatzrangliste">
+                    <local:RevenueListView />
+                </DataTemplate>
+                <DataTemplate x:Key="Artikel">
+                    <local:ArticleView />
+                </DataTemplate>
+                <DataTemplate x:Key="Fahrer">
+                    <local:DriverView />
+                </DataTemplate>
+                <DataTemplate x:Key="Liefergebiete">
+                    <local:AreaView />
+                </DataTemplate>
+                <DataTemplate x:Key="Benutzer">
+                    <local:UserView />
+                </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>
     </Grid>

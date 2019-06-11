@@ -64,9 +64,9 @@ namespace Server.Services
             return Update(customerId, x => x.StreetNumber = streetNumber);
         }
 
-        public override bool EqualsId(Customer obj, int id)
+        public override Customer GetElementById(int id)
         {
-            return obj.Id == id;
+            return mRepository.GetAllWhere(x => x.Id == id).FirstOrDefault();
         }
     }
 }

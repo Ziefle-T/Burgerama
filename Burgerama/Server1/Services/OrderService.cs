@@ -39,9 +39,9 @@ namespace Server.Services
             return Update(orderId, x => x.OrderNumber = orderNumber);
         }
 
-        public override bool EqualsId(Order obj, int id)
+        public override Order GetElementById(int id)
         {
-            return obj.Id == id;
+            return mRepository.GetAllWhere(x => x.Id == id).FirstOrDefault();
         }
     }
 }

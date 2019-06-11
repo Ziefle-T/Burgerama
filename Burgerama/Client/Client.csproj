@@ -65,11 +65,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controllers\ActionAreaController.cs" />
+    <Compile Include="Controllers\AreaViewController.cs" />
+    <Compile Include="Controllers\ArticleViewController.cs" />
+    <Compile Include="Controllers\BestsellerViewController.cs" />
     <Compile Include="Controllers\ChangePasswordController.cs" />
     <Compile Include="Controllers\CustomerViewController.cs" />
+    <Compile Include="Controllers\DriverViewController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainWindowController.cs" />
+    <Compile Include="Controllers\OrderViewController.cs" />
+    <Compile Include="Controllers\RevenueListViewController.cs" />
     <Compile Include="Controllers\StartViewController.cs" />
+    <Compile Include="Controllers\UserViewController.cs" />
     <Compile Include="Framework\RelayCommand.cs" />
     <Compile Include="Framework\ViewModelBase.cs" />
     <Compile Include="Properties\Annotations.cs" />
@@ -88,16 +95,35 @@
     <Compile Include="Server\Services\OrderService.cs" />
     <Compile Include="Server\Services\IUserService.cs" />
     <Compile Include="ViewModels\ActionAreaViewModel.cs" />
+    <Compile Include="ViewModels\AreaViewModel.cs" />
+    <Compile Include="ViewModels\ArticleViewModel.cs" />
+    <Compile Include="ViewModels\BestsellerViewModel.cs" />
     <Compile Include="ViewModels\ChangepasswordViewModel.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\DriverViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
+    <Compile Include="ViewModels\RevenueListViewModel.cs" />
     <Compile Include="ViewModels\StartViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="Views\AreaView.xaml.cs">
+      <DependentUpon>AreaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArticleView.xaml.cs">
+      <DependentUpon>ArticleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BestsellerView.xaml.cs">
+      <DependentUpon>BestsellerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChangePasswordWindow.xaml.cs">
       <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomerView.xaml.cs">
       <DependentUpon>CustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DriverView.xaml.cs">
+      <DependentUpon>DriverView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -105,7 +131,13 @@
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OrderView.xaml.cs">
+      <DependentUpon>OrderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PasswordChangeConverter.cs" />
+    <Compile Include="Views\RevenueListView.xaml.cs">
+      <DependentUpon>RevenueListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StartView.xaml.cs">
       <DependentUpon>StartView.xaml</DependentUpon>
     </Compile>
@@ -114,11 +146,30 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\UserView.xaml.cs">
+      <DependentUpon>UserView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AreaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ArticleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BestsellerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ChangePasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DriverView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -130,7 +181,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\OrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RevenueListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\StartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

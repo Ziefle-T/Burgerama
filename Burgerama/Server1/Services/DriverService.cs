@@ -34,9 +34,9 @@ namespace Server.Services
             return Update(driverId, x => x.Areas = areas);
         }
 
-        public override bool EqualsId(Driver obj, int id)
+        public override Driver GetElementById(int id)
         {
-            return obj.Id == id;
+            return mRepository.GetAllWhere(x => x.Id == id).FirstOrDefault();
         }
     }
 }
