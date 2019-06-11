@@ -22,6 +22,9 @@ namespace Server.Services
         bool Delete(int orderId);
 
         [OperationContract]
+        bool UpdateOrder(int orderId, Order order);
+
+        [OperationContract]
         bool UpdateOrderNumber(int orderId, string orderNumber);
 
         [OperationContract]
@@ -35,5 +38,8 @@ namespace Server.Services
 
         [OperationContract]
         bool UpdateCustomer(int orderId, Customer customer);
+
+        [OperationContract]
+        bool UpdateOrderLines(int orderId, IList<OrderLines> orderLines);
     }
 }

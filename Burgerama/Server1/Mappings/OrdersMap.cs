@@ -25,6 +25,8 @@ namespace Server.Mappings
             References(x => x.Customer).Column("CustomerId")
                 .Not.Nullable()
                 .Cascade.SaveUpdate();
+            HasMany(x => x.OrderLines).KeyColumn("OrderId")
+                .Cascade.SaveUpdate();
         }
     }
 }

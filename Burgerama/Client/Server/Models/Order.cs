@@ -14,13 +14,17 @@ namespace Client.Server.Models
 
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
 
-        private Customer CustomerField;
+        private Server.Models.Customer CustomerField;
 
         private string DescriptionField;
 
-        private Driver DriverField;
+        private Server.Models.Driver DriverField;
+
+        private int IdField;
 
         private System.DateTime OrderDateField;
+
+        private Server.Models.OrderLines[] OrderLinesField;
 
         private string OrderNumberField;
 
@@ -37,7 +41,7 @@ namespace Client.Server.Models
         }
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Customer Customer
+        public Server.Models.Customer Customer
         {
             get
             {
@@ -63,7 +67,7 @@ namespace Client.Server.Models
         }
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Driver Driver
+        public Server.Models.Driver Driver
         {
             get
             {
@@ -76,7 +80,20 @@ namespace Client.Server.Models
         }
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public DateTime OrderDate
+        public int Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime OrderDate
         {
             get
             {
@@ -85,6 +102,19 @@ namespace Client.Server.Models
             set
             {
                 this.OrderDateField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Server.Models.OrderLines[] OrderLines
+        {
+            get
+            {
+                return this.OrderLinesField;
+            }
+            set
+            {
+                this.OrderLinesField = value;
             }
         }
 

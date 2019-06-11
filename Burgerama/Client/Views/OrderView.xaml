@@ -7,6 +7,143 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-            <TextBlock>Orders</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" VerticalAlignment="Center">Aufträge erfassen</TextBlock>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="2*" Header="Datum" IsReadOnly="True" Binding="{Binding OrderDate}" />
+                <DataGridTextColumn Width="*" Header="Auftrags-Nr." IsReadOnly="True" Binding="{Binding OrderNumber}" />
+                <DataGridTemplateColumn Width="2*" Header="Kunde" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Customer.FirstName}" />
+                                <TextBlock Text=" " />
+                                <TextBlock Text="{Binding Customer.LastName}" />
+                                <TextBlock Text=" (" />
+                                <TextBlock Text="{Binding Customer.Phone}" />
+                                <TextBlock Text=")" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="2*" Header="Fahrer" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Driver.FirstName}" />
+                                <TextBlock Text=" " />
+                                <TextBlock Text="{Binding Driver.LastName}" />
+                                <TextBlock Text=" (" />
+                                <TextBlock Text="{Binding Driver.EmployeeNumber}" />
+                                <TextBlock Text=")" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Text="{Binding EditingOrder.Customer.FirstName}" />
+            <TextBlock Text=" " />
+            <TextBlock Text="{Binding EditingOrder.Customer.LastName}" />
+            <TextBlock Text=" (" />
+            <TextBlock Text="{Binding EditingOrder.Customer.Phone}" />
+            <TextBlock Text=")" />
+        </StackPanel>
+        <Grid Grid.Row="3" Margin="50,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="15" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Foreground="#FF4767AE" FontWeight="Bold" VerticalAlignment="Center">Datum</TextBlock>
+                <TextBox Margin="5,0" Width="165" IsReadOnly="True" Text="{Binding EditingOrder.OrderDate}"></TextBox>
+                <DatePicker SelectedDate="{Binding EditingOrder.OrderDate}" SelectedDateFormat="Long"></DatePicker>
+            </StackPanel>
+
+            <TextBlock Grid.Row="1" IsEnabled="False" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF81818B" FontWeight="Bold">PLZ</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingOrder.OrderNumber}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Foreground="#FF4767AE" FontWeight="Bold" VerticalAlignment="Center">Kunde</TextBlock>
+            <ComboBox Grid.Row="2" Grid.Column="0" Margin="40,0,0,0" Height="25" ItemsSource="{Binding Customers}" SelectedItem="{Binding EditingOrder.Customer}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding FirstName}" />
+                            <TextBlock Text=" " />
+                            <TextBlock Text="{Binding LastName}" />
+                            <TextBlock Text=" (" />
+                            <TextBlock Text="{Binding Phone}" />
+                            <TextBlock Text=")" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Foreground="#FF4767AE" FontWeight="Bold" VerticalAlignment="Center">Fahrer</TextBlock>
+            <ComboBox Grid.Row="3" Grid.Column="0" Margin="40,0,0,0" Height="25" ItemsSource="{Binding Drivers}" SelectedItem="{Binding EditingOrder.Driver}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding FirstName}" />
+                                <TextBlock Text=" " />
+                                <TextBlock Text="{Binding LastName}" />
+                                <TextBlock Text=" (" />
+                                <TextBlock Text="{Binding EmployeeNumber}" />
+                                <TextBlock Text=")" />
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4767AE" FontWeight="Bold">PLZ</TextBlock>
+            <TextBox Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingOrder.Description}" Background="Transparent" BorderBrush="#FF4767AE" BorderThickness="0,0,0,2" TextAlignment="Right" />
+
+            <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+                <Button Margin="0,5,15,5" Command="{Binding AddArticleCommand}" Background="#FF4767AE" Foreground="White">
+                    <Image Source="/Client;component/Ressources/delete.png"></Image>
+                </Button>
+                <Button Margin="0,5,0,5" Command="{Binding RemoveArticleCommand}" Background="#FF4767AE" Foreground="White">
+                    <Image Source="/Client;component/Ressources/delete.png"></Image>
+                </Button>
+            </StackPanel>
+
+            <DataGrid Grid.Row="1" Grid.Column="3" Grid.RowSpan="4" ItemsSource="{Binding EditingOrder.OrderLines}" SelectedItem="{Binding SelectedOrderLine}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="0.5*" Header="Anz." IsReadOnly="True" Binding="{Binding Amount}" />
+                    <DataGridTextColumn Width="0.5*" Header="Art.-Nr." IsReadOnly="True" Binding="{Binding Article.ArticleNumber}" />
+                    <DataGridTextColumn Width="2*" Header="Name" IsReadOnly="True" Binding="{Binding Article.Name}" />
+                    <DataGridTemplateColumn Width="*" Header="Price" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="€ " />
+                                    <TextBlock Text="{Binding Article.Price}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Grid>
 </UserControl>

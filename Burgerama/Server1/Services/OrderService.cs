@@ -13,7 +13,17 @@ namespace Server.Services
     public class OrderService : UpdatableService<Order>, IOrderService
     {
         public OrderService(IRepository<Order> repository) : base(repository) {}
-        
+
+        public bool UpdateOrder(int orderId, Order order)
+        {
+            return UpdateElement(orderId, order);
+        }
+
+        public bool UpdateOrderLines(int orderId, IList<OrderLines> orderLines)
+        {
+            return Update(orderId, x => x.OrderLines = orderLines);
+        }
+
         public bool UpdateCustomer(int orderId, Customer customer)
         {
             return Update(orderId, x => x.Customer = customer);

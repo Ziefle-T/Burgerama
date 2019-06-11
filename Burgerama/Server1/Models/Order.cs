@@ -28,5 +28,8 @@ namespace Server.Models
 
         [DataMember]
         public Customer Customer { get; set; }
+
+        [DataMember]
+        public IList<OrderLines> OrderLines { get; set; }
     }
 }

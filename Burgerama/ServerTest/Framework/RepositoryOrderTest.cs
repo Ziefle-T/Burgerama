@@ -63,6 +63,17 @@ namespace ServerTest.Framework
             };
             driver.Areas.Add(area);
 
+            OrderLines orderLines = new OrderLines()
+            {
+                Amount = 1,
+                Article = new Article()
+                {
+                    ArticleNumber = "132",
+                    Description = "bla",
+                    Name = "name",
+                    Price = 5.8M
+                }
+            };
 
             Order order = new Order()
             {
@@ -80,8 +91,13 @@ namespace ServerTest.Framework
                     StreetNumber = "12a",
                     Type = 1
                 },
-                Driver = driver
+                Driver = driver,
+                OrderLines = new List<OrderLines>()
+                {
+                    orderLines
+                }
             };
+            orderLines.Order = order;
             
             mOrderRepository.Save(order);
 
@@ -112,6 +128,14 @@ namespace ServerTest.Framework
             Assert.AreEqual("Burgertown", driverArea.Name);
             Assert.AreEqual(6543, driverArea.Plz);
             Assert.AreEqual(1, driverArea.Drivers.Count);
+
+            IList<OrderLines> returnedOrderLines = orderList[0].OrderLines;
+            Assert.AreEqual(1, returnedOrderLines.Count);
+            Assert.AreEqual(1, returnedOrderLines[0].Amount);
+            Assert.AreEqual("132", returnedOrderLines[0].Article.ArticleNumber);
+            Assert.AreEqual("bla", returnedOrderLines[0].Article.Description);
+            Assert.AreEqual("name", returnedOrderLines[0].Article.Name);
+            Assert.AreEqual(5.8M, returnedOrderLines[0].Article.Price);
         }
 
         [TestMethod]

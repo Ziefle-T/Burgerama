@@ -92,7 +92,7 @@
     <Compile Include="Server\Services\ICustomerService.cs" />
     <Compile Include="Server\Services\DriverService.cs" />
     <Compile Include="Server\Services\OrderLinesService.cs" />
-    <Compile Include="Server\Services\OrderService.cs" />
+    <Compile Include="Server\Services\IOrderService.cs" />
     <Compile Include="Server\Services\IUserService.cs" />
     <Compile Include="ViewModels\ActionAreaViewModel.cs" />
     <Compile Include="ViewModels\AreaViewModel.cs" />

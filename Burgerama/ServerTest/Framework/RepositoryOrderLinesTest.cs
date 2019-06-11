@@ -271,7 +271,8 @@ namespace ServerTest.Framework
                     StreetNumber = "12a",
                     Type = 1
                 },
-                Driver = driver
+                Driver = driver,
+                OrderLines = new List<OrderLines>()
             };
 
             OrderLines insertOrderLines1 = new OrderLines()
@@ -300,14 +301,16 @@ namespace ServerTest.Framework
                 },
                 Order = order
             };
+            order.OrderLines.Add(insertOrderLines1);
+            order.OrderLines.Add(insertOrderLines2);
 
             mOrderLinesRepository.Save(insertOrderLines1);
             mOrderLinesRepository.Save(insertOrderLines2);
             List<OrderLines> savedOrderLines = mOrderLinesRepository.GetAll();
 
             Assert.AreEqual(2, savedOrderLines.Count);
-            OrderLines returnedOrderLine1 = savedOrderLines[0];
-            OrderLines returnedOrderLine2 = savedOrderLines[1];
+            OrderLines returnedOrderLine1 = savedOrderLines[1];
+            OrderLines returnedOrderLine2 = savedOrderLines[0];
             Assert.AreEqual(insertOrderLines1.Amount, returnedOrderLine1.Amount);
             Assert.AreEqual(insertOrderLines1.Position, returnedOrderLine1.Position);
 
@@ -405,7 +408,8 @@ namespace ServerTest.Framework
                     StreetNumber = "12a",
                     Type = 1
                 },
-                Driver = driver
+                Driver = driver,
+                OrderLines = new List<OrderLines>()
             };
 
             OrderLines insertOrderLines1 = new OrderLines()
@@ -434,6 +438,8 @@ namespace ServerTest.Framework
                 },
                 Order = order
             };
+            order.OrderLines.Add(insertOrderLines1);
+            order.OrderLines.Add(insertOrderLines2);
 
             mOrderLinesRepository.Save(insertOrderLines1);
             mOrderLinesRepository.Save(insertOrderLines2);
