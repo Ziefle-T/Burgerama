@@ -20,6 +20,8 @@ namespace Client.Server.Models
 
         private string LastNameField;
 
+        private Area[] AreasField;
+
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -42,6 +44,19 @@ namespace Client.Server.Models
             set
             {
                 this.EmployeeNumberField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Area[] Areas
+        {
+            get
+            {
+                return this.AreasField;
+            }
+            set
+            {
+                this.AreasField = value;
             }
         }
 
