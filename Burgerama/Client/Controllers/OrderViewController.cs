@@ -61,6 +61,12 @@ namespace Client.Controllers
 
         public override void ExecuteDeleteCommand(object obj)
         {
+            if (mViewModel.SelectedOrder == null)
+            {
+                ShowMessage("Nichts zum löschen ausgewählt.");
+                return;
+            }
+
             mOrderService.Delete(mViewModel.SelectedOrder.Id);
             ResetView();
         }
@@ -86,6 +92,12 @@ namespace Client.Controllers
 
         public override void ExecuteSaveCommand(object obj)
         {
+            if (mViewModel.EditingOrder == null)
+            {
+                ShowMessage("Es gibt nichts zu speichern.");
+                return;
+            }
+
             if (mViewModel.EditingOrder.Id == 0)
             {
                 mOrderService.Add(mViewModel.EditingOrder);

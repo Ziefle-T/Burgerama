@@ -11,7 +11,7 @@ using Client.Views;
 
 namespace Client.Controllers
 {
-    class ChangePasswordController
+    class ChangePasswordController : BaseController
     {
         private IUserService mUserService;
 
@@ -21,6 +21,18 @@ namespace Client.Controllers
         public ChangePasswordController(IUserService userService)
         {
             mUserService = userService;
+        }
+
+        public void SafeExecuteChangeCommand(object obj)
+        {
+            try
+            {
+                ExecuteChangeCommand(obj);
+            }
+            catch (Exception e)
+            {
+                ShowMessage(e.ToString());
+            }
         }
 
         public void ExecuteChangeCommand(object obj)
@@ -34,23 +46,27 @@ namespace Client.Controllers
             if (passwordBox.Password == null ||
                 passwordBox.Password == string.Empty)
             {
+                ShowMessage("Bitte Passwort eingeben.");
                 return;
             }
 
             if (newPasswordBox.Password == null ||
                 newPasswordBox.Password == string.Empty)
             {
+                ShowMessage("Bitte neues Passwort eingeben.");
                 return;
             }
 
             if (newPasswordWBox.Password == null ||
                 newPasswordWBox.Password == string.Empty)
             {
+                ShowMessage("Bitte neues Passwort wiederholen.");
                 return;
             }
 
             if (newPasswordBox.Password != newPasswordWBox.Password)
             {
+                ShowMessage("Das wiederholte Passwort entspricht nicht dem neuen Passwort.");
                 return;
             }
 
@@ -58,12 +74,16 @@ namespace Client.Controllers
             {
                 mView.Close();
             }
+            else
+            {
+                ShowMessage("Bitte korrektes Passwort eingeben.");
+            }
         }
 
         public void ChangePassword()
         {
             mChangepasswordViewModel = new ChangepasswordViewModel();
-            mChangepasswordViewModel.ChangeCommand = new RelayCommand(ExecuteChangeCommand);
+            mChangepasswordViewModel.ChangeCommand = new RelayCommand(SafeExecuteChangeCommand);
 
             mView = new ChangePasswordWindow();
             mView.DataContext = mChangepasswordViewModel;

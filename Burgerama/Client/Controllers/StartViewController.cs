@@ -22,8 +22,15 @@ namespace Client.Controllers
 
         public void ExecuteChangePasswordCommand(object obj)
         {
-            var changePasswordController = App.Container.Resolve<ChangePasswordController>();
-            changePasswordController.ChangePassword();
+            try
+            {
+                var changePasswordController = App.Container.Resolve<ChangePasswordController>();
+                changePasswordController.ChangePassword();
+            }
+            catch (Exception e)
+            {
+                ShowMessage(e.ToString());
+            }
         }
     }
 }

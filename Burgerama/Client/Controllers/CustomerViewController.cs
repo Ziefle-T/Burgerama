@@ -49,6 +49,12 @@ namespace Client.Controllers
 
         public override void ExecuteDeleteCommand(object obj)
         {
+            if (mViewModel.SelectedCustomer == null)
+            {
+                ShowMessage("Bitte Kunde zum löschen auswählen.");
+                return;
+            }
+
             mCustomerService.Delete(mViewModel.SelectedCustomer.Id);
             ResetView();
         }
@@ -75,6 +81,12 @@ namespace Client.Controllers
 
         public override void ExecuteSaveCommand(object obj)
         {
+            if (mViewModel.EditingCustomer == null)
+            {
+                ShowMessage("Es gibt nichts zu speichern.");
+                return;
+            }
+
             if (mViewModel.EditingCustomer.Id == 0)
             {
                 mCustomerService.Add(mViewModel.EditingCustomer);

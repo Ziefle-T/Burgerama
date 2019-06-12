@@ -67,12 +67,14 @@
     <Compile Include="Controllers\ActionAreaController.cs" />
     <Compile Include="Controllers\AreaViewController.cs" />
     <Compile Include="Controllers\ArticleViewController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BestsellerViewController.cs" />
     <Compile Include="Controllers\ChangePasswordController.cs" />
     <Compile Include="Controllers\CustomerViewController.cs" />
     <Compile Include="Controllers\DriverViewController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainWindowController.cs" />
+    <Compile Include="Controllers\MessageViewController.cs" />
     <Compile Include="Controllers\OrderViewController.cs" />
     <Compile Include="Controllers\RevenueListViewController.cs" />
     <Compile Include="Controllers\StartViewController.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="ViewModels\DriverViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MessageViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\RevenueListViewModel.cs" />
     <Compile Include="ViewModels\StartViewModel.cs" />
@@ -130,6 +133,9 @@
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessageView.xaml.cs">
+      <DependentUpon>MessageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OrderView.xaml.cs">
       <DependentUpon>OrderView.xaml</DependentUpon>
@@ -178,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MessageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

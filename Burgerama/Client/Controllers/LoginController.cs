@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -12,7 +13,7 @@ using Client.Views;
 
 namespace Client.Controllers
 {
-    class LoginController
+    class LoginController : BaseController
     {
         private LoginViewModel mViewModel;
         private LoginView mView;
@@ -23,6 +24,22 @@ namespace Client.Controllers
         public LoginController(IUserService userService)
         {
             mUserService = userService;
+        }
+
+        public void SafeExecuteLoginCommand(object obj)
+        {
+            try
+            {
+                ExecuteLoginCommand(obj);
+            }
+            catch (EndpointNotFoundException e)
+            {
+                ShowMessage("Der Server wurde nicht gefunden.");
+            }
+            catch (Exception e)
+            {
+                ShowMessage(e.ToString());
+            }
         }
 
         public void ExecuteLoginCommand(object obj)
@@ -43,14 +60,22 @@ namespace Client.Controllers
                     mView.Close();
                     return;
                 }
+                else
+                {
+                    ShowMessage("Username oder Passwort nicht gefunden, bitte erneut versuchen.");
+                }
                 
+            }
+            else
+            {
+                ShowMessage("Bitte Username und Passwort eingeben.");
             }
         }
 
         public (bool success, User user) Login()
         {
             mViewModel = new LoginViewModel();
-            mViewModel.LoginCommand = new RelayCommand(ExecuteLoginCommand);
+            mViewModel.LoginCommand = new RelayCommand(SafeExecuteLoginCommand);
 
             mView = new LoginView();
             mView.DataContext = mViewModel;

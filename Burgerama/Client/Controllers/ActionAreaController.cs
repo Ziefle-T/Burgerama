@@ -9,7 +9,7 @@ using Client.ViewModels;
 
 namespace Client.Controllers
 {
-    public abstract class ActionAreaController<T> where T : ActionAreaViewModel
+    public abstract class ActionAreaController<T> : BaseController where T : ActionAreaViewModel
     {
         protected T mViewModel;
 
@@ -17,14 +17,26 @@ namespace Client.Controllers
         {
             mViewModel = App.Container.Resolve<T>();
 
-            mViewModel.NewCommand = new RelayCommand(ExecuteNewCommand, CanExecuteNewCommand);
-            mViewModel.EditCommand = new RelayCommand(ExecuteEditCommand, CanExecuteEditCommand);
-            mViewModel.SaveCommand = new RelayCommand(ExecuteSaveCommand, CanExecuteSaveCommand);
-            mViewModel.DeleteCommand = new RelayCommand(ExecuteDeleteCommand, CanExecuteDeleteCommand);
+            mViewModel.NewCommand = new RelayCommand(SafeExecuteNewCommand, CanExecuteNewCommand);
+            mViewModel.EditCommand = new RelayCommand(SafeExecuteEditCommand, CanExecuteEditCommand);
+            mViewModel.SaveCommand = new RelayCommand(SafeExecuteSaveCommand, CanExecuteSaveCommand);
+            mViewModel.DeleteCommand = new RelayCommand(SafeExecuteDeleteCommand, CanExecuteDeleteCommand);
 
             return mViewModel;
         }
 
+        private void SafeExecuteNewCommand(object obj)
+        {
+            try
+            {
+                ExecuteNewCommand(obj);
+            }
+            catch (Exception e)
+            {
+                ShowMessage(e.ToString());
+                return;
+            }
+        }
         public virtual void ExecuteNewCommand(object obj)
         {
             throw new NotImplementedException("Not implemented New Command");
@@ -34,6 +46,18 @@ namespace Client.Controllers
             return false;
         }
 
+        private void SafeExecuteEditCommand(object obj)
+        {
+            try
+            {
+                ExecuteEditCommand(obj);
+            }
+            catch (Exception e)
+            {
+                ShowMessage(e.ToString());
+                return;
+            }
+        }
         public virtual void ExecuteEditCommand(object obj)
         {
             throw new NotImplementedException("Not implemented Edit Command");
@@ -43,6 +67,18 @@ namespace Client.Controllers
             return false;
         }
 
+        private void SafeExecuteSaveCommand(object obj)
+        {
+            try
+            {
+                ExecuteSaveCommand(obj);
+            }
+            catch (Exception e)
+            {
+                ShowMessage(e.ToString());
+                return;
+            }
+        }
         public virtual void ExecuteSaveCommand(object obj)
         {
             throw new NotImplementedException("Not implemented Save Command");
@@ -52,6 +88,18 @@ namespace Client.Controllers
             return false;
         }
 
+        private void SafeExecuteDeleteCommand(object obj)
+        {
+            try
+            {
+                ExecuteDeleteCommand(obj);
+            }
+            catch (Exception e)
+            {
+                ShowMessage(e.ToString());
+                return;
+            }
+        }
         public virtual void ExecuteDeleteCommand(object obj)
         {
             throw new NotImplementedException("Not implemented Delete Command");
@@ -60,5 +108,6 @@ namespace Client.Controllers
         {
             return false;
         }
+        
     }
 }
