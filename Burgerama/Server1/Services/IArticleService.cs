@@ -22,6 +22,9 @@ namespace Server.Services
         bool Delete(int articleId);
 
         [OperationContract]
+        bool UpdateArticle(int articleId, Article article);
+
+        [OperationContract]
         bool UpdateArticleNumber(int articleId, string articleNumber);
 
         [OperationContract]

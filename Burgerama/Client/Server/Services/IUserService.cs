@@ -28,6 +28,12 @@ namespace Client.Server.Services
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IUserService/Add", ReplyAction = "http://tempuri.org/IUserService/AddResponse")]
         System.Threading.Tasks.Task<bool> AddAsync(Server.Models.User user);
 
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IUserService/UpdateUser", ReplyAction = "http://tempuri.org/IUserService/UpdateUserResponse")]
+        bool UpdateUser(int userId, User user);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IUserService/UpdateUser", ReplyAction = "http://tempuri.org/IUserService/UpdateUserResponse")]
+        System.Threading.Tasks.Task<bool> UpdateUserAsync(int userId, User user);
+
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IUserService/UpdateUsername", ReplyAction = "http://tempuri.org/IUserService/UpdateUsernameResponse")]
         bool UpdateUsername(int userId, string username);
 

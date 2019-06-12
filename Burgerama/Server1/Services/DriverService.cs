@@ -38,5 +38,10 @@ namespace Server.Services
         {
             return mRepository.GetAllWhere(x => x.Id == id).FirstOrDefault();
         }
+
+        public bool UpdateDriver(int driverId, Driver driver)
+        {
+            return UpdateElement(driverId, driver);
+        }
     }
 }

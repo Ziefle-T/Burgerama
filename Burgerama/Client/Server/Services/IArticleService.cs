@@ -57,110 +57,11 @@ namespace Client.Server.Services
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IArticleService/UpdatePrice", ReplyAction = "http://tempuri.org/IArticleService/UpdatePriceResponse")]
         System.Threading.Tasks.Task<bool> UpdatePriceAsync(int articleId, decimal price);
-    }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IArticleServiceChannel : IArticleService, System.ServiceModel.IClientChannel
-    {
-    }
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IArticleService/UpdateArticle", ReplyAction = "http://tempuri.org/IArticleService/UpdateArticleResponse")]
+        bool UpdateArticle(int articleId, Article article);
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ArticleServiceClient : System.ServiceModel.ClientBase<IArticleService>, IArticleService
-    {
-
-        public ArticleServiceClient()
-        {
-        }
-
-        public ArticleServiceClient(string endpointConfigurationName) :
-                base(endpointConfigurationName)
-        {
-        }
-
-        public ArticleServiceClient(string endpointConfigurationName, string remoteAddress) :
-                base(endpointConfigurationName, remoteAddress)
-        {
-        }
-
-        public ArticleServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
-                base(endpointConfigurationName, remoteAddress)
-        {
-        }
-
-        public ArticleServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
-                base(binding, remoteAddress)
-        {
-        }
-
-        public Article[] GetAll()
-        {
-            return base.Channel.GetAll();
-        }
-
-        public System.Threading.Tasks.Task<Article[]> GetAllAsync()
-        {
-            return base.Channel.GetAllAsync();
-        }
-
-        public bool Add(Article article)
-        {
-            return base.Channel.Add(article);
-        }
-
-        public System.Threading.Tasks.Task<bool> AddAsync(Article article)
-        {
-            return base.Channel.AddAsync(article);
-        }
-
-        public bool Delete(int articleId)
-        {
-            return base.Channel.Delete(articleId);
-        }
-
-        public System.Threading.Tasks.Task<bool> DeleteAsync(int articleId)
-        {
-            return base.Channel.DeleteAsync(articleId);
-        }
-
-        public bool UpdateArticleNumber(int articleId, string articleNumber)
-        {
-            return base.Channel.UpdateArticleNumber(articleId, articleNumber);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdateArticleNumberAsync(int articleId, string articleNumber)
-        {
-            return base.Channel.UpdateArticleNumberAsync(articleId, articleNumber);
-        }
-
-        public bool UpdateName(int articleId, string name)
-        {
-            return base.Channel.UpdateName(articleId, name);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdateNameAsync(int articleId, string name)
-        {
-            return base.Channel.UpdateNameAsync(articleId, name);
-        }
-
-        public bool UpdateDescription(int articleId, string description)
-        {
-            return base.Channel.UpdateDescription(articleId, description);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdateDescriptionAsync(int articleId, string description)
-        {
-            return base.Channel.UpdateDescriptionAsync(articleId, description);
-        }
-
-        public bool UpdatePrice(int articleId, decimal price)
-        {
-            return base.Channel.UpdatePrice(articleId, price);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdatePriceAsync(int articleId, decimal price)
-        {
-            return base.Channel.UpdatePriceAsync(articleId, price);
-        }
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IArticleService/UpdateArticle", ReplyAction = "http://tempuri.org/IArticleService/UpdateArticleResponse")]
+        System.Threading.Tasks.Task<bool> UpdateArticleAsync(int articleId, Article article);
     }
 }

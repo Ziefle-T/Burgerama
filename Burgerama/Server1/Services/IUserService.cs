@@ -19,6 +19,9 @@ namespace Server.Services
         bool Add(User user);
 
         [OperationContract]
+        bool UpdateUser(int userId, User user);
+
+        [OperationContract]
         bool UpdateUsername(int userId, string username);
 
         [OperationContract]

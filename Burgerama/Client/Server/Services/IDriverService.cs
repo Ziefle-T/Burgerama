@@ -28,6 +28,12 @@ namespace Client.Server.Services
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IDriverService/Add", ReplyAction = "http://tempuri.org/IDriverService/AddResponse")]
         System.Threading.Tasks.Task<bool> AddAsync(Driver driver);
 
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IDriverService/UpdateDriver", ReplyAction = "http://tempuri.org/IDriverService/UpdateDriverResponse")]
+        bool UpdateDriver(int driverId, Driver driver);
+
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IDriverService/UpdateDriver", ReplyAction = "http://tempuri.org/IDriverService/UpdateDriverResponse")]
+        System.Threading.Tasks.Task<bool> UpdateDriverAsync(int driverId, Driver driver);
+
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IDriverService/UpdateFirstName", ReplyAction = "http://tempuri.org/IDriverService/UpdateFirstNameResponse")]
         bool UpdateFirstName(int driverId, string firstName);
 
@@ -57,110 +63,5 @@ namespace Client.Server.Services
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IDriverService/Delete", ReplyAction = "http://tempuri.org/IDriverService/DeleteResponse")]
         System.Threading.Tasks.Task<bool> DeleteAsync(int driverId);
-    }
-
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IDriverServiceChannel : IDriverService, System.ServiceModel.IClientChannel
-    {
-    }
-
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class DriverServiceClient : System.ServiceModel.ClientBase<IDriverService>, IDriverService
-    {
-
-        public DriverServiceClient()
-        {
-        }
-
-        public DriverServiceClient(string endpointConfigurationName) :
-                base(endpointConfigurationName)
-        {
-        }
-
-        public DriverServiceClient(string endpointConfigurationName, string remoteAddress) :
-                base(endpointConfigurationName, remoteAddress)
-        {
-        }
-
-        public DriverServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
-                base(endpointConfigurationName, remoteAddress)
-        {
-        }
-
-        public DriverServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
-                base(binding, remoteAddress)
-        {
-        }
-
-        public Driver[] GetAll()
-        {
-            return base.Channel.GetAll();
-        }
-
-        public System.Threading.Tasks.Task<Driver[]> GetAllAsync()
-        {
-            return base.Channel.GetAllAsync();
-        }
-
-        public bool Add(Driver driver)
-        {
-            return base.Channel.Add(driver);
-        }
-
-        public System.Threading.Tasks.Task<bool> AddAsync(Driver driver)
-        {
-            return base.Channel.AddAsync(driver);
-        }
-
-        public bool UpdateFirstName(int driverId, string firstName)
-        {
-            return base.Channel.UpdateFirstName(driverId, firstName);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdateFirstNameAsync(int driverId, string firstName)
-        {
-            return base.Channel.UpdateFirstNameAsync(driverId, firstName);
-        }
-
-        public bool UpdateLastName(int driverId, string lastName)
-        {
-            return base.Channel.UpdateLastName(driverId, lastName);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdateLastNameAsync(int driverId, string lastName)
-        {
-            return base.Channel.UpdateLastNameAsync(driverId, lastName);
-        }
-
-        public bool UpdateEmployeeNumber(int driverId, int employeeNumber)
-        {
-            return base.Channel.UpdateEmployeeNumber(driverId, employeeNumber);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdateEmployeeNumberAsync(int driverId, int employeeNumber)
-        {
-            return base.Channel.UpdateEmployeeNumberAsync(driverId, employeeNumber);
-        }
-
-        public bool UpdateAreas(int driverId, Area[] areas)
-        {
-            return base.Channel.UpdateAreas(driverId, areas);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdateAreasAsync(int driverId, Area[] areas)
-        {
-            return base.Channel.UpdateAreasAsync(driverId, areas);
-        }
-
-        public bool Delete(int driverId)
-        {
-            return base.Channel.Delete(driverId);
-        }
-
-        public System.Threading.Tasks.Task<bool> DeleteAsync(int driverId)
-        {
-            return base.Channel.DeleteAsync(driverId);
-        }
     }
 }

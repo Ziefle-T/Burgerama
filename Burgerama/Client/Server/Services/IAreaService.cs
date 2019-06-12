@@ -57,101 +57,12 @@ namespace Client.Server.Services
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAreaService/UpdateDrivers", ReplyAction = "http://tempuri.org/IAreaService/UpdateDriversResponse")]
         System.Threading.Tasks.Task<bool> UpdateDriversAsync(int areaId, Driver[] drivers);
-    }
 
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IAreaServiceChannel : IAreaService, System.ServiceModel.IClientChannel
-    {
-    }
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAreaService/UpdateArea", ReplyAction = "http://tempuri.org/IAreaService/UpdateAreaResponse")]
+        bool UpdateArea(int areaId, Area area);
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class AreaServiceClient : System.ServiceModel.ClientBase<IAreaService>, IAreaService
-    {
-
-        public AreaServiceClient()
-        {
-        }
-
-        public AreaServiceClient(string endpointConfigurationName) :
-                base(endpointConfigurationName)
-        {
-        }
-
-        public AreaServiceClient(string endpointConfigurationName, string remoteAddress) :
-                base(endpointConfigurationName, remoteAddress)
-        {
-        }
-
-        public AreaServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
-                base(endpointConfigurationName, remoteAddress)
-        {
-        }
-
-        public AreaServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
-                base(binding, remoteAddress)
-        {
-        }
-
-        public Area[] GetAll()
-        {
-            return base.Channel.GetAll();
-        }
-
-        public System.Threading.Tasks.Task<Area[]> GetAllAsync()
-        {
-            return base.Channel.GetAllAsync();
-        }
-
-        public bool Add(Area area)
-        {
-            return base.Channel.Add(area);
-        }
-
-        public System.Threading.Tasks.Task<bool> AddAsync(Area area)
-        {
-            return base.Channel.AddAsync(area);
-        }
-
-        public bool Delete(int areaId)
-        {
-            return base.Channel.Delete(areaId);
-        }
-
-        public System.Threading.Tasks.Task<bool> DeleteAsync(int areaId)
-        {
-            return base.Channel.DeleteAsync(areaId);
-        }
-
-        public bool UpdateName(int areaId, string name)
-        {
-            return base.Channel.UpdateName(areaId, name);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdateNameAsync(int areaId, string name)
-        {
-            return base.Channel.UpdateNameAsync(areaId, name);
-        }
-
-        public bool UpdatePlz(int areaId, int plz)
-        {
-            return base.Channel.UpdatePlz(areaId, plz);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdatePlzAsync(int areaId, int plz)
-        {
-            return base.Channel.UpdatePlzAsync(areaId, plz);
-        }
-
-        public bool UpdateDrivers(int areaId, Driver[] drivers)
-        {
-            return base.Channel.UpdateDrivers(areaId, drivers);
-        }
-
-        public System.Threading.Tasks.Task<bool> UpdateDriversAsync(int areaId, Driver[] drivers)
-        {
-            return base.Channel.UpdateDriversAsync(areaId, drivers);
-        }
+        [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAreaService/UpdateArea", ReplyAction = "http://tempuri.org/IAreaService/UpdateAreaResponse")]
+        System.Threading.Tasks.Task<bool> UpdateAreaAsync(int areaId, Area area);
     }
 }
 

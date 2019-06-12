@@ -22,6 +22,9 @@ namespace Server.Services
         bool Delete(int areaId);
 
         [OperationContract]
+        bool UpdateArea(int areaId, Area area);
+        
+        [OperationContract]
         bool UpdateName(int areaId, string name);
 
         [OperationContract]

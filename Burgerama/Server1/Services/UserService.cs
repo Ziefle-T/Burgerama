@@ -106,5 +106,10 @@ namespace Server.Services
         {
             return mRepository.GetAllWhere(x => x.Id == id).FirstOrDefault();
         }
+
+        public bool UpdateUser(int userId, User user)
+        {
+            return UpdateElement(userId, user);
+        }
     }
 }

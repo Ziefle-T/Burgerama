@@ -92,11 +92,11 @@
     <Compile Include="Server\Models\Order.cs" />
     <Compile Include="Server\Models\OrderLines.cs" />
     <Compile Include="Server\Models\User.cs" />
-    <Compile Include="Server\Services\AreaService.cs" />
-    <Compile Include="Server\Services\ArticleService.cs" />
+    <Compile Include="Server\Services\IAreaService.cs" />
+    <Compile Include="Server\Services\IArticleService.cs" />
     <Compile Include="Server\Services\ICustomerService.cs" />
-    <Compile Include="Server\Services\DriverService.cs" />
-    <Compile Include="Server\Services\OrderLinesService.cs" />
+    <Compile Include="Server\Services\IDriverService.cs" />
+    <Compile Include="Server\Services\IOrderLinesService.cs" />
     <Compile Include="Server\Services\IOrderService.cs" />
     <Compile Include="Server\Services\IUserService.cs" />
     <Compile Include="ViewModels\ActionAreaViewModel.cs" />
