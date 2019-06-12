@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Autofac;
 using Client.Framework;
 using Client.Server.Models;
 using Client.Server.Services;
@@ -16,16 +17,19 @@ namespace Client.Controllers
         private IOrderService mOrderService;
         private ICustomerService mCustomerService;
         private IDriverService mDriverService;
+        private IOrderLinesService mOrderLinesService;
 
         public OrderViewController(
             IOrderService orderService,
             ICustomerService customerService,
-            IDriverService driverService
+            IDriverService driverService,
+            IOrderLinesService orderLinesService
             ) : base()
         {
             mOrderService = orderService;
             mCustomerService = customerService;
             mDriverService = driverService;
+            mOrderLinesService = orderLinesService;
         }
 
         public override OrderViewModel Initialize()
@@ -112,12 +116,50 @@ namespace Client.Controllers
 
         public void ExecuteAddOrderLineCommand(object obj)
         {
+            try
+            {
+                if (mViewModel.EditingOrder == null)
+                {
+                    ShowMessage("Keine Bestellung ausgewählt.");
+                    return;
+                }
 
+                AddArticleViewController addArticleViewController = App.Container.Resolve<AddArticleViewController>();
+                var addedOrderLines = addArticleViewController.CreateOrderLines();
+
+                if (addedOrderLines != null
+                    && mViewModel.EditingOrder != null)
+                {
+                    addedOrderLines.Order = mViewModel.EditingOrder;
+                    var list = mViewModel.EditingOrder.OrderLines.ToList();
+                    list.Add(addedOrderLines);
+                    mViewModel.EditingOrder.OrderLines = list.ToArray();
+                }
+            }
+            catch (Exception e)
+            {
+                ShowMessage(e.ToString());
+            }
         }
 
         public void ExecuteRemoveOrderLineCommand(object obj)
         {
+            try
+            {
+                if (mViewModel.EditingOrder == null ||
+                    mViewModel.SelectedOrderLine == null)
+                {
+                    ShowMessage("Kein Element zum löschen ausgewählt.");
+                    return;
+                }
 
+                mOrderLinesService.Delete(mViewModel.SelectedOrderLine.Id);
+
+            }
+            catch (Exception e)
+            {
+                ShowMessage(e.ToString());
+            }
         }
         
         private void ResetView()

@@ -58,7 +58,7 @@
             <TextBlock Text="{Binding EditingOrder.Customer.Phone}" />
             <TextBlock Text=")" />
         </StackPanel>
-        <Grid Grid.Row="3" Margin="50,10">
+        <Grid Grid.Row="3" Margin="20,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="15" />
@@ -72,11 +72,8 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBlock Foreground="#FF4767AE" FontWeight="Bold" VerticalAlignment="Center">Datum</TextBlock>
-                <TextBox Margin="5,0" Width="165" IsReadOnly="True" Text="{Binding EditingOrder.OrderDate}"></TextBox>
-                <DatePicker SelectedDate="{Binding EditingOrder.OrderDate}" SelectedDateFormat="Long"></DatePicker>
-            </StackPanel>
+            <TextBlock Foreground="#FF4767AE" FontWeight="Bold" VerticalAlignment="Center">Datum</TextBlock>
+            <DatePicker HorizontalAlignment="Right" VerticalAlignment="Center" SelectedDate="{Binding EditingOrder.OrderDate}" SelectedDateFormat="Long"></DatePicker>
 
             <TextBlock Grid.Row="1" IsEnabled="False" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF81818B" FontWeight="Bold">PLZ</TextBlock>
             <TextBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingOrder.OrderNumber}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
@@ -115,7 +112,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <TextBlock Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4767AE" FontWeight="Bold">PLZ</TextBlock>
+            <TextBlock Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4767AE" FontWeight="Bold">Kommentar</TextBlock>
             <TextBox Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingOrder.Description}" Background="Transparent" BorderBrush="#FF4767AE" BorderThickness="0,0,0,2" TextAlignment="Right" />
 
             <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">

@@ -65,6 +65,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controllers\ActionAreaController.cs" />
+    <Compile Include="Controllers\AddArticleViewController.cs" />
     <Compile Include="Controllers\AreaViewController.cs" />
     <Compile Include="Controllers\ArticleViewController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Server\Services\IOrderService.cs" />
     <Compile Include="Server\Services\IUserService.cs" />
     <Compile Include="ViewModels\ActionAreaViewModel.cs" />
+    <Compile Include="ViewModels\AddArticleViewModel.cs" />
     <Compile Include="ViewModels\AreaViewModel.cs" />
     <Compile Include="ViewModels\ArticleViewModel.cs" />
     <Compile Include="ViewModels\BestsellerViewModel.cs" />
@@ -110,6 +112,9 @@
     <Compile Include="ViewModels\RevenueListViewModel.cs" />
     <Compile Include="ViewModels\StartViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="Views\AddArticleView.xaml.cs">
+      <DependentUpon>AddArticleView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AreaView.xaml.cs">
       <DependentUpon>AreaView.xaml</DependentUpon>
     </Compile>
@@ -155,6 +160,10 @@
     <Compile Include="Views\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AddArticleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AreaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

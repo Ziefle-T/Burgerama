@@ -14,6 +14,8 @@ namespace Client.Server.Models
 
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
 
+        private int IdField;
+
         private int AmountField;
 
         private Article ArticleField;
@@ -31,6 +33,19 @@ namespace Client.Server.Models
             set
             {
                 this.extensionDataField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
             }
         }
 
