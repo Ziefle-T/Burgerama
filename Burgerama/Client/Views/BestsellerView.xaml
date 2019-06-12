@@ -7,6 +7,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-            <TextBlock>Bestseller</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" VerticalAlignment="Center">Bestseller</TextBlock>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Bestseller}" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Rang" IsReadOnly="True" Binding="{Binding Rank}" />
+                <DataGridTextColumn Width="*" Header="Artikel-Nr." IsReadOnly="True" Binding="{Binding Article.ArticleNumber}" />
+                <DataGridTextColumn Width="4*" Header="Artikel" IsReadOnly="True" Binding="{Binding Article.Name}" />
+                <DataGridTextColumn Width="*" Header="Anzahl" IsReadOnly="True" Binding="{Binding Amount}" />
+                <DataGridTemplateColumn Width="2*" Header="Umsatz" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="€ " />
+                                <TextBlock Text="{Binding Revenue}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

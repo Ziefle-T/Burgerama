@@ -82,6 +82,7 @@
     <Compile Include="Controllers\UserViewController.cs" />
     <Compile Include="Framework\RelayCommand.cs" />
     <Compile Include="Framework\ViewModelBase.cs" />
+    <Compile Include="Models\Bestseller.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Server\Models\Area.cs" />
     <Compile Include="Server\Models\Article.cs" />
