@@ -75,7 +75,7 @@
             <TextBlock Foreground="#FF4767AE" FontWeight="Bold" VerticalAlignment="Center">Datum</TextBlock>
             <DatePicker HorizontalAlignment="Right" VerticalAlignment="Center" SelectedDate="{Binding EditingOrder.OrderDate}" SelectedDateFormat="Long"></DatePicker>
 
-            <TextBlock Grid.Row="1" IsEnabled="False" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF81818B" FontWeight="Bold">PLZ</TextBlock>
+            <TextBlock Grid.Row="1" IsEnabled="False" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF81818B" FontWeight="Bold">Auftrags-Nr.</TextBlock>
             <TextBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingOrder.OrderNumber}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
 
             <TextBlock Grid.Row="2" Grid.Column="0" Foreground="#FF4767AE" FontWeight="Bold" VerticalAlignment="Center">Kunde</TextBlock>
