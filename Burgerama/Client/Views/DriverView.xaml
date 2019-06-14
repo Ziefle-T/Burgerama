@@ -7,6 +7,50 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-            <TextBlock>Driver View</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0">Fahrer Verwalten</TextBlock>
+        <DataGrid Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Article}" SelectedItem="{Binding SelectedArticle}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Personal-Nr." IsReadOnly="True" Binding="{Binding EmployeeNumber}" />
+                <DataGridTextColumn Width="*" Header="Vorname" IsReadOnly="True" Binding="{Binding FirstName}" />
+                <DataGridTextColumn Width="*" Header="Nachname" IsReadOnly="True" Binding="{Binding LastName}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Text="{Binding EditingDriver.EmployeeNumber}" />
+            <TextBlock Text=" - " />
+            <TextBlock Text="{Binding EditingDriver.FirstName}" />
+            <TextBlock Text=" "></TextBlock>
+            <TextBlock Text="{Binding EditingDriver.LastName}"></TextBlock>
+        </StackPanel>
+        <Grid Grid.Row="3" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" IsEnabled="False"  HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">Personal-Nr.</TextBlock>
+            <TextBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingDriver.EmployeeNumber}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
+            <TextBlock Grid.Row="1" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">Vorname</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingDriver.FirstName}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
+            <TextBlock Grid.Row="2" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">Nachname</TextBlock>
+            <TextBox Grid.Row="2"  VerticalAlignment="Center" Text="{Binding EditingDriver.LastName}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
+        </Grid>
+        <DataGrid Grid.Row="3" Grid.Column="1"  ItemsSource="{Binding Article}" SelectedItem="{Binding SelectedArea}" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="Checkbox" IsReadOnly="True" Binding="{Binding Areas}" Width="*"></DataGridCheckBoxColumn>
+                <DataGridTextColumn Width="*" Header="PLZ" IsReadOnly="True" Binding="{Binding SelectedArea.Plz}" />
+                <DataGridTextColumn Width="*" Header="Gebiet" IsReadOnly="True" Binding="{Binding SelectedArea.Name}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

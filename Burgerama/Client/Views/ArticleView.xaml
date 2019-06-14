@@ -14,7 +14,6 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0">Artikel verwalten</TextBlock>
-        <TextBlock Grid.Row="2"></TextBlock>
         <DataGrid Grid.Row="1" ItemsSource="{Binding Article}" SelectedItem="{Binding SelectedArticle}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Art.-Nr." IsReadOnly="True" Binding="{Binding ArticleNumber}" />

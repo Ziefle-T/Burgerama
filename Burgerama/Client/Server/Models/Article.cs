@@ -14,7 +14,7 @@ namespace Client.Server.Models
 
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
 
-        private string ArticleNumberField;
+        private int ArticleNumberField;
 
         private string DescriptionField;
 
@@ -35,7 +35,7 @@ namespace Client.Server.Models
         }
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ArticleNumber
+        public int ArticleNumber
         {
             get
             {
