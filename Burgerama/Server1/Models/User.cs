@@ -23,5 +23,16 @@ namespace Server.Models
         public string Password { get; set; }
         [DataMember]
         public bool IsAdmin { get; set; }
+
+        public bool ValidatePw(string password)
+        {
+            return BCrypt.Net.BCrypt.Verify(password, this.Password);
+        }
+
+        public void SetNewPassword(string Password)
+        {
+            Password = BCrypt.Net.BCrypt.HashPassword(Password);
+        }
+
     }
 }

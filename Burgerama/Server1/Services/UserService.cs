@@ -17,7 +17,7 @@ namespace Server.Services
 
         public override bool Add(User user)
         {
-            user.Password = BCrypt.Net.BCrypt.HashPassword("geheim");
+            user.SetNewPassword("geheim");
             return base.Add(user);
         }
 
@@ -40,7 +40,7 @@ namespace Server.Services
                     return (false, null);
                 }
 
-                bool success = BCrypt.Net.BCrypt.Verify(password, user.Password);
+                bool success = user.ValidatePw(password);
 
                 user.Password = null;
 
@@ -79,14 +79,12 @@ namespace Server.Services
                     return false;
                 }
                 
-                bool oldPwVerified = BCrypt.Net.BCrypt.Verify(oldPassword, user.Password);
-                if (!oldPwVerified)
+                if (!user.ValidatePw(oldPassword))
                 {
                     return false;
                 }
 
-                user.Password = BCrypt.Net.BCrypt.HashPassword(password
-                );
+                user.SetNewPassword(password);
                 mRepository.Save(user);
                 return true;
             }
