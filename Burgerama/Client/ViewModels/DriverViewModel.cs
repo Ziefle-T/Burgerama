@@ -32,10 +32,13 @@ namespace Client.ViewModels
             set
             {
                 mEditingDriver = value;
+                foreach (var area in Areas)
+                {
+                    area.Driver = mEditingDriver;
+                }
                 OnPropertyChanged();
             }
         }
-
         public ICommand AddDriverCommand { get; set; }
         public ICommand RemoveDriverCommand { get; set; }
     }
