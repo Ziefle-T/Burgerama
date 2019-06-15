@@ -7,6 +7,46 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-            <TextBlock>User View</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock>Benutzer verwalten</TextBlock>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Article}" SelectedItem="{Binding SelectedUser}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="2*" Header="Benutzername" IsReadOnly="True" Binding="{Binding Username}" />
+                <DataGridTextColumn Width="2*" Header="Vorname" IsReadOnly="True" Binding="{Binding Firstname}" />
+                <DataGridTextColumn Width="2*" Header="Nachname" IsReadOnly="True" Binding="{Binding Lastname}" />
+                <DataGridCheckBoxColumn Header="Administrator" IsReadOnly="True" Binding="{Binding IsAdmin}" Width="*"></DataGridCheckBoxColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+
+            <TextBlock Text="{Binding EditingUser.Username}" />
+            <TextBlock Text=" " />
+            <TextBlock Text="("></TextBlock>
+            <TextBlock Text="{Binding EditingUser.Firstname}" />
+            <TextBlock Text=" " />
+            <TextBlock Text="{Binding EditingUser.Lastname}" />
+            <TextBlock Text=")" />
+        </StackPanel>
+        <Grid Grid.Row="3" Grid.Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" IsEnabled="False"  HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">Benutzername</TextBlock>
+            <TextBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingUser.ArticleUsername}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
+            <TextBlock Grid.Row="1" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">Vorname</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingUser.Firstname}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
+            <TextBlock Grid.Row="2" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">Nachname</TextBlock>
+            <TextBox Grid.Row="2"  VerticalAlignment="Center" Text="{Binding EditingUser.Lastname}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
+            <CheckBox Grid.Row="3" VerticalAlignment="Center" Content="{Binding EditingUser.IsAdmin}"></CheckBox>
+            <Label Grid.Row="3" VerticalAlignment="Center" Margin="30,0,0,0">Administrator</Label>
+        </Grid>
     </Grid>
 </UserControl>
