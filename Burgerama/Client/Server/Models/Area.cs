@@ -71,6 +71,28 @@ namespace Client.Server.Models
             }
         }
 
+        public Driver Driver { get; set; }
+
+        public bool InDriverAreaList
+        {
+            set
+            {
+                if (value)
+                {
+                    var list = Driver.Areas.ToList();
+                    list.Add(this);
+                    Driver.Areas = list.ToArray();
+                }
+                else
+                {
+                    var list = Driver.Areas.ToList();
+                    list.Remove(this);
+                    Driver.Areas = list.ToArray();
+                }
+            }
+            get { return Driver.Areas.Contains(this); }
+        }
+
         public override bool Equals(object obj)
         {
             var area = obj as Area;
