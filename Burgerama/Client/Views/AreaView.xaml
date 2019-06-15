@@ -7,6 +7,33 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-            <TextBlock>Area View</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock>Liefergebiete verwalten</TextBlock>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Article}" SelectedItem="{Binding SelectedArea}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="PLZ" IsReadOnly="True" Binding="{Binding Plz}" />
+                <DataGridTextColumn Width="8*" Header="Ort" IsReadOnly="True" Binding="{Binding Name}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Text="{Binding EditingArea.Plz}" />
+            <TextBlock Text="," />
+            <TextBlock Text="{Binding EditingArea.Name}" />
+        </StackPanel>
+        <Grid Grid.Row="3" Grid.Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" IsEnabled="False"  HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">PLZ</TextBlock>
+            <TextBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingArea.Plz}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
+            <TextBlock Grid.Row="1" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">Ort</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingArea.Name}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
+        </Grid>
     </Grid>
 </UserControl>
