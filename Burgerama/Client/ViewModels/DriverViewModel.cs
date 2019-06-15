@@ -35,8 +35,13 @@ namespace Client.ViewModels
             }
         }
         public Driver SelectedDriver { get; set; }
-        private Driver mEditingDriver;
 
+        public bool CanEditDriver
+        {
+            get { return EditingDriver != null; }
+        }
+
+        private Driver mEditingDriver;
         public Driver EditingDriver
         {
             get { return mEditingDriver; }
@@ -48,6 +53,7 @@ namespace Client.ViewModels
                     area.Driver = mEditingDriver;
                 }
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(CanEditDriver));
                 var tempAreas = Areas;
                 Areas = null;
                 Areas = tempAreas;

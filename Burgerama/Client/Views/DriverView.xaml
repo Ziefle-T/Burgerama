@@ -32,7 +32,7 @@
             <TextBlock Text=" "></TextBlock>
             <TextBlock Text="{Binding EditingDriver.LastName}"></TextBlock>
         </StackPanel>
-        <Grid Grid.Row="3" Grid.Column="0">
+        <Grid Grid.Row="3" Grid.Column="0" IsEnabled="{Binding CanEditDriver}">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -45,7 +45,7 @@
             <TextBlock Grid.Row="2" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">Nachname</TextBlock>
             <TextBox Grid.Row="2"  VerticalAlignment="Center" Text="{Binding EditingDriver.LastName}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
         </Grid>
-        <DataGrid Grid.Row="3" Grid.Column="1"  ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid IsEnabled="{Binding CanEditDriver}" Grid.Row="3" Grid.Column="1"  ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="Checkbox" Binding="{Binding InDriverAreaList}" Width="*"></DataGridCheckBoxColumn>
                 <DataGridTextColumn Width="*" Header="PLZ" IsReadOnly="True" Binding="{Binding Plz}" />

@@ -26,6 +26,11 @@ namespace Client.ViewModels
         public ObservableCollection<Customer> Customers { get; set; }
         public ObservableCollection<Driver> Drivers { get; set; }
 
+        public bool CanEditOrder
+        {
+            get { return EditingOrder != null; }
+        }
+
         private Order mEditingOrder;
         public Order EditingOrder
         {
@@ -44,6 +49,7 @@ namespace Client.ViewModels
                 }
 
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(CanEditOrder));
             }
         }
 

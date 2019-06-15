@@ -25,7 +25,7 @@
             <TextBlock Text="," />
             <TextBlock Text="{Binding EditingArea.Name}" />
         </StackPanel>
-        <Grid Grid.Row="3" Grid.Margin="20">
+        <Grid Grid.Row="3" Grid.Margin="20" IsEnabled="{Binding CanEditArea}">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>

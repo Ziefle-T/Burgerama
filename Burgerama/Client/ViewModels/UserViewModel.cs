@@ -22,6 +22,12 @@ namespace Client.ViewModels
             }
         }
         public User SelectedUser { get; set; }
+
+        public bool CanEditUser
+        {
+            get { return EditingUser != null; }
+        }
+
         private User mEditingUser;
         public User EditingUser
         {
@@ -30,6 +36,7 @@ namespace Client.ViewModels
             {
                 mEditingUser = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(CanEditUser));
             }
         }
         public ICommand AddArticleCommand { get; set; }

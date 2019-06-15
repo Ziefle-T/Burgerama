@@ -47,7 +47,7 @@ namespace Client.Controllers
 
             var bestsellers =
                 from areaBestseller in dict
-                orderby areaBestseller.Value.Revenue
+                orderby areaBestseller.Value.Revenue descending 
                 select areaBestseller.Value;
 
             var topTen = bestsellers.Take(10);

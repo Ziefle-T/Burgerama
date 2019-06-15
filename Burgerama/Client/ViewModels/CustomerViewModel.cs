@@ -23,6 +23,11 @@ namespace Client.ViewModels
         }
         public Customer SelectedCustomer { get; set; }
 
+        public bool CanEditCustomer
+        {
+            get { return EditingCustomer != null; }
+        }
+
         private Customer mEditingCustomer;
         public Customer EditingCustomer
         {
@@ -31,6 +36,7 @@ namespace Client.ViewModels
             {
                 mEditingCustomer = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(CanEditCustomer));
             }
         }
     }

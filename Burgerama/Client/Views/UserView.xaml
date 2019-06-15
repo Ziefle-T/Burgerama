@@ -32,7 +32,7 @@
             <TextBlock Text="{Binding EditingUser.Lastname}" />
             <TextBlock Text=")" />
         </StackPanel>
-        <Grid Grid.Row="3" Grid.Margin="20">
+        <Grid Grid.Row="3" Grid.Margin="20" IsEnabled="{Binding CanEditUser}">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>

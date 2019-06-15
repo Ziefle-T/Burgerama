@@ -22,6 +22,12 @@ namespace Client.ViewModels
             }
         }
         public Area SelectedArea { get; set; }
+
+        public bool CanEditArea
+        {
+            get { return EditingArea != null; }
+        }
+
         private Area mEditingArea;
         public Area EditingArea
         {
@@ -30,6 +36,7 @@ namespace Client.ViewModels
             {
                 mEditingArea = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(CanEditArea));
             }
         }
         public ICommand AddAreaCommand { get; set; }

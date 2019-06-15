@@ -22,6 +22,12 @@ namespace Client.ViewModels
             }
         }
         public Article SelectedArticle { get; set; }
+
+        public bool CanEditArticle
+        {
+            get { return EditingArticle != null; }
+        }
+
         private Article mEditingArticle;
         public Article EditingArticle
         {
@@ -30,6 +36,7 @@ namespace Client.ViewModels
             {
                 mEditingArticle = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(CanEditArticle));
             }
         }
     }

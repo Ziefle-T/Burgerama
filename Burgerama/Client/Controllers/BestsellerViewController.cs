@@ -45,7 +45,7 @@ namespace Client.Controllers
 
             var bestsellers =
                 from seller in dict
-                orderby seller.Value.Revenue
+                orderby seller.Value.Revenue descending
                 select seller.Value;
 
             var bestsellerList = bestsellers.Take(10).ToList();
