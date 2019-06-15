@@ -14,6 +14,21 @@ namespace Server.Services
     {
         public DriverService(IRepository<Driver> repository) : base(repository) {}
 
+        public override List<Driver> GetAll()
+        {
+            var list = base.GetAll();
+
+            foreach (var driver in list)
+            {
+                foreach (var driverArea in driver.Areas)
+                {
+                    driverArea.Drivers = null;
+                }
+            }
+
+            return list;
+        }
+
         public bool UpdateFirstName(int driverId, string firstName)
         {
             return Update(driverId, x => x.FirstName = firstName);

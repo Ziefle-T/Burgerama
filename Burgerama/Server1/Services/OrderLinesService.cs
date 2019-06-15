@@ -25,6 +25,10 @@ namespace Server.Services
             foreach (var orderLine in list)
             {
                 orderLine.Order.OrderLines = null;
+                foreach (var driverArea in orderLine.Order.Driver.Areas)
+                {
+                    driverArea.Drivers = null;
+                }
             }
 
             return list;

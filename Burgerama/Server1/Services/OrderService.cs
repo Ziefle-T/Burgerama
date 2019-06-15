@@ -35,6 +35,8 @@ namespace Server.Services
                 {
                     orderLine.Order = null;
                 }
+
+                order.Driver.Areas = null;
             }
 
             return list;

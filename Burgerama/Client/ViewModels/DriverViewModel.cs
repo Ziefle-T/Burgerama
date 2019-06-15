@@ -11,7 +11,18 @@ namespace Client.ViewModels
 {
     class DriverViewModel : ActionAreaViewModel
     {
-        public ObservableCollection<Area> Areas { get; set; }
+        private ObservableCollection<Area> mAreas;
+
+        public ObservableCollection<Area> Areas
+        {
+            get { return mAreas; }
+            set
+            {
+                mAreas = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Area SelectedArea { get; set; }
         private ObservableCollection<Driver> mDrivers;
         public ObservableCollection<Driver> Drivers
@@ -37,6 +48,9 @@ namespace Client.ViewModels
                     area.Driver = mEditingDriver;
                 }
                 OnPropertyChanged();
+                var tempAreas = Areas;
+                Areas = null;
+                Areas = tempAreas;
             }
         }
         public ICommand AddDriverCommand { get; set; }

@@ -16,13 +16,24 @@ namespace Server.Services
 
         public override bool Add(Area area)
         {
-            Area existingArea = mRepository.GetAllWhere(x => x.Id == area.Id).FirstOrDefault();
-            if (existingArea != null)
+            return base.Add(area);
+        }
+
+        public override List<Area> GetAll()
+        {
+            var list = base.GetAll();
+
+            if (list == null)
             {
-                return false;
+                return new List<Area>();
             }
 
-            return base.Add(area);
+            foreach (var area in list)
+            {
+                area.Drivers = null;
+            }
+
+            return list;
         }
 
         public bool UpdateDrivers(int areaId, List<Driver> drivers)

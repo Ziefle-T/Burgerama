@@ -31,7 +31,7 @@ namespace Client.Controllers
             {
                 foreach (var area in orderLine.Order.Driver.Areas)
                 {
-                    if (dict.ContainsKey(area.Id))
+                    if (!dict.ContainsKey(area.Id))
                     {
                         dict.Add(area.Id, new AreaBestseller()
                         {
