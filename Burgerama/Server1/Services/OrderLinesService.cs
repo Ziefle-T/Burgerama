@@ -14,6 +14,22 @@ namespace Server.Services
     {
         public OrderLinesService(IRepository<OrderLines> repository) : base(repository) {}
 
+        public override List<OrderLines> GetAll()
+        {
+            var list = base.GetAll();
+            if (list == null)
+            {
+                return new List<OrderLines>();
+            }
+
+            foreach (var orderLine in list)
+            {
+                orderLine.Order.OrderLines = null;
+            }
+
+            return list;
+        }
+
         public bool UpdateAmount(int orderLinesId, int amount)
         {
             return Update(orderLinesId, x => x.Amount = amount);

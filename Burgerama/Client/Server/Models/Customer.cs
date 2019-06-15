@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,12 +15,12 @@ namespace Client.Server.Models
 
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
 
+        private int IdField;
+
         private string CityField;
 
         private string FirstNameField;
-
-        private int IdField;
-
+        
         private string LastNameField;
 
         private string PhoneField;
@@ -144,6 +145,17 @@ namespace Client.Server.Models
             {
                 this.StreetNumberField = value;
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            var customer = obj as Customer;
+            if (customer != null)
+            {
+                return customer.IdField == IdField;
+            }
+
+            return false;
         }
     }
 }

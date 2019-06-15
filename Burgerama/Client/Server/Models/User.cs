@@ -115,5 +115,16 @@ namespace Client.Server.Models
                 this.UsernameField = value;
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            var user = obj as User;
+            if (user != null)
+            {
+                return user.IdField == IdField;
+            }
+
+            return false;
+        }
     }
 }

@@ -11,10 +11,26 @@ namespace Client.ViewModels
 {
     class ArticleViewModel : ActionAreaViewModel
     {
-        public ObservableCollection<Article> Articles { get; set; }
+        private ObservableCollection<Article> mArticles;
+        public ObservableCollection<Article> Articles
+        {
+            get { return mArticles;}
+            set
+            {
+                mArticles = value;
+                OnPropertyChanged();
+            }
+        }
         public Article SelectedArticle { get; set; }
-        public Article EditingArticle;
-        public ICommand AddArticleCommand { get; set; }
-        public ICommand RemoveArticleCommand { get; set; }
+        private Article mEditingArticle;
+        public Article EditingArticle
+        {
+            get { return mEditingArticle;}
+            set
+            {
+                mEditingArticle = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

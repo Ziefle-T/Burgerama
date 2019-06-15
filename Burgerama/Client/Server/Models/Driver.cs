@@ -14,6 +14,8 @@ namespace Client.Server.Models
 
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
 
+        private int IdField;
+
         private int EmployeeNumberField;
 
         private string FirstNameField;
@@ -31,6 +33,19 @@ namespace Client.Server.Models
             set
             {
                 this.extensionDataField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
             }
         }
 
@@ -84,6 +99,17 @@ namespace Client.Server.Models
             {
                 this.LastNameField = value;
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            var driver = obj as Driver;
+            if (driver != null)
+            {
+                return driver.IdField == IdField;
+            }
+
+            return false;
         }
     }
 }

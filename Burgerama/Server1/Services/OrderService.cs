@@ -12,11 +12,119 @@ namespace Server.Services
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class OrderService : UpdatableService<Order>, IOrderService
     {
-        public OrderService(IRepository<Order> repository) : base(repository) {}
+        private IRepository<OrderLines> mOrderLinesRepository;
+
+        public OrderService(IRepository<Order> repository, IRepository<OrderLines> orderLinesRepository) 
+            : base(repository)
+        {
+            mOrderLinesRepository = orderLinesRepository;
+        }
+
+        public override List<Order> GetAll()
+        {
+            var list = base.GetAll();
+
+            if (list == null)
+            {
+                return new List<Order>();
+            }
+
+            foreach (var order in list)
+            {
+                foreach (var orderLine in order.OrderLines)
+                {
+                    orderLine.Order = null;
+                }
+            }
+
+            return list;
+        }
+
+        public override bool Add(Order order)
+        {
+            try
+            {
+                var orderLines = order.OrderLines;
+
+                foreach (var orderLine in orderLines)
+                {
+                    orderLine.Order = order;
+                }
+
+                order.OrderLines = new List<OrderLines>();
+                if (base.Add(order))
+                {
+                    foreach (var orderLine in orderLines)
+                    {
+                        mOrderLinesRepository.Save(orderLine);
+                    }
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
 
         public bool UpdateOrder(int orderId, Order order)
         {
-            return UpdateElement(orderId, order);
+            try
+            {
+                var orderLines = order.OrderLines;
+
+                foreach (var orderLine in orderLines)
+                {
+                    orderLine.Order = order;
+                }
+
+                order.OrderLines = new List<OrderLines>();
+                if (UpdateElement(orderId, order))
+                {
+                    foreach (var orderLine in orderLines)
+                    {
+                        mOrderLinesRepository.Save(orderLine);
+                    }
+
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
+
+        public override bool Delete(int id)
+        {
+            try
+            {
+                var element = GetElementById(id);
+                if (element == null)
+                {
+                    return false;
+                }
+
+                foreach (var orderLine in element.OrderLines)
+                {
+                    mOrderLinesRepository.Delete(orderLine);
+                }
+                mRepository.Delete(element);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
         }
 
         public bool UpdateOrderLines(int orderId, IList<OrderLines> orderLines)

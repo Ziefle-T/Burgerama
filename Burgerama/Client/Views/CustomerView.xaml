@@ -36,7 +36,14 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <TextBlock Grid.Row="2" VerticalAlignment="Center" Text="{Binding EditingCustomerHeader}" />
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <TextBlock Text="{Binding EditingCustomer.FirstName}" />
+            <TextBlock Text=" " />
+            <TextBlock Text="{Binding EditingCustomer.LastName}" />
+            <TextBlock Text=" (" />
+            <TextBlock Text="{Binding EditingCustomer.Phone}" />
+            <TextBlock Text=")" />
+        </StackPanel>
         <Grid Grid.Row="3" Margin="50,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />

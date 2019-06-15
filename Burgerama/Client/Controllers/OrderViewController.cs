@@ -86,7 +86,7 @@ namespace Client.Controllers
             {
                 Id = 0,
                 Description = "",
-                OrderNumber = "",
+                OrderNumber = DateTime.Now.ToString("yyyyMMddhhmmss") + mViewModel.Orders.Count,
                 Customer = null,
                 Driver = null,
                 OrderDate = DateTime.Now,
@@ -130,10 +130,11 @@ namespace Client.Controllers
                 if (addedOrderLines != null
                     && mViewModel.EditingOrder != null)
                 {
-                    addedOrderLines.Order = mViewModel.EditingOrder;
-                    var list = mViewModel.EditingOrder.OrderLines.ToList();
+                    var editingOrder = mViewModel.EditingOrder;
+                    var list = editingOrder.OrderLines.ToList();
                     list.Add(addedOrderLines);
-                    mViewModel.EditingOrder.OrderLines = list.ToArray();
+                    editingOrder.OrderLines = list.ToArray();
+                    mViewModel.EditingOrder = editingOrder;
                 }
             }
             catch (Exception e)
@@ -146,15 +147,19 @@ namespace Client.Controllers
         {
             try
             {
-                if (mViewModel.EditingOrder == null ||
+                var editingOrder = mViewModel.EditingOrder;
+                if (editingOrder == null ||
                     mViewModel.SelectedOrderLine == null)
                 {
                     ShowMessage("Kein Element zum löschen ausgewählt.");
                     return;
                 }
-
+                
                 mOrderLinesService.Delete(mViewModel.SelectedOrderLine.Id);
-
+                var list = editingOrder.OrderLines.ToList();
+                list.Remove(mViewModel.SelectedOrderLine);
+                editingOrder.OrderLines = list.ToArray();
+                mViewModel.EditingOrder = editingOrder;
             }
             catch (Exception e)
             {
@@ -166,7 +171,7 @@ namespace Client.Controllers
         {
             mViewModel.SelectedOrder = null;
             mViewModel.EditingOrder = null;
-            mViewModel.Customers = new ObservableCollection<Customer>(mCustomerService.GetAll());
+            mViewModel.Orders = new ObservableCollection<Order>(mOrderService.GetAll());
         }
     }
 }

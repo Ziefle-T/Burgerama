@@ -130,5 +130,16 @@ namespace Client.Server.Models
                 this.OrderNumberField = value;
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            var order = obj as Order;
+            if (order != null)
+            {
+                return order.IdField == IdField;
+            }
+
+            return false;
+        }
     }
 }

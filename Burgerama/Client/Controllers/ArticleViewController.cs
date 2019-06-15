@@ -54,7 +54,7 @@ namespace Client.Controllers
                 return;
             }
 
-            mArticleService.Delete(mViewModel.SelectedArticle.ArticleNumber);
+            mArticleService.Delete(mViewModel.SelectedArticle.Id);
             ResetView();
         }
 
@@ -67,6 +67,7 @@ namespace Client.Controllers
         {
             mViewModel.EditingArticle = new Article()
             {
+                Id = 0,
                 ArticleNumber = 0,
                 Description = "",
                 Price = 0,
@@ -83,13 +84,13 @@ namespace Client.Controllers
                 return;
             }
 
-            if (mViewModel.EditingArticle.ArticleNumber == 0)
+            if (mViewModel.EditingArticle.Id == 0)
             {
                 mArticleService.Add(mViewModel.EditingArticle);
             }
             else
             {
-                mArticleService.UpdateArticle(mViewModel.EditingArticle.ArticleNumber, mViewModel.EditingArticle);
+                mArticleService.UpdateArticle(mViewModel.EditingArticle.Id, mViewModel.EditingArticle);
             }
 
             ResetView();

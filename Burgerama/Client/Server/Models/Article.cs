@@ -14,6 +14,8 @@ namespace Client.Server.Models
 
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
 
+        private int IdField;
+
         private int ArticleNumberField;
 
         private string DescriptionField;
@@ -31,6 +33,19 @@ namespace Client.Server.Models
             set
             {
                 this.extensionDataField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this.IdField;
+            }
+            set
+            {
+                this.IdField = value;
             }
         }
 
@@ -84,6 +99,17 @@ namespace Client.Server.Models
             {
                 this.PriceField = value;
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            var article = obj as Article;
+            if (article != null)
+            {
+                return article.IdField == IdField;
+            }
+
+            return false;
         }
     }
 }

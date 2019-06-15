@@ -121,6 +121,7 @@ namespace Client
             containerBuilder.RegisterType<DriverViewController>();
             containerBuilder.RegisterType<AreaViewController>();
             containerBuilder.RegisterType<UserViewController>();
+            containerBuilder.RegisterType<AddArticleViewController>();
 
             //Register View-Models
             containerBuilder.RegisterType<StartViewModel>();

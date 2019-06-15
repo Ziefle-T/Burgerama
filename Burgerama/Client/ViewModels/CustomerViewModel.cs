@@ -30,21 +30,8 @@ namespace Client.ViewModels
             set
             {
                 mEditingCustomer = value;
-                if (mEditingCustomer != null)
-                {
-                    EditingCustomerHeader = mEditingCustomer.FirstName ?? "";
-                    EditingCustomerHeader += " " + mEditingCustomer.LastName ?? "";
-                    if (mEditingCustomer.Phone != null)
-                        EditingCustomerHeader += " (" + mEditingCustomer.Phone + ")";
-                }
-                else
-                {
-                    EditingCustomerHeader = "";
-                }
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(EditingCustomerHeader));
             }
         }
-        public string EditingCustomerHeader { get; set; }
     }
 }

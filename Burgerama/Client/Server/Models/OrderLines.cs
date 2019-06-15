@@ -100,5 +100,16 @@ namespace Client.Server.Models
                 this.PositionField = value;
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            var orderLines = obj as OrderLines;
+            if (orderLines != null)
+            {
+                return orderLines.IdField == IdField;
+            }
+
+            return false;
+        }
     }
 }

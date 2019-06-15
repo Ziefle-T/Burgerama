@@ -70,5 +70,16 @@ namespace Client.Server.Models
                 this.PlzField = value;
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            var area = obj as Area;
+            if (area != null)
+            {
+                return area.IdField == IdField;
+            }
+
+            return false;
+        }
     }
 }

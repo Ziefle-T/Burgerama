@@ -18,6 +18,7 @@ namespace Server.Models
         public int Amount { get; set; }
         [DataMember]
         public int Position { get; set; }
+
         [DataMember]
         public Order Order { get; set; }
         [DataMember]
