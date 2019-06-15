@@ -58,7 +58,7 @@ namespace Client.Controllers
                 return;
             }
 
-            mDriverService.Delete(mViewModel.SelectedDriver.EmployeeNumber);
+            mDriverService.Delete(mViewModel.SelectedDriver.Id);
             ResetView();
         }
 
@@ -71,6 +71,7 @@ namespace Client.Controllers
         {
             mViewModel.EditingDriver = new Driver()
             {
+                Id = 0,
                 EmployeeNumber = 0,
                 Areas = {},
                 FirstName = "",
@@ -87,13 +88,13 @@ namespace Client.Controllers
                 return;
             }
 
-            if (mViewModel.EditingDriver.EmployeeNumber == 0)
+            if (mViewModel.EditingDriver.Id == 0)
             {
                 mDriverService.Add(mViewModel.EditingDriver);
             }
             else
             {
-                mDriverService.UpdateDriver(mViewModel.EditingDriver.EmployeeNumber, mViewModel.EditingDriver);
+                mDriverService.UpdateDriver(mViewModel.EditingDriver.Id, mViewModel.EditingDriver);
             }
 
             ResetView();

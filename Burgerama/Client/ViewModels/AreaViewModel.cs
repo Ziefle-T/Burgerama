@@ -11,9 +11,27 @@ namespace Client.ViewModels
 {
     class AreaViewModel : ActionAreaViewModel
     {
-        public ObservableCollection<Area> Areas { get; set; }
+        private ObservableCollection<Area> mAreas;
+        public ObservableCollection<Area> Areas
+        {
+            get { return mAreas; }
+            set
+            {
+                mAreas = value;
+                OnPropertyChanged();
+            }
+        }
         public Area SelectedArea { get; set; }
-        public Area EditingArea;
+        private Area mEditingArea;
+        public Area EditingArea
+        {
+            get { return mEditingArea; }
+            set
+            {
+                mEditingArea = value;
+                OnPropertyChanged();
+            }
+        }
         public ICommand AddAreaCommand { get; set; }
         public ICommand RemoveAreaCommand{ get; set; }
     }

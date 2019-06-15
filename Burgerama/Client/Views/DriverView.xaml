@@ -18,7 +18,7 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0">Fahrer Verwalten</TextBlock>
-        <DataGrid Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Article}" SelectedItem="{Binding SelectedArticle}" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding Drivers}" SelectedItem="{Binding SelectedDriver}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Personal-Nr." IsReadOnly="True" Binding="{Binding EmployeeNumber}" />
                 <DataGridTextColumn Width="*" Header="Vorname" IsReadOnly="True" Binding="{Binding FirstName}" />
@@ -45,11 +45,11 @@
             <TextBlock Grid.Row="2" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">Nachname</TextBlock>
             <TextBox Grid.Row="2"  VerticalAlignment="Center" Text="{Binding EditingDriver.LastName}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
         </Grid>
-        <DataGrid Grid.Row="3" Grid.Column="1"  ItemsSource="{Binding Article}" SelectedItem="{Binding SelectedArea}" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid Grid.Row="3" Grid.Column="1"  ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="Checkbox" IsReadOnly="True" Binding="{Binding Areas}" Width="*"></DataGridCheckBoxColumn>
-                <DataGridTextColumn Width="*" Header="PLZ" IsReadOnly="True" Binding="{Binding SelectedArea.Plz}" />
-                <DataGridTextColumn Width="*" Header="Gebiet" IsReadOnly="True" Binding="{Binding SelectedArea.Name}" />
+                <DataGridTextColumn Width="*" Header="PLZ" IsReadOnly="True" Binding="{Binding Plz}" />
+                <DataGridTextColumn Width="*" Header="Gebiet" IsReadOnly="True" Binding="{Binding Name}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

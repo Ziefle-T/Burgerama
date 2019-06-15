@@ -11,9 +11,27 @@ namespace Client.ViewModels
 {
     class UserViewModel : ActionAreaViewModel
     {
-        public ObservableCollection<User> Users { get; set; }
+        private ObservableCollection<User> mUsers;
+        public ObservableCollection<User> Users
+        {
+            get { return mUsers; }
+            set
+            {
+                mUsers = value;
+                OnPropertyChanged();
+            }
+        }
         public User SelectedUser { get; set; }
-        public User EditingUser;
+        private User mEditingUser;
+        public User EditingUser
+        {
+            get { return mEditingUser; }
+            set
+            {
+                mEditingUser = value;
+                OnPropertyChanged();
+            }
+        }
         public ICommand AddArticleCommand { get; set; }
         public ICommand RemoveArticleCommand { get; set; }
     }

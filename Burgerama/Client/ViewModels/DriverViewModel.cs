@@ -13,9 +13,29 @@ namespace Client.ViewModels
     {
         public ObservableCollection<Area> Areas { get; set; }
         public Area SelectedArea { get; set; }
-        public ObservableCollection<Driver> Drivers { get; set; }
+        private ObservableCollection<Driver> mDrivers;
+        public ObservableCollection<Driver> Drivers
+        {
+            get { return mDrivers; }
+            set
+            {
+                mDrivers = value;
+                OnPropertyChanged();
+            }
+        }
         public Driver SelectedDriver { get; set; }
-        public Driver EditingDriver;
+        private Driver mEditingDriver;
+
+        public Driver EditingDriver
+        {
+            get { return mEditingDriver; }
+            set
+            {
+                mEditingDriver = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand AddDriverCommand { get; set; }
         public ICommand RemoveDriverCommand { get; set; }
     }
