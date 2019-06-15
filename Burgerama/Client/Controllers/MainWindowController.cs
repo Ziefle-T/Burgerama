@@ -53,7 +53,13 @@ namespace Client.Controllers
         private void ShowView<T, Z>() where T : ActionAreaController<Z> where Z : ActionAreaViewModel
         {
             var viewController = App.Container.Resolve<T>();
-            var viewModel = viewController.Initialize();
+            var viewModel = viewController.SafeInitialize();
+
+            if (viewModel == null)
+            {
+                return;
+            }
+
             mMainWindowViewModel.ActiveViewModel = viewModel;
 
             mMainWindowViewModel.NewCommand = viewModel.NewCommand;

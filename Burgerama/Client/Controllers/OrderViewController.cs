@@ -160,6 +160,7 @@ namespace Client.Controllers
                 list.Remove(mViewModel.SelectedOrderLine);
                 editingOrder.OrderLines = list.ToArray();
                 mViewModel.EditingOrder = editingOrder;
+
             }
             catch (Exception e)
             {

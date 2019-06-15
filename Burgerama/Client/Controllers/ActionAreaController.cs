@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Autofac;
@@ -12,6 +13,24 @@ namespace Client.Controllers
     public abstract class ActionAreaController<T> : BaseController where T : ActionAreaViewModel
     {
         protected T mViewModel;
+
+        public T SafeInitialize()
+        {
+            try
+            {
+                return Initialize();
+            }
+            catch (EndpointNotFoundException e)
+            {
+                ShowMessage("Der Server wurde nicht gefunden.");
+            }
+            catch (Exception e)
+            {
+                ShowMessage(e.ToString());
+            }
+
+            return null;
+        }
 
         public virtual T Initialize()
         {

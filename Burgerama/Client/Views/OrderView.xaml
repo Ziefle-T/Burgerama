@@ -116,15 +116,15 @@
             <TextBox Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingOrder.Description}" Background="Transparent" BorderBrush="#FF4767AE" BorderThickness="0,0,0,2" TextAlignment="Right" />
 
             <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
-                <Button Margin="0,5,15,5" Command="{Binding AddArticleCommand}" Background="#FF4767AE" Foreground="White">
+                <Button Margin="0,0,15,0" Command="{Binding AddArticleCommand}" Background="#FF4767AE" Foreground="White">
                     <Image Source="/Client;component/Ressources/delete.png"></Image>
                 </Button>
-                <Button Margin="0,5,0,5" Command="{Binding RemoveArticleCommand}" Background="#FF4767AE" Foreground="White">
+                <Button Margin="0,0,0,0" Command="{Binding RemoveArticleCommand}" Background="#FF4767AE" Foreground="White">
                     <Image Source="/Client;component/Ressources/delete.png"></Image>
                 </Button>
             </StackPanel>
 
-            <DataGrid Grid.Row="1" Grid.Column="3" Grid.RowSpan="4" ItemsSource="{Binding OrderLines}" SelectedItem="{Binding SelectedOrderLine}" AutoGenerateColumns="False">
+            <DataGrid Grid.Row="1" Grid.Column="3" Grid.RowSpan="4" Margin="0,5,0,0" ItemsSource="{Binding OrderLines}" SelectedItem="{Binding SelectedOrderLine}" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="0.5*" Header="Anz." IsReadOnly="True" Binding="{Binding Amount}" />
                     <DataGridTextColumn Width="0.5*" Header="Art.-Nr." IsReadOnly="True" Binding="{Binding Article.ArticleNumber}" />
