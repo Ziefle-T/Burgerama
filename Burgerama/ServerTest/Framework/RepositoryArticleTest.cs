@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NHibernate.Exceptions;
 using Server.Framework;
 using Server.Models;
 
@@ -98,6 +99,29 @@ namespace ServerTest.Framework
             Assert.AreEqual(insertArticle2.Description, returnedArticle2.Description);
             Assert.AreEqual(insertArticle2.Name, returnedArticle2.Name);
             Assert.AreEqual(insertArticle2.Price, returnedArticle2.Price);
+        }
+
+        [TestMethod]
+        public void BreakUniqueArticleNumberConstraintTest()
+        {
+            Article insertArticle1 = new Article()
+            {
+                ArticleNumber = "123",
+                Description = "Article1 Description",
+                Name = "Article1",
+                Price = 5.93M
+            };
+            Article insertArticle2 = new Article()
+            {
+                ArticleNumber = "123",
+                Description = "Article2 Description",
+                Name = "Article2",
+                Price = 6.72M
+            };
+
+            mArticleRepository.Save(insertArticle1);
+
+            Assert.ThrowsException<GenericADOException>(() => mArticleRepository.Save(insertArticle2));
         }
 
         [TestMethod]

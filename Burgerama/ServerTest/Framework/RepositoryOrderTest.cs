@@ -299,5 +299,81 @@ namespace ServerTest.Framework
             Assert.IsNotNull(savedOrders[1].Customer);
             Assert.IsNotNull(savedOrders[1].Driver);
         }
+
+        [TestMethod]
+        public void SaveAndDeleteTest1()
+        {
+            Driver driver = new Driver()
+            {
+                FirstName = "Günther",
+                LastName = "Horst",
+                EmployeeNumber = 213,
+                Areas = new List<Area>()
+            };
+            Area area = new Area()
+            {
+                Name = "Burgertown",
+                Plz = 6543,
+                Drivers = new List<Driver>()
+                {
+                    driver
+                }
+            };
+            driver.Areas.Add(area);
+
+
+            Order order1 = new Order()
+            {
+                OrderNumber = "23a",
+                Description = "extra viel käse",
+                OrderDate = DateTime.Parse("1999-05-01 05:08:12"),
+                Customer = new Customer()
+                {
+                    FirstName = "Olaf",
+                    LastName = "Burgereater",
+                    City = "Burgertown",
+                    Phone = "+4963254",
+                    Plz = 59872,
+                    Street = "Burgerstreet",
+                    StreetNumber = "12a",
+                    Type = 1
+                },
+                Driver = driver
+            };
+
+            Order order2 = new Order()
+            {
+                OrderNumber = "23c",
+                Description = "extra wenig käse",
+                OrderDate = DateTime.Parse("2048-05-01 07:08:12"),
+                Customer = new Customer()
+                {
+                    FirstName = "Günther",
+                    LastName = "Horst",
+                    City = "Burgercity",
+                    Phone = "+4965421",
+                    Plz = 65412,
+                    Street = "Burgergasse",
+                    StreetNumber = "12y",
+                    Type = 1
+                },
+                Driver = driver
+            };
+
+            mOrderRepository.Save(order1);
+            mOrderRepository.Save(order2);
+
+            mOrderRepository.Delete(order1);
+
+            List<Order> savedOrders = mOrderRepository.GetAll();
+
+            Assert.AreEqual(1, savedOrders.Count);
+
+            Assert.AreEqual("23c", savedOrders[0].OrderNumber);
+            Assert.AreEqual("extra wenig käse", savedOrders[0].Description);
+            Assert.AreEqual(DateTime.Parse("2048-05-01 07:08:12"), savedOrders[0].OrderDate);
+            Assert.IsNotNull(savedOrders[0].Customer);
+            Assert.IsNotNull(savedOrders[0].Driver);
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NHibernate.Exceptions;
 using Server.Framework;
 using Server.Models;
 
@@ -119,6 +120,37 @@ namespace ServerTest.Framework
             Assert.AreEqual(insertCustomer2.Plz, returnedCustomer2.Plz);
             Assert.AreEqual(insertCustomer2.Street, returnedCustomer2.Street);
             Assert.AreEqual(insertCustomer2.StreetNumber, returnedCustomer2.StreetNumber);
+        }
+
+        [TestMethod]
+        public void BreakUniquePhoneConstraintTest()
+        {
+            Customer insertCustomer1 = new Customer()
+            {
+                FirstName = "Olaf",
+                LastName = "Gerd",
+                City = "Horb",
+                Phone = "+49151236498",
+                Plz = 56348,
+                Street = "Florianstraße",
+                StreetNumber = "15",
+                Type = 1
+            };
+            Customer insertCustomer2 = new Customer()
+            {
+                FirstName = "Antonius",
+                LastName = "Lukas",
+                City = "Stuttgart",
+                Phone = "+49151236498",
+                Plz = 567345,
+                Street = "Dingsbumsstraße",
+                StreetNumber = "65c",
+                Type = 1
+            };
+
+            mCustomerRepository.Save(insertCustomer1);
+
+            Assert.ThrowsException<GenericADOException>(() => mCustomerRepository.Save(insertCustomer2));
         }
 
         [TestMethod]

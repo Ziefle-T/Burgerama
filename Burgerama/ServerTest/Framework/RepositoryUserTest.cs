@@ -35,6 +35,30 @@ namespace ServerTest.Framework
         }
 
         [TestMethod]
+        public void PasswordTest1()
+        {
+            List<User> defaultUsers = mUserRepository.GetAll();
+            
+            Assert.IsTrue(defaultUsers[0].ValidatePw("admin"));
+            Assert.IsTrue(defaultUsers[1].ValidatePw("geheim"));
+            Assert.IsTrue(defaultUsers[2].ValidatePw("geheim"));
+        }
+
+        [TestMethod]
+        public void PasswordTest2()
+        {
+            User user1 = new User();
+            User user2 = new User();
+
+            user1.SetNewPassword("testpw");
+            user2.SetNewPassword("testpw");
+
+            Assert.AreNotEqual(user1.Password, user2.Password);
+            Assert.IsTrue(user1.ValidatePw("testpw"));
+            Assert.IsTrue(user2.ValidatePw("testpw"));
+        }
+
+        [TestMethod]
         public void EmptyTest()
         {
             List<User> returnedUsers = mUserRepository.GetAll();

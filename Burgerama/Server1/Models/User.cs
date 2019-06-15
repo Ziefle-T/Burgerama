@@ -29,9 +29,9 @@ namespace Server.Models
             return BCrypt.Net.BCrypt.Verify(password, this.Password);
         }
 
-        public void SetNewPassword(string Password)
+        public void SetNewPassword(string password)
         {
-            Password = BCrypt.Net.BCrypt.HashPassword(Password);
+            this.Password = BCrypt.Net.BCrypt.HashPassword(password);
         }
 
     }
