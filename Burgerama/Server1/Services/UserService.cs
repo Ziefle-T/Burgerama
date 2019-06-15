@@ -17,7 +17,7 @@ namespace Server.Services
 
         public override bool Add(User user)
         {
-            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+            user.Password = BCrypt.Net.BCrypt.HashPassword("geheim");
             return base.Add(user);
         }
 
@@ -109,7 +109,23 @@ namespace Server.Services
 
         public bool UpdateUser(int userId, User user)
         {
-            return UpdateElement(userId, user);
+            try
+            {
+                var oldUser = GetElementById(userId);
+                if (user == null)
+                {
+                    return false;
+                }
+
+                user.Password = oldUser.Password;
+                mRepository.Save(user);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
         }
     }
 }
