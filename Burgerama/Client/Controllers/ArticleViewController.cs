@@ -15,20 +15,20 @@ namespace Client.Controllers
     {
         private IArticleService mArticleService;
 
-        public ArticleViewController(
-            IArticleService articleService
-
-        ) : base()
+        public ArticleViewController(IArticleService articleService) : base()
         {
             mArticleService = articleService;
         }
+
         public override ArticleViewModel Initialize()
         {
             var retVal = base.Initialize();
 
             retVal.Articles = new ObservableCollection<Article>(mArticleService.GetAll());
+
             return retVal;
         }
+
         public override bool CanExecuteDeleteCommand(object obj)
         {
             return mViewModel.SelectedArticle != null;
@@ -43,23 +43,36 @@ namespace Client.Controllers
         }
         public override bool CanExecuteSaveCommand(object obj)
         {
-            return true;
+            return mViewModel.EditingArticle != null;
         }
 
         public override void ExecuteDeleteCommand(object obj)
         {
             if (mViewModel.SelectedArticle == null)
             {
-                ShowMessage("Nichts zum löschen ausgewählt.");
+                ShowMessage("Bitte einen Artikel zum löschen auswählen.");
                 return;
             }
 
-            mArticleService.Delete(mViewModel.SelectedArticle.Id);
-            ResetView();
+            if (mArticleService.Delete(mViewModel.SelectedArticle.Id))
+            {
+                ResetView();  
+            }
+            else
+            {
+                ShowMessage("Der Artikel konnte nicht glöscht werden.\n" +
+                            "Bitte löschen Sie zuerst alle mit dem Artikel verbundenen Bestellungen.");
+            }
         }
 
         public override void ExecuteEditCommand(object obj)
         {
+            if (mViewModel.SelectedArticle == null)
+            {
+                ShowMessage("Bitte einen Artikel zum bearbeiten auswählen.");
+                return;
+            }
+
             mViewModel.EditingArticle = mViewModel.SelectedArticle;
         }
 
@@ -68,11 +81,10 @@ namespace Client.Controllers
             mViewModel.EditingArticle = new Article()
             {
                 Id = 0,
-                ArticleNumber = 0,
+                ArticleNumber = "",
                 Description = "",
                 Price = 0,
                 Name = ""
-
             };
         }
 
@@ -84,13 +96,38 @@ namespace Client.Controllers
                 return;
             }
 
+            if (mViewModel.EditingArticle.ArticleNumber == "")
+            {
+                ShowMessage("Bitte geben Sie eine Artikelnummer ein.");
+                return;
+            }
+
+            if (mViewModel.EditingArticle.Name == "")
+            {
+                ShowMessage("Bitte geben Sie einen Namen ein.");
+                return;
+            }
+
+            if (mViewModel.EditingArticle.Price <= 0)
+            {
+                ShowMessage("Der Preis muss größer als 0€ sein.");
+                return;
+            }
+
+            bool success = false;
             if (mViewModel.EditingArticle.Id == 0)
             {
-                mArticleService.Add(mViewModel.EditingArticle);
+                success = mArticleService.Add(mViewModel.EditingArticle);
             }
             else
             {
-                mArticleService.UpdateArticle(mViewModel.EditingArticle.Id, mViewModel.EditingArticle);
+                success = mArticleService.UpdateArticle(mViewModel.EditingArticle.Id, mViewModel.EditingArticle);
+            }
+
+            if (!success)
+            {
+                ShowMessage("Bitte geben Sie eine eindeutige Artikelnummer ein.");
+                return;
             }
 
             ResetView();

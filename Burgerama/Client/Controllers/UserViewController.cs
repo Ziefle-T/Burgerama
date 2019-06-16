@@ -14,10 +14,7 @@ namespace Client.Controllers
     {
         private IUserService mUserService;
 
-        public UserViewController(
-            IUserService userService
-
-        ) : base()
+        public UserViewController(IUserService userService) : base()
         {
             mUserService = userService;
         }
@@ -26,6 +23,7 @@ namespace Client.Controllers
             var retVal = base.Initialize();
 
             retVal.Users = new ObservableCollection<User>(mUserService.GetAll());
+
             return retVal;
         }
         public override bool CanExecuteDeleteCommand(object obj)
@@ -42,7 +40,7 @@ namespace Client.Controllers
         }
         public override bool CanExecuteSaveCommand(object obj)
         {
-            return true;
+            return mViewModel.EditingUser != null;
         }
 
         public override void ExecuteDeleteCommand(object obj)
@@ -53,8 +51,19 @@ namespace Client.Controllers
                 return;
             }
 
-            mUserService.Delete(mViewModel.SelectedUser.Id);
-            ResetView();
+            if (mViewModel.SelectedUser.Id == App.LoggedInUser.Id)
+            {
+                ShowMessage("Sie können diesen Benutzer nicht löschen, da Sie mit diesem angemeldet sind.");
+            }
+
+            if (mUserService.Delete(mViewModel.SelectedUser.Id))
+            {
+                ResetView();
+            }
+            else
+            {
+                ShowMessage("Der Benutzer konnte nicht gelöscht werden, oder wurde bereits gelöscht.");   
+            }
         }
 
         public override void ExecuteEditCommand(object obj)
@@ -71,7 +80,6 @@ namespace Client.Controllers
                 Firstname = "",
                 Lastname = "",
                 IsAdmin = false
-
             };
         }
 
@@ -83,13 +91,32 @@ namespace Client.Controllers
                 return;
             }
 
+            if (mViewModel.EditingUser.Username == "")
+            {
+                ShowMessage("Bitte geben Sie einen Benutzernamen ein.");
+                return;
+            }
+
+            if (mViewModel.EditingUser.Lastname == "")
+            {
+                ShowMessage("Bitte geben Sie einen Nachnamen ein.");
+                return;
+            }
+
+            bool success = false;
             if (mViewModel.EditingUser.Id == 0)
             {
-                mUserService.Add(mViewModel.EditingUser);
+                success = mUserService.Add(mViewModel.EditingUser);
             }
             else
             {
-                mUserService.UpdateUser(mViewModel.EditingUser.Id, mViewModel.EditingUser);
+                success = mUserService.UpdateUser(mViewModel.EditingUser.Id, mViewModel.EditingUser);
+            }
+
+            if (!success)
+            {
+                ShowMessage("Bitte geben Sie einen eindeutigen Benutzernamen ein.");
+                return;
             }
 
             ResetView();

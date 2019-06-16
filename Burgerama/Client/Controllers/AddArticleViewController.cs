@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Client.Framework;
@@ -50,30 +51,41 @@ namespace Client.Controllers
 
         public OrderLines CreateOrderLines()
         {
-            mAddArticleViewModel = new AddArticleViewModel()
+            try
             {
-                Articles = new ObservableCollection<Article>(mArticleService.GetAll()),
-                Amount = 0,
-                AddCommand = new RelayCommand(ExecuteAddCommand),
-                CancelCommand = new RelayCommand(ExecuteCancelCommand)
-            };
-
-            mAddArticleView = new AddArticleView();
-            mAddArticleView.DataContext = mAddArticleViewModel;
-
-            if (mAddArticleView.ShowDialog() ?? false)
-            {
-                if (mAddArticleViewModel.SelectedArticle == null)
+                mAddArticleViewModel = new AddArticleViewModel()
                 {
-                    ShowMessage("Etwas ist schief gelaufen.");
-                    return null;
-                }
-
-                return new OrderLines()
-                {
-                    Amount = mAddArticleViewModel.Amount,
-                    Article = mAddArticleViewModel.SelectedArticle
+                    Articles = new ObservableCollection<Article>(mArticleService.GetAll()),
+                    Amount = 0,
+                    AddCommand = new RelayCommand(ExecuteAddCommand),
+                    CancelCommand = new RelayCommand(ExecuteCancelCommand)
                 };
+
+                mAddArticleView = new AddArticleView();
+                mAddArticleView.DataContext = mAddArticleViewModel;
+
+                if (mAddArticleView.ShowDialog() ?? false)
+                {
+                    if (mAddArticleViewModel.SelectedArticle == null)
+                    {
+                        ShowMessage("Etwas ist schief gelaufen.");
+                        return null;
+                    }
+
+                    return new OrderLines()
+                    {
+                        Amount = mAddArticleViewModel.Amount,
+                        Article = mAddArticleViewModel.SelectedArticle
+                    };
+                }
+            }
+            catch (EndpointNotFoundException)
+            {
+                ShowMessage("Der Server wurde nicht gefunden.");
+            }
+            catch (Exception e)
+            {
+                ShowMessage(e.ToString());
             }
 
             return null;

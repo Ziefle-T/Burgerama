@@ -16,7 +16,7 @@ namespace Client.Server.Models
 
         private int IdField;
 
-        private int ArticleNumberField;
+        private string ArticleNumberField;
 
         private string DescriptionField;
 
@@ -50,7 +50,7 @@ namespace Client.Server.Models
         }
 
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ArticleNumber
+        public string ArticleNumber
         {
             get
             {

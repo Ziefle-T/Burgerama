@@ -50,6 +50,10 @@ namespace Client.Controllers
             {
                 ExecuteNewCommand(obj);
             }
+            catch (EndpointNotFoundException)
+            {
+                ShowMessage("Der Server wurde nicht gefunden.");
+            }
             catch (Exception e)
             {
                 ShowMessage(e.ToString());
@@ -70,6 +74,10 @@ namespace Client.Controllers
             try
             {
                 ExecuteEditCommand(obj);
+            }
+            catch (EndpointNotFoundException)
+            {
+                ShowMessage("Der Server wurde nicht gefunden.");
             }
             catch (Exception e)
             {
@@ -92,6 +100,10 @@ namespace Client.Controllers
             {
                 ExecuteSaveCommand(obj);
             }
+            catch (EndpointNotFoundException)
+            {
+                ShowMessage("Der Server wurde nicht gefunden.");
+            }
             catch (Exception e)
             {
                 ShowMessage(e.ToString());
@@ -112,6 +124,10 @@ namespace Client.Controllers
             try
             {
                 ExecuteDeleteCommand(obj);
+            }
+            catch (EndpointNotFoundException)
+            {
+                ShowMessage("Der Server wurde nicht gefunden.");
             }
             catch (Exception e)
             {

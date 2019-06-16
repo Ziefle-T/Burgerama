@@ -14,10 +14,7 @@ namespace Client.Controllers
     {
         private IAreaService mAreaService;
 
-        public AreaViewController(
-            IAreaService areaService
-
-        ) : base()
+        public AreaViewController(IAreaService areaService) : base()
         {
             mAreaService = areaService;
         }
@@ -26,6 +23,7 @@ namespace Client.Controllers
             var retVal = base.Initialize();
 
             retVal.Areas = new ObservableCollection<Area>(mAreaService.GetAll());
+
             return retVal;
         }
         public override bool CanExecuteDeleteCommand(object obj)
@@ -42,23 +40,35 @@ namespace Client.Controllers
         }
         public override bool CanExecuteSaveCommand(object obj)
         {
-            return true;
+            return mViewModel.EditingArea != null;
         }
 
         public override void ExecuteDeleteCommand(object obj)
         {
             if (mViewModel.SelectedArea == null)
             {
-                ShowMessage("Nichts zum löschen ausgewählt.");
+                ShowMessage("Bitte zuerst ein Liefergebiet zum löschen auswählen.");
                 return;
             }
 
-            mAreaService.Delete(mViewModel.SelectedArea.Id);
-            ResetView();
+            if (mAreaService.Delete(mViewModel.SelectedArea.Id))
+            {
+                ResetView();
+            }
+            else
+            {
+                ShowMessage("Das Liefergebiet konnte nicht gelöscht werden.\n" +
+                            "Bitte entfernen Sie zuerst die mit dem Gebiet verbundenen Fahrer.");   
+            }
         }
 
         public override void ExecuteEditCommand(object obj)
         {
+            if (mViewModel.SelectedArea == null)
+            {
+                ShowMessage("Bitte zuerst ein Liefergebiet zum bearbeiten auswählen.");
+                return;
+            }
             mViewModel.EditingArea = mViewModel.SelectedArea;
         }
 
@@ -69,7 +79,6 @@ namespace Client.Controllers
                 Id = 0,
                 Plz = 0,
                 Name = ""
-
             };
         }
 
@@ -81,13 +90,32 @@ namespace Client.Controllers
                 return;
             }
 
+            if (mViewModel.EditingArea.Plz <= 0)
+            {
+                ShowMessage("Die Postleitzahl muss größer als 0 sein.");
+                return;
+            }
+
+            if (mViewModel.EditingArea.Name == "")
+            {
+                ShowMessage("Bitt einen Namen eingeben.");
+                return;
+            }
+
+            bool success = false;
             if (mViewModel.EditingArea.Id == 0)
             {
-                mAreaService.Add(mViewModel.EditingArea);
+                success = mAreaService.Add(mViewModel.EditingArea);
             }
             else
             {
-                mAreaService.UpdateArea(mViewModel.EditingArea.Id, mViewModel.EditingArea);
+                success = mAreaService.UpdateArea(mViewModel.EditingArea.Id, mViewModel.EditingArea);
+            }
+
+            if (!success)
+            {
+                ShowMessage("Bitte geben Sie eine eindeutige Postleitzahl ein.");
+                return;
             }
 
             ResetView();

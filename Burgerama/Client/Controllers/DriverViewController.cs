@@ -19,7 +19,6 @@ namespace Client.Controllers
         public DriverViewController(
             IDriverService driverService,
             IAreaService   areaService
-
         ) : base()
         {
             mDriverService = driverService;
@@ -31,6 +30,7 @@ namespace Client.Controllers
 
             retVal.Drivers = new ObservableCollection<Driver>(mDriverService.GetAll());
             retVal.Areas = new ObservableCollection<Area>(mAreaService.GetAll());
+
             return retVal;
         }
         public override bool CanExecuteDeleteCommand(object obj)
@@ -47,19 +47,26 @@ namespace Client.Controllers
         }
         public override bool CanExecuteSaveCommand(object obj)
         {
-            return true;
+            return mViewModel.EditingDriver != null;
         }
 
         public override void ExecuteDeleteCommand(object obj)
         {
             if (mViewModel.SelectedDriver == null)
             {
-                ShowMessage("Nichts zum löschen ausgewählt.");
+                ShowMessage("Bitte einen Fahrer zum löschen auswählen.");
                 return;
             }
 
-            mDriverService.Delete(mViewModel.SelectedDriver.Id);
-            ResetView();
+            if (mDriverService.Delete(mViewModel.SelectedDriver.Id))
+            {
+                ResetView();
+            }
+            else
+            {
+                ShowMessage("Der Fahrer konnte nicht gelöscht werden.\n" +
+                            "Bitte löschen Sie zuerst alle mit dem Fahrer verbundenen Bestellungen.");
+            }
         }
 
         public override void ExecuteEditCommand(object obj)
@@ -76,7 +83,6 @@ namespace Client.Controllers
                 Areas = {},
                 FirstName = "",
                 LastName = ""
-
             };
         }
 
@@ -88,13 +94,38 @@ namespace Client.Controllers
                 return;
             }
 
+            if (mViewModel.EditingDriver.EmployeeNumber <= 0)
+            {
+                ShowMessage("Die Personal-Nr. muss größer als 0 sein.");
+                return;
+            }
+
+            if (mViewModel.EditingDriver.FirstName == "")
+            {
+                ShowMessage("Bitte geben Sie einen Vornamen ein.");
+                return;
+            }
+
+            if (mViewModel.EditingDriver.LastName == "")
+            {
+                ShowMessage("Bitte geben Sie einen Nachamen ein.");
+                return;
+            }
+
+            bool success = false;
             if (mViewModel.EditingDriver.Id == 0)
             {
-                mDriverService.Add(mViewModel.EditingDriver);
+                success = mDriverService.Add(mViewModel.EditingDriver);
             }
             else
             {
-                mDriverService.UpdateDriver(mViewModel.EditingDriver.Id, mViewModel.EditingDriver);
+                success = mDriverService.UpdateDriver(mViewModel.EditingDriver.Id, mViewModel.EditingDriver);
+            }
+
+            if (!success)
+            {
+                ShowMessage("Die Personal-Nr. muss eindeutig sein.");
+                return;
             }
 
             ResetView();

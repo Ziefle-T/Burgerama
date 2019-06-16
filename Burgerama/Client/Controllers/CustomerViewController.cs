@@ -43,7 +43,7 @@ namespace Client.Controllers
         }
         public override bool CanExecuteSaveCommand(object obj)
         {
-            return true;
+            return mViewModel.EditingCustomer != null;
         }
 
 
@@ -55,8 +55,15 @@ namespace Client.Controllers
                 return;
             }
 
-            mCustomerService.Delete(mViewModel.SelectedCustomer.Id);
-            ResetView();
+            if (mCustomerService.Delete(mViewModel.SelectedCustomer.Id))
+            {
+                ResetView();
+            }
+            else
+            {
+                ShowMessage("Der Kunde konnte nicht gelöscht werden.\n" +
+                            "Bitte löschen Sie zuerst alle mit dem Kunden verbundenen Bestellungen.");   
+            }
         }
 
         public override void ExecuteEditCommand(object obj)
@@ -87,13 +94,56 @@ namespace Client.Controllers
                 return;
             }
 
+            if (mViewModel.EditingCustomer.LastName == "")
+            {
+                ShowMessage("Bitte geben Sie einen Nachnamen ein.");
+                return;
+            }
+
+            if (mViewModel.EditingCustomer.Phone == "")
+            {
+                ShowMessage("Bitte geben Sie eine Telefonnummer ein.");
+                return;
+            }
+
+            if (mViewModel.EditingCustomer.Street == "")
+            {
+                ShowMessage("Bitte geben Sie eine Straße ein.");
+                return;
+            }
+
+            if (mViewModel.EditingCustomer.StreetNumber == "")
+            {
+                ShowMessage("Bitte geben Sie eine Straßennummer ein.");
+                return;
+            }
+
+            if (mViewModel.EditingCustomer.Plz <= 0)
+            {
+                ShowMessage("Die Postleitzahl muss größer als 0 sein.");
+                return;
+            }
+
+            if (mViewModel.EditingCustomer.City == "")
+            {
+                ShowMessage("Bitte geben Sie eine Stadt ein.");
+                return;
+            }
+
+            bool success = false;
             if (mViewModel.EditingCustomer.Id == 0)
             {
-                mCustomerService.Add(mViewModel.EditingCustomer);
+                success = mCustomerService.Add(mViewModel.EditingCustomer);
             }
             else
             {
-                mCustomerService.UpdateCustomer(mViewModel.EditingCustomer);
+                success = mCustomerService.UpdateCustomer(mViewModel.EditingCustomer);
+            }
+
+            if (!success)
+            {
+                ShowMessage("Die Telefonnummer muss eindeutig sein.");
+                return;
             }
 
             ResetView();   

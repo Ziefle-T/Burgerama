@@ -12,7 +12,12 @@ namespace Server.Services
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class DriverService : UpdatableService<Driver>, IDriverService
     {
-        public DriverService(IRepository<Driver> repository) : base(repository) {}
+        private IRepository<Area> mAreaRepository;
+
+        public DriverService(IRepository<Driver> repository, IRepository<Area> areaRepository) : base(repository)
+        {
+            mAreaRepository = areaRepository;
+        }
 
         public override List<Driver> GetAll()
         {
@@ -27,6 +32,33 @@ namespace Server.Services
             }
 
             return list;
+        }
+
+        public override bool Delete(int driverId)
+        {
+            try
+            {
+                Driver driver = GetElementById(driverId);
+
+                if (driver == null)
+                {
+                    return false;
+                }
+
+                foreach (var driverArea in driver.Areas)
+                {
+                    driverArea.Drivers.Remove(driver);
+                    mAreaRepository.Save(driverArea);
+                }
+
+                mRepository.Delete(driver);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
         }
 
         public bool UpdateFirstName(int driverId, string firstName)

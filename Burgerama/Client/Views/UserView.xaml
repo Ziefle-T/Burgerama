@@ -40,7 +40,7 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" IsEnabled="False"  HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">Benutzername</TextBlock>
-            <TextBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingUser.ArticleUsername}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
+            <TextBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingUser.Username}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
             <TextBlock Grid.Row="1" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">Vorname</TextBlock>
             <TextBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingUser.Firstname}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
             <TextBlock Grid.Row="2" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">Nachname</TextBlock>

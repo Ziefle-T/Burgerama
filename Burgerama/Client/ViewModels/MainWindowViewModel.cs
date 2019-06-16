@@ -26,7 +26,7 @@ namespace Client.ViewModels
             set
             {
                 mSelectedSite = value;
-                mSelectedAdminSite = null;
+                mSelectedAdminSite = "";
                 ViewSelectionChangedCommand.Execute(value);
                 SelectedSitePropertyChanged();
             }
@@ -40,7 +40,7 @@ namespace Client.ViewModels
             set
             {
                 mSelectedAdminSite = value;
-                mSelectedSite = null;
+                mSelectedSite = "";
                 ViewSelectionChangedCommand.Execute(value);
                 SelectedSitePropertyChanged();
             }
@@ -93,7 +93,7 @@ namespace Client.ViewModels
 
         private void SelectedSitePropertyChanged()
         {
-            OnPropertyChanged();
+            OnPropertyChanged(nameof(mSelectedSite));
             OnPropertyChanged(nameof(mSelectedAdminSite));
             OnPropertyChanged(nameof(NewCommand));
             OnPropertyChanged(nameof(EditCommand));

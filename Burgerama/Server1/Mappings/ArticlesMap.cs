@@ -16,7 +16,7 @@ namespace Server.Mappings
 
             Id(x => x.Id);
 
-            Map(x => x.ArticleNumber).Length(50).Not.Nullable();
+            Map(x => x.ArticleNumber).Length(50).Unique().Not.Nullable();
             Map(x => x.Name).Length(50).Not.Nullable();
             Map(x => x.Description).Length(100);
             Map(x => x.Price).Scale(16).Precision(2).Not.Nullable();

@@ -23,5 +23,16 @@ namespace Server.Models
         public Order Order { get; set; }
         [DataMember]
         public Article Article { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            OrderLines orderLine = obj as OrderLines;
+            if (orderLine != null)
+            {
+                return orderLine.Id == Id;
+            }
+
+            return false;
+        }
     }
 }

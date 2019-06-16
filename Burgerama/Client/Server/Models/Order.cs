@@ -28,6 +28,8 @@ namespace Client.Server.Models
 
         private string OrderNumberField;
 
+        private int PositionField;
+
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -50,6 +52,19 @@ namespace Client.Server.Models
             set
             {
                 this.CustomerField = value;
+            }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Position
+        {
+            get
+            {
+                return this.PositionField;
+            }
+            set
+            {
+                this.PositionField = value;
             }
         }
 

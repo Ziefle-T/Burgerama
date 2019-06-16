@@ -19,14 +19,18 @@ namespace Server.Mappings
             Map(x => x.OrderNumber).Length(50).Not.Nullable();
             Map(x => x.OrderDate).Not.Nullable();
             Map(x => x.Description).Length(100).Nullable();
-            References(x => x.Driver).Column("EmployeeId")
+            References(x => x.Driver)
+                .Column("EmployeeId")
                 .Not.Nullable()
                 .Cascade.SaveUpdate();
-            References(x => x.Customer).Column("CustomerId")
+            References(x => x.Customer)
+                .Column("CustomerId")
                 .Not.Nullable()
                 .Cascade.SaveUpdate();
-            HasMany(x => x.OrderLines).KeyColumn("OrderId")
-                .Cascade.SaveUpdate();
+            HasMany(x => x.OrderLines)
+                .KeyColumn("OrderId")
+                .Inverse()
+                .Cascade.AllDeleteOrphan();
         }
     }
 }

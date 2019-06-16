@@ -77,8 +77,21 @@ namespace Server.Services
         {
             try
             {
-                var orderLines = order.OrderLines;
+                var orderLines = order.OrderLines.ToList();
 
+                foreach (var orderLine in mOrderLinesRepository.GetAllWhere(x => x.Order.Id == orderId))
+                {
+                    if (!orderLines.Contains(orderLine))
+                    {
+                        mOrderLinesRepository.Delete(orderLine);
+                    }
+                    //else
+                    //{
+
+                    //    orderLines.Remove(orderLine);
+                    //}
+                }
+                
                 foreach (var orderLine in orderLines)
                 {
                     orderLine.Order = order;

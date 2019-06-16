@@ -29,14 +29,14 @@ namespace Client.Controllers
 
             foreach (var orderLine in orderLines)
             {
-                if (dict.ContainsKey(orderLine.Id))
+                if (dict.ContainsKey(orderLine.Article.Id))
                 {
-                    var orderL = dict[orderLine.Id];
-                    orderL.Amount += orderLine.Amount;
+                    var article = dict[orderLine.Article.Id];
+                    article.Amount += orderLine.Amount;
                     continue;
                 }
 
-                dict.Add(orderLine.Id, new Bestseller()
+                dict.Add(orderLine.Article.Id, new Bestseller()
                 {
                     Amount = orderLine.Amount,
                     Article = orderLine.Article

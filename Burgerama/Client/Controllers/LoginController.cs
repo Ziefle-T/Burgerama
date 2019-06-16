@@ -32,7 +32,7 @@ namespace Client.Controllers
             {
                 ExecuteLoginCommand(obj);
             }
-            catch (EndpointNotFoundException e)
+            catch (EndpointNotFoundException)
             {
                 ShowMessage("Der Server wurde nicht gefunden.");
             }

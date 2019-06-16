@@ -60,7 +60,7 @@ namespace Client.Controllers
         }
         public override bool CanExecuteSaveCommand(object obj)
         {
-            return true;
+            return mViewModel.EditingOrder != null;
         }
 
         public override void ExecuteDeleteCommand(object obj)
@@ -71,8 +71,14 @@ namespace Client.Controllers
                 return;
             }
 
-            mOrderService.Delete(mViewModel.SelectedOrder.Id);
-            ResetView();
+            if (mOrderService.Delete(mViewModel.SelectedOrder.Id))
+            {
+                ResetView();
+            }
+            else
+            {
+                ShowMessage("Die Bestellung konnte nicht gelöscht werden, oder wurde bereits gelöscht.");   
+            }
         }
 
         public override void ExecuteEditCommand(object obj)
@@ -102,13 +108,38 @@ namespace Client.Controllers
                 return;
             }
 
+            if (mViewModel.EditingOrder.OrderDate == null)
+            {
+                ShowMessage("Bitte geben Sie ein Bestelldatum an.");
+                return;
+            }
+
+            if (mViewModel.EditingOrder.Driver == null)
+            {
+                ShowMessage("Bitte geben Sie einen Fahrer an.");
+                return;
+            }
+
+            if (mViewModel.EditingOrder.Customer == null)
+            {
+                ShowMessage("Bitte geben Sie einen Kunden an.");
+                return;
+            }
+
+            bool success = false;
             if (mViewModel.EditingOrder.Id == 0)
             {
-                mOrderService.Add(mViewModel.EditingOrder);
+                success = mOrderService.Add(mViewModel.EditingOrder);
             }
             else
             {
-                mOrderService.UpdateOrder(mViewModel.EditingOrder.Id, mViewModel.EditingOrder);
+                success = mOrderService.UpdateOrder(mViewModel.EditingOrder.Id, mViewModel.EditingOrder);
+            }
+
+            if (!success)
+            {
+                ShowMessage("Die Bestellung konnte nicht gespeichert werden.");
+                return;
             }
 
             ResetView();
@@ -132,6 +163,22 @@ namespace Client.Controllers
                 {
                     var editingOrder = mViewModel.EditingOrder;
                     var list = editingOrder.OrderLines.ToList();
+
+                    int maxpos = 0;
+                    foreach (var orderLine in list)
+                    {
+                        maxpos = orderLine.Position >= maxpos ? orderLine.Position + 1 : maxpos;
+                        if (orderLine.Article.Id == addedOrderLines.Article.Id)
+                        {
+                            orderLine.Amount += addedOrderLines.Amount;
+                            editingOrder.OrderLines = list.ToArray();
+                            mViewModel.EditingOrder = editingOrder;
+                            return;
+                        }
+                    }
+
+                    addedOrderLines.Position = maxpos;
+
                     list.Add(addedOrderLines);
                     editingOrder.OrderLines = list.ToArray();
                     mViewModel.EditingOrder = editingOrder;
@@ -154,13 +201,19 @@ namespace Client.Controllers
                     ShowMessage("Kein Element zum löschen ausgewählt.");
                     return;
                 }
-                
-                mOrderLinesService.Delete(mViewModel.SelectedOrderLine.Id);
-                var list = editingOrder.OrderLines.ToList();
-                list.Remove(mViewModel.SelectedOrderLine);
-                editingOrder.OrderLines = list.ToArray();
-                mViewModel.EditingOrder = editingOrder;
 
+                //if (mViewModel.SelectedOrderLine.Id == 0) // ||
+                //    //mOrderLinesService.Delete(mViewModel.SelectedOrderLine.Id))
+                //{
+                    var list = editingOrder.OrderLines.ToList();
+                    list.Remove(mViewModel.SelectedOrderLine);
+                    editingOrder.OrderLines = list.ToArray();
+                    mViewModel.EditingOrder = editingOrder;
+                //}
+                //else
+                //{
+                //    ShowMessage("Der Artikel konnte nicht entfernt werden.");   
+                //}
             }
             catch (Exception e)
             {
