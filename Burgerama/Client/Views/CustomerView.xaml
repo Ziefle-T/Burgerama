@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" VerticalAlignment="Center">Kunden Verwalten</TextBlock>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer}" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="2*" Header="Telefon" IsReadOnly="True" Binding="{Binding Phone}" />
                 <DataGridTextColumn Width="*" Header="Vorname" IsReadOnly="True" Binding="{Binding FirstName}" />

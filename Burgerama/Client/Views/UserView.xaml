@@ -14,7 +14,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock>Benutzer verwalten</TextBlock>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="2*" Header="Benutzername" IsReadOnly="True" Binding="{Binding Username}" />
                 <DataGridTextColumn Width="2*" Header="Vorname" IsReadOnly="True" Binding="{Binding Firstname}" />

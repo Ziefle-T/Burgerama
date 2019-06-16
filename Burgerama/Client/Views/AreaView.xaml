@@ -14,7 +14,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock>Liefergebiete verwalten</TextBlock>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1"  CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="PLZ" IsReadOnly="True" Binding="{Binding Plz}" />
                 <DataGridTextColumn Width="8*" Header="Ort" IsReadOnly="True" Binding="{Binding Name}" />

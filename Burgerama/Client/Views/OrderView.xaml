@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" VerticalAlignment="Center">Aufträge erfassen</TextBlock>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="2*" Header="Datum" IsReadOnly="True" Binding="{Binding OrderDate}" />
                 <DataGridTextColumn Width="*" Header="Auftrags-Nr." IsReadOnly="True" Binding="{Binding OrderNumber}" />
@@ -124,7 +124,7 @@
                 </Button>
             </StackPanel>
 
-            <DataGrid IsEnabled="{Binding CanEditOrder}" Grid.Row="1" Grid.Column="3" Grid.RowSpan="4" Margin="0,5,0,0" ItemsSource="{Binding OrderLines}" SelectedItem="{Binding SelectedOrderLine}" AutoGenerateColumns="False">
+            <DataGrid IsEnabled="{Binding CanEditOrder}" Grid.Row="1" Grid.Column="3" CanUserAddRows="False" CanUserDeleteRows="False" Grid.RowSpan="4" Margin="0,5,0,0" ItemsSource="{Binding OrderLines}" SelectedItem="{Binding SelectedOrderLine}" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="0.5*" Header="Anz." IsReadOnly="True" Binding="{Binding Amount}" />
                     <DataGridTextColumn Width="0.5*" Header="Art.-Nr." IsReadOnly="True" Binding="{Binding Article.ArticleNumber}" />

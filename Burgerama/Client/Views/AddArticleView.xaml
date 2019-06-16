@@ -17,7 +17,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" ItemsSource="{Binding Articles}" SelectedItem="{Binding SelectedArticle}" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"  CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Articles}" SelectedItem="{Binding SelectedArticle}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="0.5*" Header="Art.-Nr." IsReadOnly="True" Binding="{Binding ArticleNumber}" />
                 <DataGridTextColumn Width="2*" Header="Name" IsReadOnly="True" Binding="{Binding Name}" />

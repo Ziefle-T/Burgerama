@@ -12,7 +12,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" VerticalAlignment="Center">Bestseller</TextBlock>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Bestsellers}" IsReadOnly="True" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1"  CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Bestsellers}" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Rang" IsReadOnly="True" Binding="{Binding Rank}" />
                 <DataGridTextColumn Width="*" Header="Artikel-Nr." IsReadOnly="True" Binding="{Binding Article.ArticleNumber}" />
