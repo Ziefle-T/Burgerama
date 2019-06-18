@@ -8,13 +8,13 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="15"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="15"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock>Liefergebiete verwalten</TextBlock>
-        <DataGrid Grid.Row="1"  CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}" AutoGenerateColumns="False">
+        <TextBlock Margin="15,0,0,0">Liefergebiete verwalten</TextBlock>
+        <DataGrid Grid.Row="1" Margin="15,0,15,0"  CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="PLZ" IsReadOnly="True" Binding="{Binding Plz}" />
                 <DataGridTextColumn Width="8*" Header="Ort" IsReadOnly="True" Binding="{Binding Name}" />
@@ -25,14 +25,14 @@
             <TextBlock Text="," />
             <TextBlock Text="{Binding EditingArea.Name}" />
         </StackPanel>
-        <Grid Grid.Row="3" Grid.Margin="20" IsEnabled="{Binding CanEditArea}">
+        <Grid Grid.Row="3" Grid.Margin="15,5,15,5" IsEnabled="{Binding CanEditArea}">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" IsEnabled="False"  HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">PLZ</TextBlock>
+            <TextBlock Grid.Row="0" IsEnabled="False"  HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4767AE" FontWeight="Bold">PLZ</TextBlock>
             <TextBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingArea.Plz}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
-            <TextBlock Grid.Row="1" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">Ort</TextBlock>
+            <TextBlock Grid.Row="1" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4767AE" FontWeight="Bold">Ort</TextBlock>
             <TextBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingArea.Name}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
         </Grid>
     </Grid>

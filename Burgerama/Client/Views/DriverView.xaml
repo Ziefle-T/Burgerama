@@ -8,17 +8,17 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="15"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="15"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0">Fahrer Verwalten</TextBlock>
-        <DataGrid Grid.Row="1" Grid.ColumnSpan="2" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Drivers}" SelectedItem="{Binding SelectedDriver}" AutoGenerateColumns="False">
+        <TextBlock Grid.Row="0" Margin="15,0,0,0">Fahrer Verwalten</TextBlock>
+        <DataGrid Grid.Row="1" Margin="15,0,15,0" Grid.ColumnSpan="2" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Drivers}" SelectedItem="{Binding SelectedDriver}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Personal-Nr." IsReadOnly="True" Binding="{Binding EmployeeNumber}" />
                 <DataGridTextColumn Width="*" Header="Vorname" IsReadOnly="True" Binding="{Binding FirstName}" />
@@ -32,20 +32,20 @@
             <TextBlock Text=" "></TextBlock>
             <TextBlock Text="{Binding EditingDriver.LastName}"></TextBlock>
         </StackPanel>
-        <Grid Grid.Row="3" Grid.Column="0" IsEnabled="{Binding CanEditDriver}">
+        <Grid Grid.Row="3" Grid.Column="0" Grid.Margin="15,5,15,5" IsEnabled="{Binding CanEditDriver}">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" IsEnabled="False"  HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">Personal-Nr.</TextBlock>
+            <TextBlock Grid.Row="0" IsEnabled="False"  HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4767AE" FontWeight="Bold">Personal-Nr.</TextBlock>
             <TextBox Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingDriver.EmployeeNumber}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
-            <TextBlock Grid.Row="1" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">Vorname</TextBlock>
+            <TextBlock Grid.Row="1" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4767AE" FontWeight="Bold">Vorname</TextBlock>
             <TextBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="{Binding EditingDriver.FirstName}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
-            <TextBlock Grid.Row="2" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#0088FF" FontWeight="Bold">Nachname</TextBlock>
+            <TextBlock Grid.Row="2" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4767AE" FontWeight="Bold">Nachname</TextBlock>
             <TextBox Grid.Row="2"  VerticalAlignment="Center" Text="{Binding EditingDriver.LastName}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
         </Grid>
-        <DataGrid IsEnabled="{Binding CanEditDriver}" Grid.Row="3" Grid.Column="1"  CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid IsEnabled="{Binding CanEditDriver}" Grid.Row="3" Grid.Column="1" Margin="0,0,15,0" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="Checkbox" Binding="{Binding InDriverAreaList}" Width="*"></DataGridCheckBoxColumn>
                 <DataGridTextColumn Width="*" Header="PLZ" IsReadOnly="True" Binding="{Binding Plz}" />

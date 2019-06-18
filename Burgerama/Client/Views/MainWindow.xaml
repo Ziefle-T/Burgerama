@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Client.Views"
+        Icon="/Client;component/Ressources/Tiny-Burger-Icon.png"
         mc:Ignorable="d"
         Title="Burgerama" Height="450" Width="800">
 
@@ -49,28 +50,28 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Image Grid.Column="0" Grid.Row="0" Source="/Client;component/Ressources/templogo.jpg"/>
+        <Image Grid.Column="0" Grid.Row="0" Source="/Client;component/Ressources/Tasty-Burger.jpg" Width="150"/>
 
-        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Height="35" VerticalAlignment="Bottom">
-            <Button Margin="5" Width="55" Command="{Binding NewCommand}">
+        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Button Margin="5" Width="85" Command="{Binding NewCommand}">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/Client;component/Ressources/delete.png"></Image>
+                    <Image Source="/Client;component/Ressources/New.png"></Image>
                     <TextBlock VerticalAlignment="Center">Neu</TextBlock>
                 </StackPanel>
             </Button>
             <Button Margin="5" Width="85" Command="{Binding EditCommand}" Background="#FF4767AE">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/Client;component/Ressources/delete.png"></Image>
+                    <Image Source="/Client;component/Ressources/Edit.png"></Image>
                     <TextBlock VerticalAlignment="Center">Bearbeiten</TextBlock>
                 </StackPanel>
             </Button>
             <Button Margin="5" Width="85" Command="{Binding SaveCommand}" Background="#FF4767AE">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="/Client;component/Ressources/delete.png"></Image>
+                    <Image Source="/Client;component/Ressources/Save.png"></Image>
                     <TextBlock VerticalAlignment="Center">Speichern</TextBlock>
                 </StackPanel>
             </Button>
-            <Button Margin="5" Width="80" Command="{Binding DeleteCommand}" Background="#FF4767AE">
+            <Button Margin="5" Width="85" Command="{Binding DeleteCommand}" Background="#FF4767AE">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/Client;component/Ressources/delete.png"/>
                     <TextBlock VerticalAlignment="Center">Löschen</TextBlock>

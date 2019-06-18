@@ -14,8 +14,8 @@
             <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" VerticalAlignment="Center">Aufträge erfassen</TextBlock>
-        <DataGrid Grid.Row="1" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}" AutoGenerateColumns="False">
+        <TextBlock Grid.Row="0" VerticalAlignment="Center" Margin="15,0,0,0">Aufträge erfassen</TextBlock>
+        <DataGrid Grid.Row="1" Margin="15,0,15,0" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="2*" Header="Datum" IsReadOnly="True" Binding="{Binding OrderDate}" />
                 <DataGridTextColumn Width="*" Header="Auftrags-Nr." IsReadOnly="True" Binding="{Binding OrderNumber}" />
@@ -117,7 +117,7 @@
 
             <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" IsEnabled="{Binding CanEditOrder}">
                 <Button Margin="0,0,15,0" Command="{Binding AddArticleCommand}" Background="#FF4767AE" Foreground="White">
-                    <Image Source="/Client;component/Ressources/delete.png"></Image>
+                    <Image Source="/Client;component/Ressources/New.png"></Image>
                 </Button>
                 <Button Margin="0,0,0,0" Command="{Binding RemoveArticleCommand}" Background="#FF4767AE" Foreground="White">
                     <Image Source="/Client;component/Ressources/delete.png"></Image>

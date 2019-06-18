@@ -255,5 +255,14 @@
   <ItemGroup>
     <Resource Include="Ressources\templogo.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ressources\Edit.png" />
+    <Resource Include="Ressources\New.png" />
+    <Resource Include="Ressources\Save.png" />
+    <Resource Include="Ressources\Tasty-Burger.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ressources\Tiny-Burger-Icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

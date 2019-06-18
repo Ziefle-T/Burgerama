@@ -18,7 +18,7 @@
 
         <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">Willkommen bei Burgerama - Dein Lieblingsburger kommt direkt zu dir nach Hause</TextBlock>
         
-        <Image Grid.Column="0" Grid.Row="1" Source="/Client;component/Ressources/templogo.jpg" ></Image>
+        <Image Grid.Column="0" Grid.Row="1" Source="/Client;component/Ressources/Tasty-Burger.jpg" ></Image>
 
         <Button Grid.Column="0" Grid.Row="2" Width="140" Margin="5" HorizontalAlignment="Right" Command="{Binding ChangePasswordCommand}">
             <StackPanel Orientation="Horizontal">

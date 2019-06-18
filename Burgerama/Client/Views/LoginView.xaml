@@ -42,7 +42,7 @@
         </Grid.RowDefinitions>
         <Rectangle Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Stroke="#FF1463B2" RadiusX="5" RadiusY="5" StrokeThickness="3"/>
 
-        <Image Grid.Column="0" Grid.Row="0" Margin="0,5,0,5" Source="/Client;component/Ressources/templogo.jpg" ></Image>
+        <Image Grid.Column="0" Grid.Row="0" Margin="0,5,0,5" Source="/Client;component/Ressources/Tasty-Burger.jpg" ></Image>
 
         <Label Grid.Column="0" Grid.Row="1" Margin="80,0,80,0" VerticalContentAlignment="Center" Foreground="#FF1463B2" BorderBrush="#FF1463B2" BorderThickness="0,0,0,2" Content="Benutzername" Visibility="{Binding ShowUsernameLabel}"/>
         <TextBox Grid.Column="0" Grid.Row="1" Margin="80,0,80,0" VerticalContentAlignment="Center" Foreground="#FF1463B2" BorderBrush="#FF1463B2" BorderThickness="0,0,0,2" Text="{Binding UserName}" />
