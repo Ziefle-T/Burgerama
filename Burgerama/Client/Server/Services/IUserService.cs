@@ -29,10 +29,10 @@ namespace Client.Server.Services
         System.Threading.Tasks.Task<bool> AddAsync(Server.Models.User user);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IUserService/UpdateUser", ReplyAction = "http://tempuri.org/IUserService/UpdateUserResponse")]
-        bool UpdateUser(int userId, User user);
+        int UpdateUser(int userId, User user);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IUserService/UpdateUser", ReplyAction = "http://tempuri.org/IUserService/UpdateUserResponse")]
-        System.Threading.Tasks.Task<bool> UpdateUserAsync(int userId, User user);
+        System.Threading.Tasks.Task<int> UpdateUserAsync(int userId, User user);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IUserService/UpdateUsername", ReplyAction = "http://tempuri.org/IUserService/UpdateUsernameResponse")]
         bool UpdateUsername(int userId, string username);
@@ -53,10 +53,10 @@ namespace Client.Server.Services
         System.Threading.Tasks.Task<bool> UpdateLastnameAsync(int userId, string lastname);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IUserService/UpdatePassword", ReplyAction = "http://tempuri.org/IUserService/UpdatePasswordResponse")]
-        bool UpdatePassword(int userId, string oldPassword, string password);
+        int UpdatePassword(int userId, string oldPassword, string password);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IUserService/UpdatePassword", ReplyAction = "http://tempuri.org/IUserService/UpdatePasswordResponse")]
-        System.Threading.Tasks.Task<bool> UpdatePasswordAsync(int userId, string oldPassword, string password);
+        System.Threading.Tasks.Task<int> UpdatePasswordAsync(int userId, string oldPassword, string password);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IUserService/UpdateAdmin", ReplyAction = "http://tempuri.org/IUserService/UpdateAdminResponse")]
         bool UpdateAdmin(int userId, bool isAdmin);

@@ -8,12 +8,12 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="15"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="15"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="15" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="25" />
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <TextBlock Margin="15,0,0,0">Benutzer verwalten</TextBlock>
+        <TextBlock Margin="15,0,0,0" FontWeight="Bold">Benutzer verwalten</TextBlock>
         <DataGrid Grid.Row="1" Margin="15,0,15,0" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="2*" Header="Benutzername" IsReadOnly="True" Binding="{Binding Username}" />
@@ -22,16 +22,20 @@
                 <DataGridCheckBoxColumn Header="Administrator" Binding="{Binding IsAdmin}" Width="*"></DataGridCheckBoxColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBlock Text="{Binding EditingUser.Username}" />
-            <TextBlock Text=" " />
-            <TextBlock Text="("></TextBlock>
-            <TextBlock Text="{Binding EditingUser.Firstname}" />
-            <TextBlock Text=" " />
-            <TextBlock Text="{Binding EditingUser.Lastname}" />
-            <TextBlock Text=")" />
+        <Grid Grid.Row="2" Background="#FFF0F0F0" Margin="15,5,15,0" />
+        <StackPanel Grid.Row="2" Background="#FFF0F0F0" Orientation="Horizontal" VerticalAlignment="Center" Margin="15,0,15,0">
+            <TextBlock Text="{Binding EditingUser.Username}" FontWeight="Bold"/>
+            <TextBlock Text=" " FontWeight="Bold"/>
+            <TextBlock Text="(" FontWeight="Bold" />
+            <TextBlock Text="{Binding EditingUser.Firstname}" FontWeight="Bold"/>
+            <TextBlock Text=" " FontWeight="Bold"/>
+            <TextBlock Text="{Binding EditingUser.Lastname}" FontWeight="Bold"/>
+            <TextBlock Text=")" FontWeight="Bold"/>
         </StackPanel>
-        <Grid Grid.Row="3" Grid.Margin="15,5,15,5" IsEnabled="{Binding CanEditUser}">
+
+        <Grid Grid.Row="3" Background="Black" Margin="14.5,0,14.5,4.5" />
+        <Grid Grid.Row="3" Background="White" Margin="15,0.5,15,5" />
+        <Grid Grid.Row="3" Grid.Margin="150,5,150,5" IsEnabled="{Binding CanEditUser}">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>

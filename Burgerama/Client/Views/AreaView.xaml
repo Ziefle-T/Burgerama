@@ -9,23 +9,28 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="15"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="15"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Margin="15,0,0,0">Liefergebiete verwalten</TextBlock>
+        <TextBlock Margin="15,0,0,0" FontWeight="Bold">Liefergebiete verwalten</TextBlock>
         <DataGrid Grid.Row="1" Margin="15,0,15,0"  CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="PLZ" IsReadOnly="True" Binding="{Binding Plz}" />
                 <DataGridTextColumn Width="8*" Header="Ort" IsReadOnly="True" Binding="{Binding Name}" />
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBlock Text="{Binding EditingArea.Plz}" />
-            <TextBlock Text="," />
-            <TextBlock Text="{Binding EditingArea.Name}" />
+
+        <Grid Grid.Row="2" Background="#FFF0F0F0" Margin="15,5,15,0"></Grid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="15,0,15,0">
+            <TextBlock Text="{Binding EditingArea.Plz}" FontWeight="Bold" />
+            <TextBlock Text=", " FontWeight="Bold" />
+            <TextBlock Text="{Binding EditingArea.Name}" FontWeight="Bold" />
         </StackPanel>
-        <Grid Grid.Row="3" Grid.Margin="15,5,15,5" IsEnabled="{Binding CanEditArea}">
+
+        <Grid Grid.Row="3" Background="Black" Margin="14.5,0,14.5,4.5" />
+        <Grid Grid.Row="3" Background="White" Margin="15,0.5,15,5" />
+        <Grid Grid.Row="3" Grid.Margin="150,5,150,5" IsEnabled="{Binding CanEditArea}">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>

@@ -59,9 +59,9 @@ namespace Client.Server.Services
         System.Threading.Tasks.Task<bool> UpdatePriceAsync(int articleId, decimal price);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IArticleService/UpdateArticle", ReplyAction = "http://tempuri.org/IArticleService/UpdateArticleResponse")]
-        bool UpdateArticle(int articleId, Article article);
+        int UpdateArticle(int articleId, Article article);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IArticleService/UpdateArticle", ReplyAction = "http://tempuri.org/IArticleService/UpdateArticleResponse")]
-        System.Threading.Tasks.Task<bool> UpdateArticleAsync(int articleId, Article article);
+        System.Threading.Tasks.Task<int> UpdateArticleAsync(int articleId, Article article);
     }
 }

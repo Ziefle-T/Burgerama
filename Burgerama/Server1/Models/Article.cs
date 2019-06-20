@@ -20,5 +20,7 @@ namespace Server.Models
         public string Description { get; set; }
         [DataMember]
         public decimal Price { get; set; }
+        [DataMember]
+        public int Version { get; set; }
     }
 }

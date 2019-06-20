@@ -10,6 +10,11 @@ namespace Client.ViewModels
 {
     class StartViewModel : ActionAreaViewModel
     {
+        public override string Title
+        {
+            get { return "Burgerama - Herzlich Willkommen"; }
+        }
+
         public ICommand ChangePasswordCommand { get; set; }
     }
 }

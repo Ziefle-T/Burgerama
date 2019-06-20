@@ -23,6 +23,7 @@ namespace Client.Controllers
         {
             mDriverService = driverService;
             mAreaService = areaService;
+            mUpdateConflictMessage = "Die Personal-Nr. muss eindeutig sein.";
         }
         public override DriverViewModel Initialize()
         {
@@ -112,25 +113,20 @@ namespace Client.Controllers
                 return;
             }
 
-            bool success = false;
+            int updateResult = 1;
             if (mViewModel.EditingDriver.Id == 0)
             {
-                success = mDriverService.Add(mViewModel.EditingDriver);
+                updateResult = mDriverService.Add(mViewModel.EditingDriver) ? 0 : 1;
             }
             else
             {
-                success = mDriverService.UpdateDriver(mViewModel.EditingDriver.Id, mViewModel.EditingDriver);
+                updateResult = mDriverService.UpdateDriver(mViewModel.EditingDriver.Id, mViewModel.EditingDriver);
             }
 
-            if (!success)
-            {
-                ShowMessage("Die Personal-Nr. muss eindeutig sein.");
-                return;
-            }
-
-            ResetView();
+            HandleUpdateResult(updateResult);
         }
-        private void ResetView()
+
+        override protected void ResetView()
         {
             mViewModel.SelectedDriver = null;
             mViewModel.EditingDriver = null;

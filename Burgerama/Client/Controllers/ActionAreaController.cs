@@ -14,6 +14,8 @@ namespace Client.Controllers
     {
         protected T mViewModel;
 
+        protected string mUpdateConflictMessage = "Ein unbekannter Fehler ist aufgetreten.";
+
         public T SafeInitialize()
         {
             try
@@ -143,6 +145,32 @@ namespace Client.Controllers
         {
             return false;
         }
-        
+
+        protected virtual void ResetView()
+        {
+            Initialize();
+        }
+
+        protected void HandleUpdateResult(int updateResult)
+        {
+            switch (updateResult)
+            {
+                case 0:
+                    ResetView();
+                    break;
+                case 1:
+                    ShowMessage(mUpdateConflictMessage);
+                    break;
+                case 2:
+                    ShowMessage("Es konnte nicht gespeichert werden.\n" +
+                                "Das Objekt wurde an anderer Stelle geändert.\n" +
+                                "Laden Sie die Seite neu und versuchen es erneut.");
+                    break;
+                case 3:
+                    ShowMessage("Es konnte nicht gespeichert werden.\n" +
+                                "Das veränderte Objekt wurde auf dem Server nichtmehr gefunen.");
+                    break;
+            }
+        }
     }
 }

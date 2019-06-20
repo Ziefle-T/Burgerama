@@ -20,6 +20,8 @@ namespace Server.Mappings
             Map(x => x.Name).Length(50).Not.Nullable();
             Map(x => x.Description).Length(100);
             Map(x => x.Price).Scale(16).Precision(2).Not.Nullable();
+
+            Version(x => x.Version);
         }
     }
 }

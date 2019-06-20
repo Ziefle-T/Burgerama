@@ -14,5 +14,7 @@ namespace Client.ViewModels
         public ICommand EditCommand { get; set; }
         public ICommand SaveCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+
+        public virtual string Title { get; }
     }
 }

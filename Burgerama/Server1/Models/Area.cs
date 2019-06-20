@@ -23,6 +23,9 @@ namespace Server.Models
         [DataMember]
         public IList<Driver> Drivers { get; set; }
 
+        [DataMember]
+        public int Version { get; set; }
+
         public void Delete(IRepository<Driver> driverRepository, IRepository<Area> areaRepository)
         {
             foreach (var driver in Drivers)

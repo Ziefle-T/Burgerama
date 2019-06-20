@@ -19,7 +19,7 @@ namespace Server.Services
         bool Add(Driver driver);
 
         [OperationContract]
-        bool UpdateDriver(int driverId, Driver driver);
+        int UpdateDriver(int driverId, Driver driver);
         
         [OperationContract]
         bool UpdateFirstName(int driverId, string firstName);

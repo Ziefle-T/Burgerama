@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using NHibernate;
 using Server.Framework;
 using Server.Models;
 
@@ -68,7 +69,7 @@ namespace Server.Services
             return Update(userId, x => x.Lastname = lastname);
         }
 
-        public bool UpdatePassword(int userId, string oldPassword, string password)
+        public int UpdatePassword(int userId, string oldPassword, string password)
         {
             try
             {
@@ -76,22 +77,27 @@ namespace Server.Services
                 
                 if (user == null)
                 {
-                    return false;
+                    return 3;
                 }
                 
                 if (!user.ValidatePw(oldPassword))
                 {
-                    return false;
+                    return 1;
                 }
 
                 user.SetNewPassword(password);
                 mRepository.Save(user);
-                return true;
+                return 0;
+            }
+            catch (StaleObjectStateException e)
+            {
+                Console.WriteLine(e);
+                return 2;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return false;
+                return 1;
             }
         }
 
@@ -105,24 +111,29 @@ namespace Server.Services
             return mRepository.GetAllWhere(x => x.Id == id).FirstOrDefault();
         }
 
-        public bool UpdateUser(int userId, User user)
+        public int UpdateUser(int userId, User user)
         {
             try
             {
                 var oldUser = GetElementById(userId);
                 if (user == null)
                 {
-                    return false;
+                    return 2;
                 }
 
                 user.Password = oldUser.Password;
                 mRepository.Save(user);
-                return true;
+                return 0;
+            }
+            catch (StaleObjectStateException e)
+            {
+                Console.WriteLine(e);
+                return 2;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return false;
+                return 1;
             }
         }
     }

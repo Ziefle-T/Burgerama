@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -11,6 +12,11 @@ namespace Client.ViewModels
 {
     class UserViewModel : ActionAreaViewModel
     {
+        public override string Title
+        {
+            get { return "Burgerama - Benutzer verwalten"; }
+        }
+
         private ObservableCollection<User> mUsers;
         public ObservableCollection<User> Users
         {

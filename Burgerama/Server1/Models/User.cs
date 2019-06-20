@@ -24,6 +24,9 @@ namespace Server.Models
         [DataMember]
         public bool IsAdmin { get; set; }
 
+        [DataMember]
+        public int Version { get; set; }
+
         public bool ValidatePw(string password)
         {
             return BCrypt.Net.BCrypt.Verify(password, this.Password);

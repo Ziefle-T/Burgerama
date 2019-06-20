@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using NHibernate;
 using NHibernate.Linq;
 using Server.Framework;
 
@@ -59,7 +60,16 @@ namespace Server.Services
             }
         }
 
-        protected virtual bool UpdateElement(int id, T obj)
+        /// <summary>
+        /// 0 = OK
+        /// 1 = Other Error
+        /// 2 = Versioning Error
+        /// 3 = No old Element
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        protected virtual int UpdateElement(int id, T obj)
         {
             try
             {
@@ -67,16 +77,21 @@ namespace Server.Services
 
                 if (oldObj == null)
                 {
-                    return false;
+                    return 3;
                 }
-                
+
                 mRepository.Save(obj);
-                return true;
+                return 0;
+            }
+            catch (StaleObjectStateException e)
+            {
+                Console.WriteLine(e);
+                return 2;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return false;
+                return 1;
             }
         }
 

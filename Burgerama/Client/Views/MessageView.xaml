@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.Views"
         mc:Ignorable="d"
+        Icon="/Client;component/Ressources/Tiny-Burger-Icon.png"
         Title="MessageView" Height="200" Width="400">
     <Grid>
         <Grid.RowDefinitions>
@@ -14,4 +15,8 @@
         <TextBlock Text="{Binding Message}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF4767AE"></TextBlock>
         <Button Grid.Row="1" Margin="100,5" Background="#FF4767AE" Foreground="White" FontWeight="Bold" Command="{Binding OkCommand}">OK</Button>
     </Grid>
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding OkCommand}" Key="Enter" />
+    </Window.InputBindings>
 </Window>

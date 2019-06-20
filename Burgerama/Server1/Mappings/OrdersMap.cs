@@ -31,6 +31,8 @@ namespace Server.Mappings
                 .KeyColumn("OrderId")
                 .Inverse()
                 .Cascade.AllDeleteOrphan();
+
+            Version(x => x.Version);
         }
     }
 }

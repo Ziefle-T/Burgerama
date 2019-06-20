@@ -17,6 +17,7 @@ namespace Client.Controllers
         public UserViewController(IUserService userService) : base()
         {
             mUserService = userService;
+            mUpdateConflictMessage = "Bitte geben Sie einen eindeutigen Benutzernamen ein.";
         }
         public override UserViewModel Initialize()
         {
@@ -103,25 +104,19 @@ namespace Client.Controllers
                 return;
             }
 
-            bool success = false;
+            int updateResult = 1;
             if (mViewModel.EditingUser.Id == 0)
             {
-                success = mUserService.Add(mViewModel.EditingUser);
+                updateResult = mUserService.Add(mViewModel.EditingUser) ? 0 : 1;
             }
             else
             {
-                success = mUserService.UpdateUser(mViewModel.EditingUser.Id, mViewModel.EditingUser);
+                updateResult = mUserService.UpdateUser(mViewModel.EditingUser.Id, mViewModel.EditingUser);
             }
 
-            if (!success)
-            {
-                ShowMessage("Bitte geben Sie einen eindeutigen Benutzernamen ein.");
-                return;
-            }
-
-            ResetView();
+            HandleUpdateResult(updateResult);
         }
-        private void ResetView()
+        override protected void ResetView()
         {
             mViewModel.SelectedUser = null;
             mViewModel.EditingUser = null;

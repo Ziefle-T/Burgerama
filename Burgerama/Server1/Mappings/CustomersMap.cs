@@ -24,6 +24,8 @@ namespace Server.Mappings
             Map(x => x.Plz).Column("PostalCode").Not.Nullable();
             Map(x => x.City).Length(50).Not.Nullable();
             Map(x => x.Type).Column("Type").Not.Nullable();
+
+            Version(x => x.Version);
         }
     }
 }

@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Client.Views"
         Icon="/Client;component/Ressources/Tiny-Burger-Icon.png"
         mc:Ignorable="d"
-        Title="Burgerama" Height="450" Width="800">
+        Title="{Binding Title}" Height="450" Width="800">
 
     <Window.Resources>
         <local:SubmoduleSelector x:Key="TemplateSelector" />
@@ -36,6 +36,110 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style x:Key="listBoxStyle" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="_Border"
+                                Padding="2"
+                                SnapsToDevicePixels="true">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="BorderThickness" Value="1" />
+                                    <Setter Property="BorderBrush" Value="#FFF0F0F0" />
+                                </Style>
+                            </Border.Style>
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="_Border" Property="Background" Value="LightCyan" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="_Border" Property="Background" Value="#FF4767AE"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="BorderBrush" Value="#DDDDDD" />
+            <Setter Property="HorizontalGridLinesBrush" Value="#DDDDDD" />
+            <Setter Property="VerticalGridLinesBrush" Value="#DDDDDD" />
+            <Setter Property="AlternatingRowBackground" Value="#FFF0F0F0" />
+            <Setter Property="RowHeaderWidth" Value="0" />
+
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Padding" Value="4,3,4,3" />
+                        <Setter Property="Background" Value="#FFC9C9C9" />
+                        <Setter Property="BorderThickness" Value="0.25, 0.25, 0.25,0" />
+                        <Setter Property="BorderBrush" Value="Black" />
+                    </Style>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="RowStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightCyan" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="CellStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridCell">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#FF4767AE" />
+                                <Setter Property="BorderBrush" Value="Transparent" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Background" Value="#FF4767AE" />
+                                <Setter Property="BorderBrush" Value="Transparent" />
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                        </Style.Triggers>
+                        <!-- Add some padding around the contents of a cell -->
+                        <Setter Property="Padding" Value="4,3,4,3" />
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="DataGridCell">
+                                    <Border Padding="{TemplateBinding Padding}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="FocusVisualStyle">
+                            <Setter.Value>
+                                <Style TargetType="Control">
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
 
     <Grid>
@@ -45,7 +149,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="135" />
             <RowDefinition Height="20" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -53,7 +157,7 @@
         <Image Grid.Column="0" Grid.Row="0" Source="/Client;component/Ressources/Tasty-Burger.jpg" Width="150"/>
 
         <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-            <Button Margin="5" Width="85" Command="{Binding NewCommand}">
+            <Button Margin="5" Width="85" Command="{Binding NewCommand}" Background="#FF4767AE">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="/Client;component/Ressources/New.png"></Image>
                     <TextBlock VerticalAlignment="Center">Neu</TextBlock>
@@ -79,16 +183,22 @@
             </Button>
         </StackPanel>
 
-        <ListBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Sites}" SelectedItem="{Binding SelectedSite}" >
+        <ListBox Grid.Column="0" Grid.Row="1" BorderBrush="White" ItemsSource="{Binding Sites}" SelectedItem="{Binding SelectedSite}" ItemContainerStyle="{StaticResource listBoxStyle}" >
+            
+            
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type sys:String}">
                     <TextBlock Text="{Binding}" IsEnabled="False" Height="20" VerticalAlignment="Center" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            
         </ListBox>
 
-        <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Visibility="{Binding ShowAdmin}">Administration</TextBlock>
-        <ListBox Grid.Column="0" Grid.Row="3" ItemsSource="{Binding AdminSites}" SelectedItem="{Binding SelectedAdminSite}" Visibility="{Binding ShowAdmin}">
+        <Grid Grid.Column="0" Grid.Row="2" Background="#FFF0F0F0" Visibility="{Binding ShowAdmin}">
+            <TextBlock FontWeight="Bold" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center">Administration</TextBlock>
+        </Grid>
+        
+        <ListBox Grid.Column="0" Grid.Row="3" BorderBrush="White" ItemsSource="{Binding AdminSites}" SelectedItem="{Binding SelectedAdminSite}" Visibility="{Binding ShowAdmin}" ItemContainerStyle="{StaticResource listBoxStyle}">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type sys:String}">
                     <TextBlock Text="{Binding}" IsEnabled="False" Height="20" VerticalAlignment="Center" />

@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        
         xmlns:sys="clr-namespace:System;assembly=System"
         xmlns:local="clr-namespace:Client.Views"
         mc:Ignorable="d"
+        Icon="/Client;component/Ressources/Tiny-Burger-Icon.png"
         Title="Burgeram - Bitte melden Sie sich an!" Height="450" Width="800">
 
     <Window.Resources>
@@ -45,10 +45,18 @@
         <Image Grid.Column="0" Grid.Row="0" Margin="0,5,0,5" Source="/Client;component/Ressources/Tasty-Burger.jpg" ></Image>
 
         <Label Grid.Column="0" Grid.Row="1" Margin="80,0,80,0" VerticalContentAlignment="Center" Foreground="#FF1463B2" BorderBrush="#FF1463B2" BorderThickness="0,0,0,2" Content="Benutzername" Visibility="{Binding ShowUsernameLabel}"/>
-        <TextBox Grid.Column="0" Grid.Row="1" Margin="80,0,80,0" VerticalContentAlignment="Center" Foreground="#FF1463B2" BorderBrush="#FF1463B2" BorderThickness="0,0,0,2" Text="{Binding UserName}" />
+        <TextBox Grid.Column="0" Grid.Row="1" Margin="80,0,80,0" VerticalContentAlignment="Center" Foreground="#FF1463B2" BorderBrush="#FF1463B2" BorderThickness="0,0,0,2" Text="{Binding UserName}">
+            <TextBox.InputBindings>
+                <KeyBinding Command="{Binding Path=LoginCommand}" CommandParameter="{Binding ElementName=passwordBox}" Key="Enter" />
+            </TextBox.InputBindings>
+        </TextBox>
 
         <Label Grid.Column="0" Grid.Row="2" Margin="80,0,80,0" VerticalContentAlignment="Center" Foreground="#FF1463B2" BorderBrush="#FF1463B2" BorderThickness="0,0,0,2" Content="Password" Name="passwordLabel" Visibility="{Binding ShowPasswordLabel}"/>
-        <PasswordBox Grid.Column="0" Grid.Row="2" Margin="80,0,80,0" VerticalContentAlignment="Center" Foreground="#FF1463B2" BorderThickness="0,0,0,2" BorderBrush="#FF1463B2" Name="passwordBox" PasswordChanged="PasswordBoxChanged" />
+        <PasswordBox Grid.Column="0" Grid.Row="2" Margin="80,0,80,0" VerticalContentAlignment="Center" Foreground="#FF1463B2" BorderThickness="0,0,0,2" BorderBrush="#FF1463B2" Name="passwordBox" PasswordChanged="PasswordBoxChanged">
+            <PasswordBox.InputBindings>
+                <KeyBinding Command="{Binding Path=LoginCommand}" CommandParameter="{Binding ElementName=passwordBox}" Key="Enter" />
+            </PasswordBox.InputBindings>
+        </PasswordBox>
 
         <Button Grid.Column="0" Grid.Row="3" Margin="75,40" Background="#FF4767AE" BorderBrush="#FF1463B2" Foreground="White" FontWeight="Bold" FontSize="16" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=passwordBox}">Anmelden</Button>
     </Grid>

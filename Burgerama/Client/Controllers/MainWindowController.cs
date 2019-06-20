@@ -66,6 +66,8 @@ namespace Client.Controllers
             mMainWindowViewModel.EditCommand = viewModel.EditCommand;
             mMainWindowViewModel.SaveCommand = viewModel.SaveCommand;
             mMainWindowViewModel.DeleteCommand = viewModel.DeleteCommand;
+
+            mMainWindowViewModel.Title = viewModel.Title;
         }
 
         public void Initialize(bool isAdmin)

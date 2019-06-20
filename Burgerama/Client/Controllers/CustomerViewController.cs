@@ -18,6 +18,7 @@ namespace Client.Controllers
         public CustomerViewController(ICustomerService customerService)
         {
             mCustomerService = customerService;
+            mUpdateConflictMessage = "Die Telefonnummer muss eindeutig sein.";
         }
 
         public override CustomerViewModel Initialize()
@@ -130,26 +131,20 @@ namespace Client.Controllers
                 return;
             }
 
-            bool success = false;
+            int updateResult = 1;
             if (mViewModel.EditingCustomer.Id == 0)
             {
-                success = mCustomerService.Add(mViewModel.EditingCustomer);
+                updateResult = mCustomerService.Add(mViewModel.EditingCustomer) ? 0 : 1;
             }
             else
             {
-                success = mCustomerService.UpdateCustomer(mViewModel.EditingCustomer);
+                updateResult = mCustomerService.UpdateCustomer(mViewModel.EditingCustomer);
             }
 
-            if (!success)
-            {
-                ShowMessage("Die Telefonnummer muss eindeutig sein.");
-                return;
-            }
-
-            ResetView();   
+            HandleUpdateResult(updateResult); 
         }
 
-        private void ResetView()
+        override protected void ResetView()
         {
             mViewModel.SelectedCustomer = null;
             mViewModel.EditingCustomer = null;

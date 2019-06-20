@@ -25,12 +25,8 @@ namespace Server.Services
             return Update(customerId, x => x.City = city);
         }
 
-        public bool UpdateCustomer(Customer customer)
+        public int UpdateCustomer(Customer customer)
         {
-            if (customer == null)
-            {
-                return false;
-            }
             return UpdateElement(customer.Id, customer);
         }
 

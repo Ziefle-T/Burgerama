@@ -264,5 +264,11 @@
   <ItemGroup>
     <Resource Include="Ressources\Tiny-Burger-Icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ressources\icons8-entsperren-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ressources\icons8-minus-24.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -39,7 +39,7 @@ namespace Server.Services
             return mRepository.GetAllWhere(x => x.Id == id).FirstOrDefault();
         }
 
-        public bool UpdateArticle(int articleId, Article article)
+        public int UpdateArticle(int articleId, Article article)
         {
             return UpdateElement(articleId, article);
         }

@@ -18,6 +18,7 @@ namespace Client.Controllers
         public ArticleViewController(IArticleService articleService) : base()
         {
             mArticleService = articleService;
+            mUpdateConflictMessage = "Bitte geben Sie eine eindeutige Artikelnummer ein.";
         }
 
         public override ArticleViewModel Initialize()
@@ -114,25 +115,20 @@ namespace Client.Controllers
                 return;
             }
 
-            bool success = false;
+            int updateResult = 1;
             if (mViewModel.EditingArticle.Id == 0)
             {
-                success = mArticleService.Add(mViewModel.EditingArticle);
+                updateResult = mArticleService.Add(mViewModel.EditingArticle) ? 0 : 1;
             }
             else
             {
-                success = mArticleService.UpdateArticle(mViewModel.EditingArticle.Id, mViewModel.EditingArticle);
+                updateResult = mArticleService.UpdateArticle(mViewModel.EditingArticle.Id, mViewModel.EditingArticle);
             }
 
-            if (!success)
-            {
-                ShowMessage("Bitte geben Sie eine eindeutige Artikelnummer ein.");
-                return;
-            }
-
-            ResetView();
+            HandleUpdateResult(updateResult);
         }
-        private void ResetView()
+
+        override protected void ResetView()
         {
             mViewModel.SelectedArticle = null;
             mViewModel.EditingArticle = null;

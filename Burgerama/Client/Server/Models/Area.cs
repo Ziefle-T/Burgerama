@@ -20,6 +20,8 @@ namespace Client.Server.Models
 
         private int PlzField;
 
+        private int VersionField;
+
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -71,6 +73,13 @@ namespace Client.Server.Models
             }
         }
 
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Version
+        {
+            get { return this.VersionField; }
+            set { this.VersionField = value; }
+        }
+
         public Driver Driver { get; set; }
 
         public bool InDriverAreaList
@@ -103,5 +112,6 @@ namespace Client.Server.Models
 
             return false;
         }
+        
     }
 }

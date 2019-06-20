@@ -70,13 +70,24 @@ namespace Client.Controllers
                 return;
             }
 
-            if (mUserService.UpdatePassword(App.LoggedInUser.Id, passwordBox.Password, newPasswordBox.Password))
+            int updateResult =
+                mUserService.UpdatePassword(App.LoggedInUser.Id, passwordBox.Password, newPasswordBox.Password);
+
+            switch (updateResult)
             {
-                mView.Close();
-            }
-            else
-            {
-                ShowMessage("Bitte korrektes Passwort eingeben.");
+                case 0:
+                    mView.Close();
+                    break;
+                case 1:
+                    ShowMessage("Bitte korrektes Passwort eingeben.");
+                    break;
+                case 2:
+                    ShowMessage("Der Benutzer wurde an anderer Stelle geändert.\n" +
+                                "Melden Sie sich erneut an und versuchen es nochmals.");
+                    break;
+                case 3:
+                    ShowMessage("Der Benutzer wurde nicht gefunden.");
+                    break;
             }
         }
 

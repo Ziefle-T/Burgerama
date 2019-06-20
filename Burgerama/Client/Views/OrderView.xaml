@@ -9,12 +9,12 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="25" />
             <RowDefinition Height="2*" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="3*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" VerticalAlignment="Center" Margin="15,0,0,0">Aufträge erfassen</TextBlock>
+        <TextBlock Grid.Row="0" VerticalAlignment="Center" Margin="15,0,0,0" FontWeight="Bold">Aufträge erfassen</TextBlock>
         <DataGrid Grid.Row="1" Margin="15,0,15,0" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="2*" Header="Datum" IsReadOnly="True" Binding="{Binding OrderDate}" />
@@ -37,12 +37,12 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Driver.FirstName}" />
-                                <TextBlock Text=" " />
-                                <TextBlock Text="{Binding Driver.LastName}" />
-                                <TextBlock Text=" (" />
-                                <TextBlock Text="{Binding Driver.EmployeeNumber}" />
-                                <TextBlock Text=")" />
+                                <TextBlock Text="{Binding Driver.FirstName}"/>
+                                <TextBlock Text=" "/>
+                                <TextBlock Text="{Binding Driver.LastName}"/>
+                                <TextBlock Text=" ("/>
+                                <TextBlock Text="{Binding Driver.EmployeeNumber}"/>
+                                <TextBlock Text=")"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -50,14 +50,18 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBlock Text="{Binding EditingOrder.Customer.FirstName}" />
-            <TextBlock Text=" " />
-            <TextBlock Text="{Binding EditingOrder.Customer.LastName}" />
-            <TextBlock Text=" (" />
-            <TextBlock Text="{Binding EditingOrder.Customer.Phone}" />
-            <TextBlock Text=")" />
+        <Grid Grid.Row="2" Background="#FFF0F0F0" Margin="15,5,15,0"></Grid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="15,0,15,0">
+            <TextBlock Text="{Binding EditingOrder.Customer.FirstName}" FontWeight="Bold"/>
+            <TextBlock Text=" " FontWeight="Bold"/>
+            <TextBlock Text="{Binding EditingOrder.Customer.LastName}" FontWeight="Bold"/>
+            <TextBlock Text=" (" FontWeight="Bold"/>
+            <TextBlock Text="{Binding EditingOrder.Customer.Phone}" FontWeight="Bold"/>
+            <TextBlock Text=")" FontWeight="Bold"/>
         </StackPanel>
+
+        <Grid Grid.Row="3" Background="Black" Margin="14.5,0,14.5,4.5" />
+        <Grid Grid.Row="3" Background="White" Margin="15,0.5,15,5" />
         <Grid Grid.Row="3" Margin="20,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -117,10 +121,10 @@
 
             <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" IsEnabled="{Binding CanEditOrder}">
                 <Button Margin="0,0,15,0" Command="{Binding AddArticleCommand}" Background="#FF4767AE" Foreground="White">
-                    <Image Source="/Client;component/Ressources/New.png"></Image>
+                    <Image Source="/Client;component/Ressources/New.png" Margin="5"></Image>
                 </Button>
                 <Button Margin="0,0,0,0" Command="{Binding RemoveArticleCommand}" Background="#FF4767AE" Foreground="White">
-                    <Image Source="/Client;component/Ressources/delete.png"></Image>
+                    <Image Source="/Client;component/Ressources/icons8-minus-24.png" Margin="5"></Image>
                 </Button>
             </StackPanel>
 

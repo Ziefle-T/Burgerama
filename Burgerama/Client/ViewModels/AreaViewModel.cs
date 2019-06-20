@@ -11,6 +11,11 @@ namespace Client.ViewModels
 {
     class AreaViewModel : ActionAreaViewModel
     {
+        public override string Title
+        {
+            get { return "Burgerama - Liefergebiete verwalten"; }
+        }
+
         private ObservableCollection<Area> mAreas;
         public ObservableCollection<Area> Areas
         {

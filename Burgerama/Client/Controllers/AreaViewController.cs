@@ -13,10 +13,11 @@ namespace Client.Controllers
     class AreaViewController : ActionAreaController<AreaViewModel>
     {
         private IAreaService mAreaService;
-
+        
         public AreaViewController(IAreaService areaService) : base()
         {
             mAreaService = areaService;
+            mUpdateConflictMessage = "Bitte geben Sie eine Eindeutige Postleitzahl ein.";
         }
         public override AreaViewModel Initialize()
         {
@@ -102,25 +103,19 @@ namespace Client.Controllers
                 return;
             }
 
-            bool success = false;
+            int updateResult = 1;
             if (mViewModel.EditingArea.Id == 0)
             {
-                success = mAreaService.Add(mViewModel.EditingArea);
+                updateResult = mAreaService.Add(mViewModel.EditingArea) ? 0 : 1;
             }
             else
             {
-                success = mAreaService.UpdateArea(mViewModel.EditingArea.Id, mViewModel.EditingArea);
+                updateResult = mAreaService.UpdateArea(mViewModel.EditingArea.Id, mViewModel.EditingArea);
             }
 
-            if (!success)
-            {
-                ShowMessage("Bitte geben Sie eine eindeutige Postleitzahl ein.");
-                return;
-            }
-
-            ResetView();
+            HandleUpdateResult(updateResult);
         }
-        private void ResetView()
+        override protected void ResetView()
         {
             mViewModel.SelectedArea = null;
             mViewModel.EditingArea = null;

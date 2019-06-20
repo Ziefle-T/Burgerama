@@ -9,15 +9,15 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="15"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="15"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Margin="15,0,0,0">Fahrer Verwalten</TextBlock>
+        <TextBlock Grid.Row="0" Margin="15,0,0,0" FontWeight="Bold">Fahrer Verwalten</TextBlock>
         <DataGrid Grid.Row="1" Margin="15,0,15,0" Grid.ColumnSpan="2" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Drivers}" SelectedItem="{Binding SelectedDriver}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Personal-Nr." IsReadOnly="True" Binding="{Binding EmployeeNumber}" />
@@ -25,14 +25,19 @@
                 <DataGridTextColumn Width="*" Header="Nachname" IsReadOnly="True" Binding="{Binding LastName}" />
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBlock Text="{Binding EditingDriver.EmployeeNumber}" />
-            <TextBlock Text=" - " />
-            <TextBlock Text="{Binding EditingDriver.FirstName}" />
-            <TextBlock Text=" "></TextBlock>
-            <TextBlock Text="{Binding EditingDriver.LastName}"></TextBlock>
+
+        <Grid Grid.Row="2" ColumnSpan="2" Background="#FFF0F0F0" Margin="15,5,15,0"></Grid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="15,0,15,0">
+            <TextBlock Text="{Binding EditingDriver.EmployeeNumber}" FontWeight="Bold"/>
+            <TextBlock Text=" - " FontWeight="Bold"/>
+            <TextBlock Text="{Binding EditingDriver.FirstName}" FontWeight="Bold"/>
+            <TextBlock Text=" " FontWeight="Bold" />
+            <TextBlock Text="{Binding EditingDriver.LastName}" FontWeight="Bold" />
         </StackPanel>
-        <Grid Grid.Row="3" Grid.Column="0" Grid.Margin="15,5,15,5" IsEnabled="{Binding CanEditDriver}">
+
+        <Grid Grid.Row="3" ColumnSpan="2" Background="Black" Margin="14.5,0,14.5,4.5" />
+        <Grid Grid.Row="3" ColumnSpan="2" Background="White" Margin="15,0.5,15,5" />
+        <Grid Grid.Row="3" Grid.Column="0" Grid.Margin="25,5,25,5" IsEnabled="{Binding CanEditDriver}">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -45,7 +50,7 @@
             <TextBlock Grid.Row="2" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4767AE" FontWeight="Bold">Nachname</TextBlock>
             <TextBox Grid.Row="2"  VerticalAlignment="Center" Text="{Binding EditingDriver.LastName}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
         </Grid>
-        <DataGrid IsEnabled="{Binding CanEditDriver}" Grid.Row="3" Grid.Column="1" Margin="0,0,15,0" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid IsEnabled="{Binding CanEditDriver}" Grid.Row="3" Grid.Column="1" Margin="0,5,20,10" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Header="Checkbox" Binding="{Binding InDriverAreaList}" Width="*"></DataGridCheckBoxColumn>
                 <DataGridTextColumn Width="*" Header="PLZ" IsReadOnly="True" Binding="{Binding Plz}" />

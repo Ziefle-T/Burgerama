@@ -35,10 +35,10 @@ namespace Client.Server.Services
         System.Threading.Tasks.Task<bool> DeleteAsync(int customerId);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ICustomerService/UpdateCustomer", ReplyAction = "http://tempuri.org/ICustomerService/UpdateCustomerResponse")]
-        bool UpdateCustomer(Server.Models.Customer customer);
+        int UpdateCustomer(Server.Models.Customer customer);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ICustomerService/UpdateCustomer", ReplyAction = "http://tempuri.org/ICustomerService/UpdateCustomerResponse")]
-        System.Threading.Tasks.Task<bool> UpdateCustomerAsync(Server.Models.Customer customer);
+        System.Threading.Tasks.Task<int> UpdateCustomerAsync(Server.Models.Customer customer);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/ICustomerService/UpdateFirstName", ReplyAction = "http://tempuri.org/ICustomerService/UpdateFirstNameResponse")]
         bool UpdateFirstName(int customerId, string firstName);

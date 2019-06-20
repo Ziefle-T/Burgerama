@@ -26,6 +26,8 @@ namespace Server.Models
         public int Plz { get; set; }
         [DataMember]
         public string City { get; set; }
+        [DataMember]
+        public int Version { get; set; }
 
         public int Type { get; set; }
     }

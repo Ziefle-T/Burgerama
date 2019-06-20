@@ -11,6 +11,11 @@ namespace Client.ViewModels
 {
     class ArticleViewModel : ActionAreaViewModel
     {
+        public override string Title
+        {
+            get { return "Burgerama - Artikel verwalten"; }
+        }
+
         private ObservableCollection<Article> mArticles;
         public ObservableCollection<Article> Articles
         {

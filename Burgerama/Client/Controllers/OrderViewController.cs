@@ -30,6 +30,7 @@ namespace Client.Controllers
             mCustomerService = customerService;
             mDriverService = driverService;
             mOrderLinesService = orderLinesService;
+            mUpdateConflictMessage = "Die Bestellung konnte nicht gespeichert werden.";
         }
 
         public override OrderViewModel Initialize()
@@ -126,23 +127,17 @@ namespace Client.Controllers
                 return;
             }
 
-            bool success = false;
+            int updateResult = 1;
             if (mViewModel.EditingOrder.Id == 0)
             {
-                success = mOrderService.Add(mViewModel.EditingOrder);
+                updateResult = mOrderService.Add(mViewModel.EditingOrder) ? 0 : 1;
             }
             else
             {
-                success = mOrderService.UpdateOrder(mViewModel.EditingOrder.Id, mViewModel.EditingOrder);
+                updateResult = mOrderService.UpdateOrder(mViewModel.EditingOrder.Id, mViewModel.EditingOrder);
             }
 
-            if (!success)
-            {
-                ShowMessage("Die Bestellung konnte nicht gespeichert werden.");
-                return;
-            }
-
-            ResetView();
+            HandleUpdateResult(updateResult);
         }
 
         public void ExecuteAddOrderLineCommand(object obj)
@@ -201,19 +196,11 @@ namespace Client.Controllers
                     ShowMessage("Kein Element zum löschen ausgewählt.");
                     return;
                 }
-
-                //if (mViewModel.SelectedOrderLine.Id == 0) // ||
-                //    //mOrderLinesService.Delete(mViewModel.SelectedOrderLine.Id))
-                //{
-                    var list = editingOrder.OrderLines.ToList();
-                    list.Remove(mViewModel.SelectedOrderLine);
-                    editingOrder.OrderLines = list.ToArray();
-                    mViewModel.EditingOrder = editingOrder;
-                //}
-                //else
-                //{
-                //    ShowMessage("Der Artikel konnte nicht entfernt werden.");   
-                //}
+                
+                var list = editingOrder.OrderLines.ToList();
+                list.Remove(mViewModel.SelectedOrderLine);
+                editingOrder.OrderLines = list.ToArray();
+                mViewModel.EditingOrder = editingOrder;
             }
             catch (Exception e)
             {
@@ -221,7 +208,7 @@ namespace Client.Controllers
             }
         }
         
-        private void ResetView()
+        override protected void ResetView()
         {
             mViewModel.SelectedOrder = null;
             mViewModel.EditingOrder = null;

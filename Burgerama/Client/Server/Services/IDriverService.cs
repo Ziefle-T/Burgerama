@@ -29,10 +29,10 @@ namespace Client.Server.Services
         System.Threading.Tasks.Task<bool> AddAsync(Driver driver);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IDriverService/UpdateDriver", ReplyAction = "http://tempuri.org/IDriverService/UpdateDriverResponse")]
-        bool UpdateDriver(int driverId, Driver driver);
+        int UpdateDriver(int driverId, Driver driver);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IDriverService/UpdateDriver", ReplyAction = "http://tempuri.org/IDriverService/UpdateDriverResponse")]
-        System.Threading.Tasks.Task<bool> UpdateDriverAsync(int driverId, Driver driver);
+        System.Threading.Tasks.Task<int> UpdateDriverAsync(int driverId, Driver driver);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IDriverService/UpdateFirstName", ReplyAction = "http://tempuri.org/IDriverService/UpdateFirstNameResponse")]
         bool UpdateFirstName(int driverId, string firstName);

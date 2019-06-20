@@ -24,6 +24,8 @@ namespace Client.Server.Models
 
         private decimal PriceField;
 
+        private int VersionField;
+
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -99,6 +101,13 @@ namespace Client.Server.Models
             {
                 this.PriceField = value;
             }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Version
+        {
+            get { return this.VersionField; }
+            set { this.VersionField = value; }
         }
 
         public override bool Equals(object obj)

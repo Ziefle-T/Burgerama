@@ -55,7 +55,7 @@ namespace Client.Controllers
             int i = 1;
             foreach (var areaBestseller in topTen)
             {
-                areaBestseller.Rank = 1;
+                areaBestseller.Rank = i;
                 i++;
             }
 

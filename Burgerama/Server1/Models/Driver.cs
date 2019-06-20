@@ -21,5 +21,7 @@ namespace Server.Models
         public int EmployeeNumber { get; set; }
         [DataMember]
         public IList<Area> Areas { get; set; }
+        [DataMember]
+        public int Version { get; set; }
     }
 }

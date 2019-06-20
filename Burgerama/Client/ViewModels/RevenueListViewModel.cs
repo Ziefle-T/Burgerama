@@ -10,6 +10,11 @@ namespace Client.ViewModels
 {
     class RevenueListViewModel : ActionAreaViewModel
     {
+        public override string Title
+        {
+            get { return "Burgerama - Umsatzrangliste"; }
+        }
+
         public ObservableCollection<AreaBestseller> AreaBestsellers { get; set; }
     }
 }

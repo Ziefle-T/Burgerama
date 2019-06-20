@@ -22,7 +22,7 @@ namespace Server.Services
         bool Delete(int orderId);
 
         [OperationContract]
-        bool UpdateOrder(int orderId, Order order);
+        int UpdateOrder(int orderId, Order order);
 
         [OperationContract]
         bool UpdateOrderNumber(int orderId, string orderNumber);

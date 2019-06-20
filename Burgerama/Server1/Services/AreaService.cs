@@ -56,7 +56,7 @@ namespace Server.Services
             return mRepository.GetAllWhere(x => x.Id == id).FirstOrDefault();
         }
 
-        public bool UpdateArea(int areaId, Area area)
+        public int UpdateArea(int areaId, Area area)
         {
             return base.UpdateElement(areaId, area);
         }

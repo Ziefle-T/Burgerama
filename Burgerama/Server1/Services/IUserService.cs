@@ -19,7 +19,7 @@ namespace Server.Services
         bool Add(User user);
 
         [OperationContract]
-        bool UpdateUser(int userId, User user);
+        int UpdateUser(int userId, User user);
 
         [OperationContract]
         bool UpdateUsername(int userId, string username);
@@ -31,7 +31,7 @@ namespace Server.Services
         bool UpdateLastname(int userId, string lastname);
 
         [OperationContract]
-        bool UpdatePassword(int userId, string oldPassword, string password);
+        int UpdatePassword(int userId, string oldPassword, string password);
 
         [OperationContract]
         bool UpdateAdmin(int userId, bool isAdmin);

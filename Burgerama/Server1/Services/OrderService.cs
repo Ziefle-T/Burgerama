@@ -73,7 +73,7 @@ namespace Server.Services
             }
         }
 
-        public bool UpdateOrder(int orderId, Order order)
+        public int UpdateOrder(int orderId, Order order)
         {
             try
             {
@@ -85,11 +85,6 @@ namespace Server.Services
                     {
                         mOrderLinesRepository.Delete(orderLine);
                     }
-                    //else
-                    //{
-
-                    //    orderLines.Remove(orderLine);
-                    //}
                 }
                 
                 foreach (var orderLine in orderLines)
@@ -98,22 +93,25 @@ namespace Server.Services
                 }
 
                 order.OrderLines = new List<OrderLines>();
-                if (UpdateElement(orderId, order))
+
+                int updateResult = UpdateElement(orderId, order);
+
+                if (updateResult == 0)
                 {
                     foreach (var orderLine in orderLines)
                     {
                         mOrderLinesRepository.Save(orderLine);
                     }
 
-                    return true;
+                    return 0;
                 }
 
-                return false;
+                return updateResult;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return false;
+                return 3;
             }
         }
 

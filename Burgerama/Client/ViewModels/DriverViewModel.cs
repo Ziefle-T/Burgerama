@@ -11,8 +11,12 @@ namespace Client.ViewModels
 {
     class DriverViewModel : ActionAreaViewModel
     {
-        private ObservableCollection<Area> mAreas;
+        public override string Title
+        {
+            get { return "Burgerama - Fahrer verwalten"; }
+        }
 
+        private ObservableCollection<Area> mAreas;
         public ObservableCollection<Area> Areas
         {
             get { return mAreas; }

@@ -31,5 +31,8 @@ namespace Server.Models
 
         [DataMember]
         public IList<OrderLines> OrderLines { get; set; }
+
+        [DataMember]
+        public int Version { get; set; }
     }
 }

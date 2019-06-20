@@ -25,6 +25,8 @@ namespace Server.Mappings
                 .ParentKeyColumn("EmployeeId")
                 .ChildKeyColumn("AreaId")
                 .Cascade.SaveUpdate();
+
+            Version(x => x.Version);
         }
     }
 }

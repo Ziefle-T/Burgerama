@@ -19,30 +19,70 @@ namespace Client.ViewModels
         public ICommand SaveCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
 
-        public ObservableCollection<string> Sites { get; set; }
+        private string mTitle;
+        public string Title
+        {
+            get { return mTitle; }
+            set
+            {
+                mTitle = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<string> mSites;
+        public ObservableCollection<string> Sites
+        {
+            get { return mSites;}
+            set
+            {
+                mSites = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string mSelectedSite;
         public string SelectedSite {
             get { return mSelectedSite; }
             set
             {
-                mSelectedSite = value;
                 mSelectedAdminSite = "";
+                var temp = AdminSites;
+                AdminSites = null;
+                AdminSites = temp;
                 ViewSelectionChangedCommand.Execute(value);
                 SelectedSitePropertyChanged();
+
+                mSelectedSite = value;
+                OnPropertyChanged();
             }
         }
 
-        public ObservableCollection<string> AdminSites { get; set; }
+        private ObservableCollection<string> mAdminSites;
+        public ObservableCollection<string> AdminSites
+        {
+            get { return mAdminSites; }
+            set
+            {
+                mAdminSites = value;
+                OnPropertyChanged();
+            }
+        }
         private string mSelectedAdminSite;
         public string SelectedAdminSite
         {
             get { return mSelectedAdminSite; }
             set
             {
-                mSelectedAdminSite = value;
                 mSelectedSite = "";
+                var temp = Sites;
+                Sites = null;
+                Sites = temp;
                 ViewSelectionChangedCommand.Execute(value);
                 SelectedSitePropertyChanged();
+
+                mSelectedAdminSite = value;
+                OnPropertyChanged();
             }
         }
         
@@ -93,8 +133,6 @@ namespace Client.ViewModels
 
         private void SelectedSitePropertyChanged()
         {
-            OnPropertyChanged(nameof(mSelectedSite));
-            OnPropertyChanged(nameof(mSelectedAdminSite));
             OnPropertyChanged(nameof(NewCommand));
             OnPropertyChanged(nameof(EditCommand));
             OnPropertyChanged(nameof(SaveCommand));

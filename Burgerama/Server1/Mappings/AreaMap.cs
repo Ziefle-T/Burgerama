@@ -18,6 +18,8 @@ namespace Server.Mappings
             Map(x => x.Name).Column("Description").Length(50).Not.Nullable();
             Map(x => x.Plz).Column("PostCode").Not.Nullable();
 
+            Version(x => x.Version);
+
             HasManyToMany(x => x.Drivers)
                 .Table("EmployeeToAreaRelations")
                 .ParentKeyColumn("AreaId")

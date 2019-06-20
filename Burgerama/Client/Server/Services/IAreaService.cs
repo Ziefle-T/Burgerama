@@ -59,10 +59,10 @@ namespace Client.Server.Services
         System.Threading.Tasks.Task<bool> UpdateDriversAsync(int areaId, Driver[] drivers);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAreaService/UpdateArea", ReplyAction = "http://tempuri.org/IAreaService/UpdateAreaResponse")]
-        bool UpdateArea(int areaId, Area area);
+        int UpdateArea(int areaId, Area area);
 
         [System.ServiceModel.OperationContractAttribute(Action = "http://tempuri.org/IAreaService/UpdateArea", ReplyAction = "http://tempuri.org/IAreaService/UpdateAreaResponse")]
-        System.Threading.Tasks.Task<bool> UpdateAreaAsync(int areaId, Area area);
+        System.Threading.Tasks.Task<int> UpdateAreaAsync(int areaId, Area area);
     }
 }
 

@@ -30,6 +30,8 @@ namespace Client.Server.Models
 
         private int PositionField;
 
+        private int VersionField;
+
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData
         {
             get
@@ -144,6 +146,13 @@ namespace Client.Server.Models
             {
                 this.OrderNumberField = value;
             }
+        }
+
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Version
+        {
+            get { return this.VersionField; }
+            set { this.VersionField = value; }
         }
 
         public override bool Equals(object obj)

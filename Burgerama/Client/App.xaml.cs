@@ -30,18 +30,15 @@ namespace Client
 
             using (var lifetime = Container.BeginLifetimeScope())
             {
-                var mainWindowController = lifetime.Resolve<MainWindowController>();
-                mainWindowController.Initialize(true);
+                LoginController loginController = lifetime.Resolve<LoginController>();
+                var loginResult = loginController.Login();
+                if (loginResult.success)
+                {
+                    LoggedInUser = loginResult.user;
 
-                //LoginController loginController = lifetime.Resolve<LoginController>();
-                //var loginResult = loginController.Login();
-                //if (loginResult.success)
-                //{
-                //    LoggedInUser = loginResult.user;
-
-                //    var mainWindowController = lifetime.Resolve<MainWindowController>();
-                //    mainWindowController.Initialize(loginResult.user.IsAdmin);
-                //}
+                    var mainWindowController = lifetime.Resolve<MainWindowController>();
+                    mainWindowController.Initialize(loginResult.user.IsAdmin);
+                }
             }
 
             this.Shutdown();
