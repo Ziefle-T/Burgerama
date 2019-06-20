@@ -8,17 +8,26 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
     <Grid.RowDefinitions>
-            <RowDefinition Height="15"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Margin="15,0,0,0" FontWeight="Bold">Artikel verwalten</TextBlock>
+        <TextBlock Grid.Row="0" Margin="15,0,0,0" VerticalAlignment="Center" FontWeight="Bold">Artikel verwalten</TextBlock>
         <DataGrid Grid.Row="1" Margin="15,0,15,0" ItemsSource="{Binding Articles}" CanUserAddRows="False" CanUserDeleteRows="False" SelectedItem="{Binding SelectedArticle}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Art.-Nr." IsReadOnly="True" Binding="{Binding ArticleNumber}" />
                 <DataGridTextColumn Width="8*" Header="Name" IsReadOnly="True" Binding="{Binding Name}" />
-                <DataGridTextColumn Width="*" Header="Preis" IsReadOnly="True" Binding="{Binding Price}" />
+                <DataGridTemplateColumn Width="*" Header="Preis" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="€ " />
+                                <TextBlock Text="{Binding Price}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 

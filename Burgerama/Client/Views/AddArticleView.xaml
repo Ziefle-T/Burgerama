@@ -5,7 +5,82 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.Views"
         mc:Ignorable="d"
-        Title="AddArticleView" Height="350" Width="500">
+        Title="Burgerama - Position hinzufügen" Height="350" Width="500">
+
+    <Window.Resources>
+        <Style TargetType="DataGrid">
+            <Setter Property="BorderBrush" Value="#DDDDDD" />
+            <Setter Property="HorizontalGridLinesBrush" Value="#DDDDDD" />
+            <Setter Property="VerticalGridLinesBrush" Value="#DDDDDD" />
+            <Setter Property="AlternatingRowBackground" Value="#FFF0F0F0" />
+            <Setter Property="RowHeaderWidth" Value="0" />
+
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Padding" Value="4,3,4,3" />
+                        <Setter Property="Background" Value="#FFC9C9C9" />
+                        <Setter Property="BorderThickness" Value="0.25, 0.25, 0.25,0" />
+                        <Setter Property="BorderBrush" Value="Black" />
+                    </Style>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="RowStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="LightCyan" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="CellStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridCell">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#FF4767AE" />
+                                <Setter Property="BorderBrush" Value="Transparent" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Background" Value="#FF4767AE" />
+                                <Setter Property="BorderBrush" Value="Transparent" />
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                        </Style.Triggers>
+                        <Setter Property="Padding" Value="4,3,4,3" />
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="DataGridCell">
+                                    <Border Padding="{TemplateBinding Padding}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="FocusVisualStyle">
+                            <Setter.Value>
+                                <Style TargetType="Control">
+                                    <Setter Property="BorderBrush" Value="Transparent" />
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -34,8 +109,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4767AE" FontWeight="Bold">Anzahl</TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="{Binding Amount}" Background="Transparent" BorderBrush="#FF4767AE" BorderThickness="0,0,0,2" TextAlignment="Right" />
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="10,0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4767AE" FontWeight="Bold">Anzahl</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="0" Margin="10,0" VerticalAlignment="Center" Text="{Binding Amount}" Background="Transparent" BorderBrush="#FF4767AE" BorderThickness="0,0,0,2" TextAlignment="Right" />
 
         <Button Grid.Row="2" Grid.Column="0" Margin="10,5" Foreground="White" Background="#FF4767AE" FontWeight="Bold" Command="{Binding AddCommand}">Hinzufügen</Button>
         <Button Grid.Row="2" Grid.Column="1" Margin="10,5" Foreground="White" Background="#FF4767AE" FontWeight="Bold" Command="{Binding CancelCommand}">Abbrechen</Button>
