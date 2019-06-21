@@ -115,31 +115,6 @@ namespace Server.Services
             }
         }
 
-        public override bool Delete(int id)
-        {
-            try
-            {
-                var element = GetElementById(id);
-                if (element == null)
-                {
-                    return false;
-                }
-
-                foreach (var orderLine in element.OrderLines)
-                {
-                    mOrderLinesRepository.Delete(orderLine);
-                }
-                mRepository.Delete(element);
-
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return false;
-            }
-        }
-
         public bool UpdateOrderLines(int orderId, IList<OrderLines> orderLines)
         {
             return Update(orderId, x => x.OrderLines = orderLines);

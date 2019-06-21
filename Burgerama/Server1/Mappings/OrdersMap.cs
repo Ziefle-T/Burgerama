@@ -21,8 +21,7 @@ namespace Server.Mappings
             Map(x => x.Description).Length(100).Nullable();
             References(x => x.Driver)
                 .Column("EmployeeId")
-                .Not.Nullable()
-                .Cascade.SaveUpdate();
+                .Not.Nullable();
             References(x => x.Customer)
                 .Column("CustomerId")
                 .Not.Nullable()

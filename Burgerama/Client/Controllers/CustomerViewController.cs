@@ -95,18 +95,18 @@ namespace Client.Controllers
                 return;
             }
 
-            if (mViewModel.EditingCustomer.LastName == "")
-            {
-                ShowMessage("Bitte geben Sie einen Nachnamen ein.");
-                return;
-            }
-
             if (mViewModel.EditingCustomer.Phone == "")
             {
                 ShowMessage("Bitte geben Sie eine Telefonnummer ein.");
                 return;
             }
 
+            if (mViewModel.EditingCustomer.LastName == "")
+            {
+                ShowMessage("Bitte geben Sie einen Nachnamen ein.");
+                return;
+            }
+            
             if (mViewModel.EditingCustomer.Street == "")
             {
                 ShowMessage("Bitte geben Sie eine Straße ein.");
@@ -127,7 +127,7 @@ namespace Client.Controllers
 
             if (mViewModel.EditingCustomer.City == "")
             {
-                ShowMessage("Bitte geben Sie eine Stadt ein.");
+                ShowMessage("Bitte geben Sie einen Ort ein.");
                 return;
             }
 

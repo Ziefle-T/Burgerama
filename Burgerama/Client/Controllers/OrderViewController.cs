@@ -115,18 +115,18 @@ namespace Client.Controllers
                 return;
             }
 
-            if (mViewModel.EditingOrder.Driver == null)
-            {
-                ShowMessage("Bitte geben Sie einen Fahrer an.");
-                return;
-            }
-
             if (mViewModel.EditingOrder.Customer == null)
             {
                 ShowMessage("Bitte geben Sie einen Kunden an.");
                 return;
             }
 
+            if (mViewModel.EditingOrder.Driver == null)
+            {
+                ShowMessage("Bitte geben Sie einen Fahrer an.");
+                return;
+            }
+            
             int updateResult = 1;
             if (mViewModel.EditingOrder.Id == 0)
             {

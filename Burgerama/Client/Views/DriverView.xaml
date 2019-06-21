@@ -50,9 +50,17 @@
             <TextBlock Grid.Row="2" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF4767AE" FontWeight="Bold">Nachname</TextBlock>
             <TextBox Grid.Row="2"  VerticalAlignment="Center" Text="{Binding EditingDriver.LastName}" Background="Transparent" BorderBrush="#FF81818B" BorderThickness="0,0,0,2" TextAlignment="Right" />
         </Grid>
-        <DataGrid IsEnabled="{Binding CanEditDriver}" Grid.Row="3" Grid.Column="1" Margin="0,5,20,10" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Areas}" SelectedItem="{Binding SelectedArea}" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid IsEnabled="{Binding CanEditDriver}" IsReadOnly="True" Grid.Row="3" Grid.Column="1" Margin="0,5,20,10"  CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Areas}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Header="Checkbox" Binding="{Binding InDriverAreaList}" Width="*"></DataGridCheckBoxColumn>
+                <DataGridTemplateColumn Header="Aktiv" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding InDriverAreaList, UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Width="*" Header="PLZ" IsReadOnly="True" Binding="{Binding Plz}" />
                 <DataGridTextColumn Width="*" Header="Gebiet" IsReadOnly="True" Binding="{Binding Name}" />
             </DataGrid.Columns>

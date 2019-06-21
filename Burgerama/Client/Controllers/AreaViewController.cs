@@ -99,7 +99,7 @@ namespace Client.Controllers
 
             if (mViewModel.EditingArea.Name == "")
             {
-                ShowMessage("Bitt einen Namen eingeben.");
+                ShowMessage("Bitte einen Ortsnamen eingeben.");
                 return;
             }
 
