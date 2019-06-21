@@ -45,6 +45,8 @@ namespace ServerTest.Framework
         [TestMethod]
         public void SaveAndGetAllTest1()
         {
+            Repository<Driver> driverRepository = new Repository<Driver>(mHibernateHelper);
+
             Driver driver = new Driver()
             {
                 FirstName = "Günther",
@@ -99,6 +101,8 @@ namespace ServerTest.Framework
             };
             orderLines.Order = order;
             
+            driverRepository.Save(driver);
+
             mOrderRepository.Save(order);
 
             List<Order> orderList = mOrderRepository.GetAll();
@@ -184,6 +188,8 @@ namespace ServerTest.Framework
                 Driver = driver
             };
 
+            driverRepository.Save(driver);
+
             mOrderRepository.Save(order);
 
             List<Driver> savedDrivers = driverRepository.GetAll();
@@ -223,6 +229,8 @@ namespace ServerTest.Framework
         [TestMethod]
         public void SaveAndGetAllTest3()
         {
+            Repository<Driver> driverRepository = new Repository<Driver>(mHibernateHelper);
+
             Driver driver = new Driver()
             {
                 FirstName = "Günther",
@@ -279,6 +287,8 @@ namespace ServerTest.Framework
                 },
                 Driver = driver
             };
+
+            driverRepository.Save(driver);
 
             mOrderRepository.Save(order1);
             mOrderRepository.Save(order2);
@@ -303,6 +313,8 @@ namespace ServerTest.Framework
         [TestMethod]
         public void SaveAndDeleteTest1()
         {
+            Repository<Driver> driverRepository = new Repository<Driver>(mHibernateHelper);
+
             Driver driver = new Driver()
             {
                 FirstName = "Günther",
@@ -359,6 +371,8 @@ namespace ServerTest.Framework
                 },
                 Driver = driver
             };
+
+            driverRepository.Save(driver);
 
             mOrderRepository.Save(order1);
             mOrderRepository.Save(order2);

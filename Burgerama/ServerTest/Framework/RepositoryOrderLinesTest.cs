@@ -45,6 +45,8 @@ namespace ServerTest.Framework
         [TestMethod]
         public void SaveAndGetAllTest1()
         {
+            Repository<Driver> driverRepository = new Repository<Driver>(mHibernateHelper);
+
             Driver driver = new Driver()
             {
                 FirstName = "Günther",
@@ -97,6 +99,7 @@ namespace ServerTest.Framework
                 Order = order
             };
 
+            driverRepository.Save(driver);
             mOrderLinesRepository.Save(insertOrderLines);
             List<OrderLines> savedOrderLines = mOrderLinesRepository.GetAll();
 
@@ -196,6 +199,7 @@ namespace ServerTest.Framework
                 Order = order
             };
 
+            driverRepository.Save(driver);
             mOrderLinesRepository.Save(insertOrderLines);
 
             List<Driver> savedDrivers = driverRepository.GetAll();
@@ -236,6 +240,8 @@ namespace ServerTest.Framework
         [TestMethod]
         public void SaveAndGetAllTest3()
         {
+            Repository<Driver> driverRepository = new Repository<Driver>(mHibernateHelper);
+
             Driver driver = new Driver()
             {
                 FirstName = "Günther",
@@ -303,6 +309,8 @@ namespace ServerTest.Framework
             };
             order.OrderLines.Add(insertOrderLines1);
             order.OrderLines.Add(insertOrderLines2);
+
+            driverRepository.Save(driver);
 
             mOrderLinesRepository.Save(insertOrderLines1);
             mOrderLinesRepository.Save(insertOrderLines2);
@@ -373,6 +381,8 @@ namespace ServerTest.Framework
         [TestMethod]
         public void SaveDeleteAndGetAllTest()
         {
+            Repository<Driver> driverRepository = new Repository<Driver>(mHibernateHelper);
+
             Driver driver = new Driver()
             {
                 FirstName = "Günther",
@@ -440,6 +450,8 @@ namespace ServerTest.Framework
             };
             order.OrderLines.Add(insertOrderLines1);
             order.OrderLines.Add(insertOrderLines2);
+
+            driverRepository.Save(driver);
 
             mOrderLinesRepository.Save(insertOrderLines1);
             mOrderLinesRepository.Save(insertOrderLines2);
